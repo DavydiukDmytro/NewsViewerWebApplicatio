@@ -1,2 +1,7 @@
-@import './common';
-@import './example';
+// Підключення утиліт
+@import './abstracts/common';
+@import './abstracts/variables';
+@import './abstracts/breakpoints';
+@import './abstracts/fonts';
+//Компоненти
+@import './components/body';
