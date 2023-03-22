@@ -1,4 +1,4 @@
-export const category = [
+const category = [
         {
             section: "admin",
             display_name: "Admin"
