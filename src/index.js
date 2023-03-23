@@ -1,2 +1,2 @@
-import { category } from './js/сategory';
-console.log(category[0]);
+import { ggx } from './js/gg';
+console.log(ggx[0]);
