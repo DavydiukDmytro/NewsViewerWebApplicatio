@@ -8,7 +8,27 @@
     <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
+    <include src="./partials/header.html"></include>
+    <!--SECTION categories-->
+    <section class="section-categories">
+      <div class="section-categories__classes">
+        <ul class="section-categories__list">
+          <li class="news-section__item">Admin</li>
+          <li class="news-section__item">Arts</li>
+          <li class="news-section__item">Automobiles</li>
+          <li class="news-section__item">Books</li>
+          <li class="news-section__item">Briefing</li>
+          <li class="news-section__item">Business</li>
+          <li class="news-section__item">Others</li>
+        </ul>
+      </div>
+      <div class="section-categories__calendar">
+        <span class="">Search date news</span>
+        <input class="" type="date" id="calendar" name="calendar" />
+      </div>
+    </section>
+    <!--SECTION NEWS-->
+    <section class="section-news"></section>
+    <footer class="footer"></footer>
   </body>
 </html>

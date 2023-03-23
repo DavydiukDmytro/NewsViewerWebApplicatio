@@ -5,6 +5,10 @@ import { markup, newObj } from './js/markup';
 const API_URL_NEWS = 'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
 
+const refs = {
+
+};
+
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 
