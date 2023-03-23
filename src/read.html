@@ -8,56 +8,7 @@
     <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <header class="header">
-      <div class="header__nav container">
-        <a href="./index.html" class="header__logo"> News</a>
-
-        <!-- <button
-          class="button-menu is-open"
-          type="button"
-          aria-controls="menu-container"
-          data-menu-button
-        >
-          <svg width="" height="" aria-label="Перемикач мобільного меню">
-            <use class="button-menu__hamburger" href=""></use>
-            <use class="button-menu__cros" href=""></use>
-          </svg>
-        </button> -->
-
-        <div class="menu__container" id="menu-container" data-menu>
-          <nav class="main-nav">
-            <ul class="site-nav">
-              <li class="site-nav__item">
-                <a href="./index.html" class="header__link">Home</a>
-              </li>
-              <li class="site-nav__item">
-                <a href="./favorite.html" class="header__link">Favorite</a>
-              </li>
-              <li class="site-nav__item">
-                <a href="./read.html" class="header__link link">Read</a>
-              </li>
-            </ul>
-          </nav>
-
-          <div class="header__input">
-            <input class="search-input" type="text" id="search" name="search" />
-            <svg class="search-input__icon" width="" height="">
-              <use href=""></use>
-            </svg>
-          </div>
-        </div>
-        <div class="header__checkbox">
-          <span class="light-check">Light</span>
-          <input
-            class="theme-input"
-            type="checkbox"
-            id="theme-clicker"
-            name="theme-clicker"
-          />
-          <span class="dark-check">Dark</span>
-        </div>
-      </div>
-    </header>
+    <include src="./partials/header.html"></include>
     <!--SECTION READ-->
     <section class="section-read"></section>
     <!--FOOTER-->
