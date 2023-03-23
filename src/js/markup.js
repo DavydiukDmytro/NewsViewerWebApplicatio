@@ -10,17 +10,20 @@ const book = {
 
 export function newObj(value) {
   const xxx = value.results;
-  xxx.forEach(function ({
-    title,
-    asset_id,
-    url,
-    published_date,
-    abstract,
-    media,
-    flag = 'news',
-    favorite = false,
-    read = false,
-  }) {
+  xxx.forEach(function (
+    {
+      title,
+      asset_id,
+      url,
+      published_date,
+      abstract,
+      media,
+      flag = 'news',
+      favorite = false,
+      read = false,
+    },
+    index
+  ) {
     news.push({
       asset_id,
       published_date,
@@ -32,6 +35,9 @@ export function newObj(value) {
       favorite,
       read,
     });
+    if (index === 1) {
+      news.push(book);
+    }
   });
   console.log('News Arr : ', news);
 }
