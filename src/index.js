@@ -1,7 +1,7 @@
 import { category } from './js/category';
 import { Requests } from './js/requests';
 
-const API_URL_NEWS = 'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json';
+const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
 
 const refs = {
