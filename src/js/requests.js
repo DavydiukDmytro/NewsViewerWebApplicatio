@@ -14,4 +14,8 @@ export class Requests {
         const response = await axios.get(url);
         return response.data;
     }
+    // створення URL для запиту по слову
+    createSearchQueryUrl(search = '') {
+        return `${this.url}/search/v2/articlesearch.json?api-key=${this.key}&q=${search}`;
+    }
 }
