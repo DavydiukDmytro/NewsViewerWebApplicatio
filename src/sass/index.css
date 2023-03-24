@@ -1,0 +1,227 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+.visually-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0, 0, 0, 0);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  margin: -1px;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: local("Manrope"), url("../fonts/Manrope/static/Manrope-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Manrope";
+  src: local("Manrope"), url("../fonts/Manrope/static/Manrope-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Manrope";
+  src: local("Manrope"), url("../fonts/Manrope/static/Manrope-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Poppins";
+  src: local("Poppins"), url("../fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+body {
+  margin: 0;
+  position: relative;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+section {
+  position: relative;
+}
+
+.weather__card {
+  list-style: none;
+  width: 100%;
+  background-color: #4440f6;
+  padding: 32px 36px 84px;
+  color: #ffffff;
+  border-radius: 4px;
+}
+@media screen and (min-width: 768px) {
+  .weather__card {
+    padding: 40px 32px 130px;
+    width: calc((100% - 30px) / 2);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .weather__card {
+    width: calc((100% - 64px) / 3);
+    padding: 40px 53px 130px;
+  }
+}
+
+.weather__temperature {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 55px;
+  line-height: 1.16;
+}
+@media screen and (min-width: 768px) {
+  .weather__temperature {
+    font-size: 64px;
+    line-height: 1.17;
+  }
+}
+
+.weather__wrapper {
+  display: flex;
+  margin-bottom: 40px;
+  padding: 5px 0 14px;
+}
+@media screen and (min-width: 768px) {
+  .weather__wrapper {
+    margin-bottom: 90px;
+    padding: 0;
+  }
+}
+
+.weather__box {
+  border-left: 1px solid #ffffff;
+  padding-left: 11px;
+}
+@media screen and (min-width: 768px) {
+  .weather__box {
+    padding-left: 8px;
+  }
+}
+
+.weather__description {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.17;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 768px) {
+  .weather__description {
+    padding-left: 7px;
+    margin-bottom: 0;
+    font-size: 36px;
+  }
+}
+
+.weather__button {
+  display: flex;
+  align-items: center;
+  min-width: 83px;
+  padding: 9px 8px;
+  border: none;
+  background-color: rgba(254, 254, 255, 0.3);
+  border-radius: 10px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
+  color: #ffffff;
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .weather__button {
+    font-size: 20px;
+    line-height: 1.15;
+  }
+}
+
+.weather__location-icon {
+  padding-right: 4px;
+  fill: #ffffff;
+}
+
+.weather-picture {
+  display: block;
+  margin: 0 auto;
+  width: 128px;
+  height: 121px;
+  margin-bottom: 40px;
+}
+@media screen and (min-width: 768px) {
+  .weather-picture {
+    width: 165px;
+    height: 156px;
+    margin-bottom: 90px;
+  }
+}
+
+.weather__day {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.18;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .weather__day {
+    font-size: 36px;
+    line-height: 1.17;
+  }
+}
+
+.weather__date {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.18;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .weather__date {
+    font-size: 36px;
+    line-height: 1.17;
+  }
+}/*# sourceMappingURL=index.css.map */

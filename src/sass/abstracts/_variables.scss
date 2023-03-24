@@ -1,25 +1,25 @@
-$accent: #4440F6;
+$accent: #4440f6;
 $white: #ffffff;
 
 $primary-text: #111321;
-$secondary-text: #A8A8A8;
+$secondary-text: #a8a8a8;
 
-$primary-bg: #F4F4F4;
-$dark-bg: #2E2E2E;
+$primary-bg: #f4f4f4;
+$dark-bg: #2e2e2e;
 
 $black: #000000;
 
 $time: 250ms;
 
 .visually-hidden {
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    border: 0;
-    padding: 0;
-    clip: rect(0, 0, 0, 0);
-    clip-path: inset(50%);
-    margin: -1px;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  margin: -1px;
 }
