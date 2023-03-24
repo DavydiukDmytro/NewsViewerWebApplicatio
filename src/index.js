@@ -1,19 +1,18 @@
 import { category } from './js/category';
 import { Requests } from './js/requests';
+import { requestsWeatherPosition, fetchWeather } from './js/weather';
 
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
 
-const URl_WEATHER = 'https://api.openweathermap.org/data/2.5/weather';
-const API_KEY_WEATHER = 'ae8bbc703118097f2e96d268e981d292';
+
 
 const refs = {
   btnSearch: document.querySelector('.search-button'),
 };
 
-let weather = {};
-let lat = 40.71427;
-let lon = -74.00597;
+export let weather = {};
+
 let arraySearchArticleNews = [];
 let arrayPopuralNews = [];
 let arrayCardNews = [];
@@ -21,8 +20,15 @@ let arrayCardNews = [];
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 
-//створює запит погоди
-const requestsWeather = new Requests(URl_WEATHER, API_KEY_WEATHER);
+init();
+
+//Робить запит на популярні новини та на погоду і верстає карточки
+async function init() {
+  await fetchWeather();
+  await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
+  await searchPopular();
+  //arrayCardNews = function(arrayPopuralNews, погода)
+}
 
 //Функція для пошуку популярних новин
 async function searchPopular() {
@@ -31,23 +37,12 @@ async function searchPopular() {
       requestsNews.createTrendingNewsQueryUrl()
     );
     await newsPopular.then(value => (arrayPopuralNews = value.results));
+    //тимчасово видалить потом 
     console.log(arrayPopuralNews);
-    //arrayCardNews = function(arrayPopuralNews, погода)
-    return 'gg';
   } catch (error) {
     console.log(error.message);
-    return 'gg';
   }
-  return 'gg';
 }
-
-async function init() {
-  await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
-  await searchPopular();
-  console.log(weather.city);
-}
-
-init();
 
 // Функція для пошуку за словом
 async function searchArticle(searchValue) {
@@ -70,67 +65,4 @@ function onClickSearchBtn(e) {
   searchArticle('The New York Times');
 }
 
-/////////////////Погода
 
-async function fetchWeather() {
-  const response = requestsWeather.getRequests(
-    requestsWeather.requestWeatherUrl(lat, lon)
-  );
-  let weatherData = {};
-  await response.then(value => {
-    weatherData = value;
-  });
-  const date = new Date(weatherData.dt * 1000);
-  weather.dayWeek = getDayOfWeek(date);
-  weather.date = getDate(date);
-  weather.temp = weatherData.main.temp;
-  weather.descriptrion = weatherData.weather[0].main;
-  weather.city = weatherData.name;
-  weather.icon = weatherData.weather[0].icon;
-
-  weather.flag = 'weather';
-}
-
-async function requestsWeatherPosition(position) {
-  try {
-    lat = await position.coords.latitude;
-    lon = await position.coords.longitude;
-    await fetchWeather();
-    console.log(weather);
-    return 'gg';
-  } catch (error) {
-    console.error(error);
-    return 'gg';
-  }
-  return 'gg';
-}
-
-//день неділі для картки погоди
-function getDayOfWeek(date) {
-  const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const dayIndex = date.getDay();
-  return daysOfWeek[dayIndex];
-}
-
-//Дата для картки погоди
-function getDate(date) {
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-  const day = date.getDate();
-  const monthIndex = date.getMonth();
-  const year = date.getFullYear();
-
-  return `${day} ${months[monthIndex]} ${year}`;
-}
