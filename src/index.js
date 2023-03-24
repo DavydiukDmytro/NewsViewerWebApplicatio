@@ -22,7 +22,6 @@ let arrayCardNews = [];
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 
-<<<<<<< HEAD
 //робить запит за адресою та виводить в консоль
 try {
   const newsPopular = requestsNews.getRequests(
@@ -34,7 +33,6 @@ try {
 } catch (error) {
   console.log(error.message);
 }
-=======
 //створює запит погоди
 const requestsWeather = new Requests(URl_WEATHER, API_KEY_WEATHER);
 
@@ -133,4 +131,3 @@ function getDate(date) {
 
   return `${day} ${months[monthIndex]} ${year}`;
 }
->>>>>>> main
