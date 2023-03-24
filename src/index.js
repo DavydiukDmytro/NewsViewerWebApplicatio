@@ -1,5 +1,6 @@
 import { category } from './js/category';
 import { Requests } from './js/requests';
+import { setupNewsSection } from './js/section-categories-list';
 
 const API_URL_NEWS = 'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
@@ -18,4 +19,5 @@ try {
 } catch (error) {
     console.log(error.message);
 }
+setupNewsSection();
 
