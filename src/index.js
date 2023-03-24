@@ -18,9 +18,7 @@ try {
     requestsNews.createTrendingNewsQueryUrl()
   );
   newsPopular.then(value => {
-    console.log(value.results);
-    const qqq = markup(value);
-    newObj(value);
+    console.log(value.results);    
   });
 } catch (error) {
   console.log(error.message);
