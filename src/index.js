@@ -1,6 +1,6 @@
 import { category } from './js/category';
 import { Requests } from './js/requests';
-import { markup, newObj } from './js/markup';
+import { newsMarkup, concatNewsAndWeather } from './js/markup';
 
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
@@ -23,16 +23,16 @@ let arrayCardNews = [];
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 
 //робить запит за адресою та виводить в консоль
-try {
-  const newsPopular = requestsNews.getRequests(
-    requestsNews.createTrendingNewsQueryUrl()
-  );
-  newsPopular.then(value => {
-    console.log(value.results);    
-  });
-} catch (error) {
-  console.log(error.message);
-}
+// try {
+//   const newsPopular = requestsNews.getRequests(
+//     requestsNews.createTrendingNewsQueryUrl()
+//   );
+//   newsPopular.then(value => {
+//     console.log(value.results);
+//   });
+// } catch (error) {
+//   console.log(error.message);
+// }
 //створює запит погоди
 const requestsWeather = new Requests(URl_WEATHER, API_KEY_WEATHER);
 
@@ -40,14 +40,19 @@ const requestsWeather = new Requests(URl_WEATHER, API_KEY_WEATHER);
 async function searchPopular() {
   try {
     await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
-    console.log(weather);
+    console.log('Weather obj:', weather);
 
     const newsPopular = requestsNews.getRequests(
       requestsNews.createTrendingNewsQueryUrl()
     );
     await newsPopular.then(value => (arrayPopuralNews = value.results));
-    console.log(arrayPopuralNews);
-    //arrayCardNews = function(arrayPopuralNews, погода)
+    console.log('arrayPopuralNews: ', arrayPopuralNews);
+    // ===Створення спільного масиву новин та погоди=======
+    arrayCardNews = concatNewsAndWeather(arrayPopuralNews, weather);
+    console.log('arrayCardNews:', arrayCardNews);
+    // ===Розмітка новин і погоди============================
+    const markup = newsMarkup(arrayCardNews);
+    console.log(markup);
   } catch (error) {
     console.log(error.message);
   }
@@ -62,7 +67,7 @@ async function searchArticle(searchValue) {
       requestsNews.createSearchQueryUrl(searchValue)
     );
     arraySearchArticleNews = response.docs;
-    console.log(arraySearchArticleNews);
+    console.log('Search news: ', arraySearchArticleNews);
     //arrayCardNews = function(arraySearchArticleNews, погода)
   } catch (error) {
     console.error(error);
