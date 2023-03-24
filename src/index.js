@@ -19,3 +19,13 @@ try {
     console.log(error.message);
 }
 
+// створює обєкт для пошуку за словом
+async function searchArticle (searchValue) {
+    try {
+        const { response } = await
+            requestsNews.getRequests(requestsNews.createSearchQueryUrl(searchValue));
+        return response.docs;
+    } catch (error) {
+        console.error(error);
+    }
+}
