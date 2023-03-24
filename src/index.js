@@ -16,6 +16,8 @@ export let weather = {};
 let arraySearchArticleNews = [];
 let arrayPopuralNews = [];
 let arrayCardNews = [];
+let arrayCardNewsFavorite = [];
+let arrayCardNewsRead = [];
 
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
@@ -62,7 +64,7 @@ async function searchArticle(searchValue) {
 refs.btnSearch.addEventListener('click', onClickSearchBtn);
 
 function onClickSearchBtn(e) {
-  searchArticle('The New York Times');
+  searchArticle(encodeURIComponent('The New York Times'));
 }
 
 
