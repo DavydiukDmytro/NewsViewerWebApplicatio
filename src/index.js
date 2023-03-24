@@ -27,9 +27,6 @@ const requestsWeather = new Requests(URl_WEATHER, API_KEY_WEATHER);
 //Функція для пошуку популярних новин
 async function searchPopular() {
   try {
-    await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
-    console.log(weather);
-
     const newsPopular = requestsNews.getRequests(
       requestsNews.createTrendingNewsQueryUrl()
     );
@@ -40,6 +37,8 @@ async function searchPopular() {
     console.log(error.message);
   }
 }
+
+navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
 
 searchPopular();
 
@@ -86,11 +85,17 @@ async function fetchWeather() {
 }
 
 async function requestsWeatherPosition(position) {
-  lat = position.coords.latitude;
-  lon = position.coords.longitude;
-  await fetchWeather();
+  try {
+    lat = await position.coords.latitude;
+    lon = await position.coords.longitude;
+    await fetchWeather();
+    console.log(weather);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
+//день неділі для картки погоди
 function getDayOfWeek(date) {
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const dayIndex = date.getDay();
