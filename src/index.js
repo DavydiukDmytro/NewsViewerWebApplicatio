@@ -33,14 +33,21 @@ async function searchPopular() {
     await newsPopular.then(value => (arrayPopuralNews = value.results));
     console.log(arrayPopuralNews);
     //arrayCardNews = function(arrayPopuralNews, погода)
+    return 'gg';
   } catch (error) {
     console.log(error.message);
+    return 'gg';
   }
+  return 'gg';
 }
 
-navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
+async function init() {
+  await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
+  await searchPopular();
+  console.log(weather.city);
+}
 
-searchPopular();
+init();
 
 // Функція для пошуку за словом
 async function searchArticle(searchValue) {
@@ -90,9 +97,12 @@ async function requestsWeatherPosition(position) {
     lon = await position.coords.longitude;
     await fetchWeather();
     console.log(weather);
+    return 'gg';
   } catch (error) {
     console.error(error);
+    return 'gg';
   }
+  return 'gg';
 }
 
 //день неділі для картки погоди
