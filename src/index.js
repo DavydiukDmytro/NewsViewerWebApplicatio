@@ -26,10 +26,9 @@ const requestsWeather = new Requests(URl_WEATHER, API_KEY_WEATHER);
 
 //Функція для пошуку популярних новин
 async function searchPopular() {
-    try {
-
-        await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
-        console.log(weather);
+  try {
+    await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
+    console.log(weather);
 
     const newsPopular = requestsNews.getRequests(
       requestsNews.createTrendingNewsQueryUrl()
@@ -75,18 +74,48 @@ async function fetchWeather() {
   await response.then(value => {
     weatherData = value;
   });
-  weather.date = weatherData.dt * 1000;
+  const date = new Date(weatherData.dt * 1000);
+  weather.dayWeek = getDayOfWeek(date);
+  weather.date = getDate(date);
   weather.temp = weatherData.main.temp;
   weather.descriptrion = weatherData.weather[0].main;
   weather.city = weatherData.name;
   weather.icon = weatherData.weather[0].icon;
 
   weather.flag = 'weather';
-  
 }
 
 async function requestsWeatherPosition(position) {
   lat = position.coords.latitude;
-    lon = position.coords.longitude;
-    await fetchWeather();
+  lon = position.coords.longitude;
+  await fetchWeather();
+}
+
+function getDayOfWeek(date) {
+  const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const dayIndex = date.getDay();
+  return daysOfWeek[dayIndex];
+}
+
+//Дата для картки погоди
+function getDate(date) {
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  const day = date.getDate();
+  const monthIndex = date.getMonth();
+  const year = date.getFullYear();
+
+  return `${day} ${months[monthIndex]} ${year}`;
 }
