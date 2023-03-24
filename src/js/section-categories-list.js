@@ -1,5 +1,6 @@
 import { category } from "./category";
 import customSelect from 'custom-select';
+
 export function setupNewsSection() {
 
   const NEWS_ITEMS_COUNT = { desktop: 7, tablet: 4, }; //створюємо об'єкт з кількістю item для desktop та tablet
