@@ -55,7 +55,7 @@
   }
 }
 
-.weather__button {
+.weather__city {
   display: flex;
   align-items: center;
   min-width: 83px;
@@ -73,12 +73,20 @@
   @media screen and (min-width: $tablet) {
     font-size: 20px;
     line-height: 1.15;
+    padding: 10px 17px 9px 9px;
   }
 }
 
 .weather__location-icon {
+  width: 18px;
+  height: 18px;
   padding-right: 4px;
   fill: $white;
+
+  @media screen and (min-width: $tablet) {
+    width: 27px;
+    height: 27px;
+  }
 }
 
 .weather-picture {
