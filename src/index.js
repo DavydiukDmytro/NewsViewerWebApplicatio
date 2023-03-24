@@ -10,6 +10,7 @@ const refs = {
 
 let arraySearchArticleNews = [];
 let arrayPopuralNews = [];
+let arrayCardNews = [];
 
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
@@ -18,11 +19,15 @@ const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 async function searchPopular() {
     try {
         const newsPopular = requestsNews.getRequests(requestsNews.createTrendingNewsQueryUrl());
-        newsPopular.then(value => arrayPopuralNews = value.results);
+        await newsPopular.then(value => arrayPopuralNews = value.results);
+        console.log(arrayPopuralNews);
+        //arrayCardNews = function(arrayPopuralNews, погода)
     } catch (error) {
         console.log(error.message);
     }
 }
+
+searchPopular();
 
 
 // Функція для пошуку за словом
@@ -31,17 +36,16 @@ async function searchArticle (searchValue) {
         const { response } = await
             requestsNews.getRequests(requestsNews.createSearchQueryUrl(searchValue));
         arraySearchArticleNews = response.docs;
+        console.log(arraySearchArticleNews);
+        //arrayCardNews = function(arraySearchArticleNews, погода)
     } catch (error) {
         console.error(error);
     }
 }
 
 //Тимчасова функція для перевірки виводу новин по ключовому слову
-searchArticle('The New York Times');
-searchPopular();
-refs.btnSearch.addEventListener('click', e => {
-    //arrayPopuralNews вивод популярних новин
-    //arraySearchArticleNews вивод новин за ключовим словом
-    console.log(arrayPopuralNews);
-    console.log(arraySearchArticleNews);
-});
+refs.btnSearch.addEventListener('click', onClickSearchBtn);
+
+function onClickSearchBtn(e) {
+    searchArticle('The New York Times');
+}
