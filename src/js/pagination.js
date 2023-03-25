@@ -20,13 +20,13 @@ const valuePage = {
   totalPages: 20, // кількість кнопок пагінації в залежності від довжини массиву
 };
 
-const array = [1, 2, 4, 5, 6, 8, 9, 10, 11, 12, 13];
-pagination(array);
+let array = [];
+
 
 //функція рендера, тестовий приклад
 function renderNewsList(news) {
   const markup = news.slice(start, end);
-
+  //заміть консолі фунція яка рендерить картки з масиву!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
   console.log(markup);
 }
 
@@ -47,7 +47,8 @@ pg.addEventListener('click', async e => {
 });
 
 // ФУНКЦІЯ ПАГІНАЦІЇ
-function pagination(arr) {
+export function pagination(arr) {
+  array = arr;
   //розрахунок кількості кнопок від довжини массиву
   if (matchMediaDesktop.matches) {
     end = 9;

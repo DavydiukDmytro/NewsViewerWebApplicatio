@@ -1,5 +1,6 @@
 import { category } from './js/category';
 import { Requests } from './js/requests';
+import { pagination } from './js/pagination';
 
 import { setupNewsSection } from './js/section-categories-list';
 
@@ -30,13 +31,17 @@ init();
 
 //Робить запит на популярні новини та на погоду і верстає карточки
 async function init() {
+  setupNewsSection();
   await fetchWeather();
   await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
   await searchPopular();
+
+  //відправка масиву відредагованого
+  pagination(arrayPopuralNews);
+
   //arrayCardNews = function(arrayPopuralNews, погода)
-  
 }
-setupNewsSection();
+
 
 //Функція для пошуку популярних новин
 async function searchPopular() {
