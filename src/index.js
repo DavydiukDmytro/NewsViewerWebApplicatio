@@ -1,11 +1,10 @@
 import { category } from './js/category';
 import { Requests } from './js/requests';
 import { requestsWeatherPosition, fetchWeather } from './js/weather';
+import { concatNewsAndWeather, newsMarkup } from './js/markup';
 
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
-
-
 
 const refs = {
   btnSearch: document.querySelector('.search-button'),
@@ -34,14 +33,12 @@ const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 //   console.log(error.message);
 // }
 //створює запит погоди
-const requestsWeather = new Requests(URl_WEATHER, API_KEY_WEATHER);
+// const requestsWeather = new Requests(URl_WEATHER, API_KEY_WEATHER);
 
 //Функція для пошуку популярних новин
 async function searchPopular() {
   try {
     await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
-    console.log('Weather obj:', weather);
-
     const newsPopular = requestsNews.getRequests(
       requestsNews.createTrendingNewsQueryUrl()
     );
@@ -53,12 +50,14 @@ async function searchPopular() {
     // ===Розмітка новин і погоди============================
     const markup = newsMarkup(arrayCardNews);
     console.log(markup);
-    //тимчасово видалить потом 
-    console.log(arrayPopuralNews);
+    //тимчасово видалить потом
+    // console.log(arrayPopuralNews);
   } catch (error) {
     console.log(error.message);
   }
 }
+
+searchPopular();
 
 // Функція для пошуку за словом
 async function searchArticle(searchValue) {
@@ -80,5 +79,3 @@ refs.btnSearch.addEventListener('click', onClickSearchBtn);
 function onClickSearchBtn(e) {
   searchArticle(encodeURIComponent('The New York Times'));
 }
-
-

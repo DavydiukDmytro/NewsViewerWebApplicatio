@@ -1,4 +1,3 @@
-// ===Створення спільного масиву новин та погоди=======
 export function concatNewsAndWeather(array, obj) {
   let concatArray = [];
   array.forEach(function (
@@ -33,12 +32,43 @@ export function concatNewsAndWeather(array, obj) {
   return concatArray;
 }
 
+function checkArrays(incomeArr, favoriteArr, readedArr) {
+  let checkedArray = [];
+
+  for (let i = 0; i < incomeArr.length; i++) {
+    let newObj = { ...incomeArr[i] };
+    // ======== Різні імена id ==========
+    let favObj = favoriteArr.find(obj => obj.id === incomeArr[i].id);
+    // =================================
+    if (favObj) {
+      newObj.favorite = true;
+    }
+    // ======== Різні імена id ==========
+    let readObj = readedArr.find(obj => obj.id === incomeArr[i].id);
+    // =================================
+    if (readObj) {
+      newObj.read = true;
+    }
+    checkedArray.push(newObj);
+  }
+
+  return checkedArray;
+}
+
 export function newsMarkup(array) {
   return array
     .map(function (elem) {
       if (elem.flag === 'news') {
-        return `<li><img src="https://static01.nyt.com/images/2023/03/22/multimedia/22trump-grandjury-cvkg/22trump-grandjury-cvkg-mediumThreeByTwo440.jpg"/>
- <h1>${elem.title}</h1><p>${elem.abstract}</p><div><p></p><a href=${elem.url}>Read more</a></div></li>`;
+        return `
+        <li>
+          <img src="https://static01.nyt.com/images/2023/03/22/multimedia/22trump-grandjury-cvkg/22trump-grandjury-cvkg-mediumThreeByTwo440.jpg"/>
+            <h1>${elem.title}</h1>
+            <p>${elem.abstract}</p>
+              <div>
+                <p></p>
+                <a href=${elem.url}>Read more</a>
+              </div>
+        </li>`;
       } else {
         return `<li class="weather__card">
               <div class="weather__wrapper">
