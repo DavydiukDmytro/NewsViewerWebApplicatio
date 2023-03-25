@@ -9,6 +9,7 @@ const refs = {
   btnSearch: document.querySelector('.search-button'),
   sectionNews: document.querySelector('.section-news'),
   noNewsPage: document.querySelector('.news-page'),
+  noNewsPageTitle: document.querySelector('.news-page__title'),
 };
 
 export let weather = {};
@@ -67,9 +68,16 @@ function onClickSearchBtn(e) {
   searchArticle(encodeURIComponent('The New York Times'));
 }
 
-// Створення сторінки поt found
+// показати сторінку поt found
 
-function renderPageNotFound(message) {
+function showPageNotFound(message) {
   refs.sectionNews.innerHTML = '';
-  noNewsPage.style.display = 'block'
+  refs.noNewsPage.style.display = 'block';
+  refs.noNewsPageTitle.textContent = message;
+}
+
+// сховати сторінку поt found
+function hidePageNotFound() {
+  refs.noNewsPage.style.display = 'none';
+  refs.noNewsPageTitle = '';
 }
