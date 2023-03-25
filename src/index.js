@@ -17,6 +17,19 @@ let arrayPopuralNews = [];
 let arrayCardNews = [];
 let arrayCardNewsFavorite = [];
 let arrayCardNewsRead = [];
+// ======ПРИБРАТИ========
+let qqq = [
+  {
+    id: 100000008828551,
+    published_date: '2023-03-24',
+    title:
+      'Trump, Escalating Attacks, Raises Specter of Violence if He Is Charged',
+    abstract:
+      'In an overnight post, the former president warned … attorney’s office received a threatening letter.',
+    url: 'https://www.nytimes.com/2023/03/24/us/politics/trump-bragg-indictment-protests.html',
+    _id: undefined,
+  },
+];
 
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
@@ -43,13 +56,18 @@ async function searchPopular() {
       requestsNews.createTrendingNewsQueryUrl()
     );
     await newsPopular.then(value => (arrayPopuralNews = value.results));
-    console.log('arrayPopuralNews: ', arrayPopuralNews);
+    console.log('Popular News: ', arrayPopuralNews);
     // ===Створення спільного масиву новин та погоди=======
-    arrayCardNews = concatNewsAndWeather(arrayPopuralNews, weather);
-    console.log('arrayCardNews:', arrayCardNews);
+    arrayCardNews = concatNewsAndWeather(
+      arrayPopuralNews,
+      arrayCardNewsFavorite,
+      arrayCardNewsRead,
+      weather
+    );
+    console.log('Concated arr popular:', arrayCardNews);
     // ===Розмітка новин і погоди============================
-    const markup = newsMarkup(arrayCardNews);
-    console.log(markup);
+    // const markup = newsMarkup(arrayCardNews);
+    // console.log(markup);
     //тимчасово видалить потом
     // console.log(arrayPopuralNews);
   } catch (error) {
@@ -67,7 +85,13 @@ async function searchArticle(searchValue) {
     );
     arraySearchArticleNews = response.docs;
     console.log('Search news: ', arraySearchArticleNews);
-    //arrayCardNews = function(arraySearchArticleNews, погода)
+    arrayCardNews = concatNewsAndWeather(
+      arraySearchArticleNews,
+      arrayCardNewsFavorite,
+      arrayCardNewsRead,
+      weather
+    );
+    console.log('Concated arr search:', arrayCardNews);
   } catch (error) {
     console.error(error);
   }
