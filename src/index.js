@@ -1,13 +1,22 @@
 import { category } from './js/category';
 import { Requests } from './js/requests';
+import { pagination } from './js/pagination';
+
+import { setupNewsSection } from './js/section-categories-list';
+
 import { requestsWeatherPosition, fetchWeather } from './js/weather';
 import { concatNewsAndWeather, createMarkUp } from './js/markup';
+
+import { clearNewsSection } from './js/clear-news-section';
 
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
 
 const refs = {
   btnSearch: document.querySelector('.search-button'),
+  sectionNews: document.querySelector('.section-news'),
+  noNewsPage: document.querySelector('.news-page'),
+  noNewsPageTitle: document.querySelector('.news-page__title'),
 };
 
 export let weather = {};
@@ -21,19 +30,21 @@ let arrayCardNewsRead = [];
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 
-//робить запит за адресою та виводить в консоль
-// try {
-//   const newsPopular = requestsNews.getRequests(
-//     requestsNews.createTrendingNewsQueryUrl()
-//   );
-//   newsPopular.then(value => {
-//     console.log(value.results);
-//   });
-// } catch (error) {
-//   console.log(error.message);
-// }
-//створює запит погоди
-// const requestsWeather = new Requests(URl_WEATHER, API_KEY_WEATHER);
+init();
+
+//Робить запит на популярні новини та на погоду і верстає карточки
+async function init() {
+  setupNewsSection();
+  await fetchWeather();
+  await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
+  await searchPopular();
+
+  //відправка масиву відредагованого
+  pagination(arrayPopuralNews);
+
+  //arrayCardNews = function(arrayPopuralNews, погода)
+}
+
 
 //Функція для пошуку популярних новин
 async function searchPopular() {
@@ -57,6 +68,8 @@ async function searchPopular() {
     console.log(markup);
     //тимчасово видалить потом
     // console.log(arrayPopuralNews);
+    //тимчасово видалить потом
+    console.log(arrayPopuralNews);
   } catch (error) {
     console.log(error.message);
   }
@@ -67,8 +80,9 @@ searchPopular();
 // Функція для пошуку за словом
 async function searchArticle(searchValue) {
   try {
+    const encodedSearchValue = encodeURIComponent(searchValue);
     const { response } = await requestsNews.getRequests(
-      requestsNews.createSearchQueryUrl(searchValue)
+      requestsNews.createSearchQueryUrl(encodedSearchValue)
     );
     arraySearchArticleNews = response.docs;
     console.log('Search news: ', arraySearchArticleNews);
@@ -91,4 +105,18 @@ refs.btnSearch.addEventListener('click', onClickSearchBtn);
 
 function onClickSearchBtn(e) {
   searchArticle(encodeURIComponent('The New York Times'));
+}
+
+// показати сторінку поt found
+
+function showPageNotFound(message) {
+  refs.sectionNews.innerHTML = '';
+  refs.noNewsPage.style.display = 'block';
+  refs.noNewsPageTitle.textContent = message;
+}
+
+// сховати сторінку поt found
+function hidePageNotFound() {
+  refs.noNewsPage.style.display = 'none';
+  refs.noNewsPageTitle = '';
 }

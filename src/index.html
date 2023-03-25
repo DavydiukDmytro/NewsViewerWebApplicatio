@@ -13,13 +13,13 @@
     <section class="section-categories">
       <div class="section-categories__classes">
         <ul class="section-categories__list">
-          <li class="news-section__item">Admin</li>
-          <li class="news-section__item">Arts</li>
-          <li class="news-section__item">Automobiles</li>
-          <li class="news-section__item">Books</li>
-          <li class="news-section__item">Briefing</li>
-          <li class="news-section__item">Business</li>
-          <li class="news-section__item">Others</li>
+          <li class="news-section__item">
+            <select id="mySelect" class="news-section__select">
+              <option value="others" class="news-section__selects">
+                Others
+              </option>
+            </select>
+          </li>
         </ul>
       </div>
       <div class="section-categories__calendar">
@@ -52,6 +52,25 @@
 
     <!--SECTION NEWS-->
     <section class="section-news"></section>
+    <section class="news-page">
+      <h2 class="news-page__title"></h2>
+      <picture>
+        <source
+          srcset="./img/desk.png 1x, ./img/desk@2x.png 2x"
+          media="(min-width:1280px)"
+        />
+        <source
+          srcset="./img/tab.png 1x, ./img/tab@2x.png 2x"
+          media="(min-width:768px)"
+        />
+        <source
+          srcset="./img/mob.png 1x, ./img/mob@2x.png 2x"
+          media="(max-width:767px)"
+        />
+        <img class="news-page__image" src="./img/desk.png" alt="Newspaper" />
+      </picture>
+    </section>
+    <include src="./partials/pagination.html"></include>
     <footer class="footer"></footer>
   </body>
 </html>
