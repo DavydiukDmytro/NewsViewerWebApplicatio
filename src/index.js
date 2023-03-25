@@ -7,6 +7,7 @@ import { setupNewsSection } from './js/section-categories-list';
 import { requestsWeatherPosition, fetchWeather } from './js/weather';
 
 import { clearNewsSection } from './js/clear-news-section';
+import { createUrlCategoryName } from './js/creation-url';
 
 
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
@@ -95,3 +96,7 @@ function hidePageNotFound() {
   refs.noNewsPage.style.display = 'none';
   refs.noNewsPageTitle = '';
 }
+
+
+
+
