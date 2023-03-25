@@ -5,9 +5,9 @@ import { pagination } from './js/pagination';
 import { setupNewsSection } from './js/section-categories-list';
 
 import { requestsWeatherPosition, fetchWeather } from './js/weather';
+import { concatNewsAndWeather, createMarkUp } from './js/markup';
 
 import { clearNewsSection } from './js/clear-news-section';
-
 
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
@@ -49,16 +49,33 @@ async function init() {
 //Функція для пошуку популярних новин
 async function searchPopular() {
   try {
+    await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
     const newsPopular = requestsNews.getRequests(
       requestsNews.createTrendingNewsQueryUrl()
     );
     await newsPopular.then(value => (arrayPopuralNews = value.results));
+    console.log('Popular News: ', arrayPopuralNews);
+    // ===Створення спільного масиву новин та погоди=======
+    arrayCardNews = concatNewsAndWeather(
+      arrayPopuralNews,
+      arrayCardNewsFavorite,
+      arrayCardNewsRead,
+      weather
+    );
+    console.log('Concated arr popular:', arrayCardNews);
+    // ===Розмітка новин і погоди============================
+    const markup = createMarkUp(arrayCardNews);
+    console.log(markup);
+    //тимчасово видалить потом
+    // console.log(arrayPopuralNews);
     //тимчасово видалить потом
     console.log(arrayPopuralNews);
   } catch (error) {
     console.log(error.message);
   }
 }
+
+searchPopular();
 
 // Функція для пошуку за словом
 async function searchArticle(searchValue) {
@@ -68,8 +85,16 @@ async function searchArticle(searchValue) {
       requestsNews.createSearchQueryUrl(encodedSearchValue)
     );
     arraySearchArticleNews = response.docs;
-    console.log(arraySearchArticleNews);
-    //arrayCardNews = function(arraySearchArticleNews, погода)
+    console.log('Search news: ', arraySearchArticleNews);
+    arrayCardNews = concatNewsAndWeather(
+      arraySearchArticleNews,
+      arrayCardNewsFavorite,
+      arrayCardNewsRead,
+      weather
+    );
+    console.log('Concated arr search:', arrayCardNews);
+    const markup = createMarkUp(arrayCardNews);
+    console.log(markup);
   } catch (error) {
     console.error(error);
   }
