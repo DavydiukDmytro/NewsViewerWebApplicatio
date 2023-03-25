@@ -128,12 +128,12 @@ function newsMarkUp({
 function weatherMarkUp({ temp, descriptrion, city, icon, dayWeek, date }) {
   return `<li class="weather__card">
     <div class="weather__wrapper">
-      <p class="weather__temperature">${temp}</p>
+      <p class="weather__temperature">${temp}°</p>
       <div class="weather__box">
         <p class="weather__description">${descriptrion}</p>
         <div class="weather__city">
             <svg class="weather__location-icon">
-              <path d="M16 0c-5.523 0-10 4.477-10 10 0 10 10 22 10 22s10-12 10-22c0-5.523-4.477-10-10-10zM16 16c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z"></path>
+              <path d="M16 2.001c-6.072 0.007-10.992 4.927-11 10.998v0.001c0 0.005 0 0.011 0 0.017 0 2.486 0.833 4.777 2.236 6.61l-0.019-0.026s0.3 0.395 0.348 0.45l8.435 9.95 8.439-9.953c0.044-0.053 0.345-0.447 0.345-0.447l0.001-0.004c1.383-1.806 2.216-4.098 2.216-6.583 0-0.005 0-0.009 0-0.014v0.001c-0.007-6.072-4.928-10.993-11-11h-0.001zM16 17c-2.209 0-4-1.791-4-4s1.791-4 4-4v0c2.209 0 4 1.791 4 4s-1.791 4-4 4v0z"></path>
             </svg>
             ${city}
         </div>
