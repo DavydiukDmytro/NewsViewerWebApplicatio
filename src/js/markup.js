@@ -1,7 +1,7 @@
 export function concatNewsAndWeather(incomeArr, favoriteArr, readedArr, obj) {
   const concatArray = [];
   const checkedArray = checkArrays(incomeArr, favoriteArr, readedArr);
-  console.log('Cheked arr:', checkedArray);
+  // console.log('Cheked arr:', checkedArray);
   checkedArray.forEach(function (elem, index) {
     concatArray.push(dataDestructuring(elem));
     if (index === 1 && obj.flag === 'weather') {
