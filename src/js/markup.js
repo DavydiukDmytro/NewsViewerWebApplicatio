@@ -131,16 +131,12 @@ function weatherMarkUp({ temp, descriptrion, city, icon, dayWeek, date }) {
       <p class="weather__temperature">${temp}</p>
       <div class="weather__box">
         <p class="weather__description">${descriptrion}</p>
-        <button class="weather__button">
-          <svg
-            width="18px"
-            height="18px"
-            class="weather__location-icon"
-          >
-          <use href="#"></use> ===ПРОПИСАТИ===
-        </svg>
-        ${city}
-      </button>
+        <div class="weather__city">
+            <svg class="weather__location-icon">
+              <path d="M16 0c-5.523 0-10 4.477-10 10 0 10 10 22 10 22s10-12 10-22c0-5.523-4.477-10-10-10zM16 16c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z"></path>
+            </svg>
+            ${city}
+        </div>
     </div>
   </div>
 <img class="weather-picture" src="https://openweathermap.org/img/wn/${icon}@2x.png"></img>
