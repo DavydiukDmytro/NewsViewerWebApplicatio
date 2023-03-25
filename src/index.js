@@ -30,6 +30,7 @@ async function init() {
   await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
   await searchPopular();
   //arrayCardNews = function(arrayPopuralNews, погода)
+  
 }
 
 //Функція для пошуку популярних новин

@@ -1,13 +1,3 @@
-import { Requests } from './requests';
-
-const API_URL_NEWS = 'https://api.nytimes.com/svc';
-const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
-
-const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
-
-//контейнер для тестової розмітки
-const newsList = document.querySelector('.news-list');
-
 const pg = document.getElementById('pagination');
 const btnNextPg = document.querySelector('button.next-page');
 const btnPrevPg = document.querySelector('button.prev-page');
@@ -17,8 +7,9 @@ const matchMediaDesktop = window.matchMedia('(min-width: 1280px)');
 const matchMediaTablet = window.matchMedia(
   '(min-width: 768px) and (max-width: 1279px)'
 );
-const matchMediaMobile = window.matchMedia('(max-width: 767px)');
 
+const matchMediaMobile = window.matchMedia('(max-width: 767px)');
+let pageNumber = 1;
 let start = 0; //начало slice
 let end = 9; //кінець slice
 
@@ -28,77 +19,32 @@ const valuePage = {
   totalPages: 20, // кількість кнопок пагінації в залежності від довжини массиву
 };
 
-//Функція для пошуку популярних новин
-async function searchPopular() {
-  try {
-    const newsPopular = requestsNews.getRequests(
-      requestsNews.createTrendingNewsQueryUrl()
-    );
-    await newsPopular.then(value => (arrayPopuralNews = value.results));
-    console.log(arrayPopuralNews);
-    return arrayPopuralNews;
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
-//функція рендера та пагінації при завантаженні сторінки
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    const news = await searchPopular();
-    console.log(news);
-
-    pagination(valuePage);
-
-    renderNewsList(news);
-  } catch (error) {
-    console.log(error.message);
-  }
-});
+const array = [1, 2, 4, 5, 6, 8, 9, 10, 11, 12, 13];
+pagination(array);
 
 //функція рендера, тестовий приклад
 function renderNewsList(news) {
-  const markup = arrayPopuralNews
-    .slice(start, end)
-    .map(
-      user => `<li class="news-card">
-       <p>${user.abstract}</p>
-      <a href="${user.url}">Read more</a>
-      </li>`
-    )
-    .join('');
-  newsList.innerHTML = markup;
+  const markup = news.slice(start, end);
+  
+  console.log(markup);
 }
 
 // функція перемикання сторінок та рендера
 pg.addEventListener('click', async e => {
   try {
-    const news = await searchPopular();
 
     if (e.target.dataset.page) {
-      const pageNumber = parseInt(e.target.dataset.page, 10);
+      valuePage.curPage = parseInt(e.target.dataset.page, 10);
 
-      valuePage.curPage = pageNumber;
-
+      
       //виклик пагінації
-      pagination(valuePage);
+      pagination(array);
 
       //визначення позиціїї для slice
-      if (matchMediaDesktop.matches) {
-        start = (pageNumber - 1) * 9;
-        end = start + 9;
-      }
-      if (matchMediaTablet.matches) {
-        start = (pageNumber - 1) * 8;
-        end = start + 8;
-      }
-      if (matchMediaMobile.matches) {
-        start = (pageNumber - 1) * 4;
-        end = start + 4;
-      }
+      
 
       //функція рендера
-      renderNewsList(news);
+      // renderNewsList(array);
 
       handleButtonLeft();
       handleButtonRight();
@@ -109,23 +55,37 @@ pg.addEventListener('click', async e => {
 });
 
 // ФУНКЦІЯ ПАГІНАЦІЇ
-function pagination() {
-  //визначення кількості кнопок пагінації та кількості карток від ширини екраину
-  if (matchMediaDesktop.matches) {
+function pagination(arr) {
+     if (matchMediaDesktop.matches) {
     end = 9;
-    valuePage.totalPages = Math.ceil(arrayPopuralNews.length / 9);
+    valuePage.totalPages = Math.ceil(arr.length / 9);
     console.log(matchMediaDesktop);
   }
   if (matchMediaTablet.matches) {
     end = 7;
-    valuePage.totalPages = Math.ceil(arrayPopuralNews.length / 8);
+    valuePage.totalPages = Math.ceil(arr.length / 8);
     console.log(matchMediaTablet);
   }
   if (matchMediaMobile.matches) {
     end = 4;
-    valuePage.totalPages = Math.ceil(arrayPopuralNews.length / 5);
+    valuePage.totalPages = Math.ceil(arr.length / 5);
     console.log(matchMediaMobile);
   }
+  if (matchMediaDesktop.matches) {
+        start = (valuePage.curPage - 1) * 9;
+        end = start + 9;
+      }
+      if (matchMediaTablet.matches) {
+        start = (valuePage.curPage - 1) * 8;
+        end = start + 8;
+      }
+      if (matchMediaMobile.matches) {
+        start = (valuePage.curPage - 1) * 4;
+        end = start + 4;
+  }
+
+
+  
   const { totalPages, curPage, numLinksTwoSide: delta } = valuePage;
 
   const range = delta + 4; //
@@ -180,6 +140,11 @@ function pagination() {
   } else {
     pg.innerHTML = render;
   }
+  console.log(start, end);
+  console.log(curPage);
+  renderNewsList(array);
+  //визначення кількості кнопок пагінації та кількості карток від ширини екраину
+ 
 }
 
 // функція рендера кнопки пагінації
@@ -201,12 +166,16 @@ function handleButton(element) {
     valuePage.curPage--;
     handleButtonLeft();
     btnNextPg.disabled = false;
+    pagination(array);
   } else if (element.classList.contains('next-page')) {
+    console.log(valuePage.curPage);
     valuePage.curPage++;
+    console.log(valuePage.curPage);
     handleButtonRight();
     btnPrevPg.disabled = false;
+    pagination(array);
   }
-  pagination();
+  // pagination(array);
 }
 
 //дисаблед на лево
@@ -221,7 +190,7 @@ function handleButtonLeft() {
 //дисаблед на право
 function handleButtonRight() {
   if (valuePage.curPage === valuePage.totalPages) {
-    console.log(valuePage.curPage);
+    // console.log(valuePage.curPage);
     btnNextPg.disabled = true;
   } else {
     btnNextPg.disabled = false;
