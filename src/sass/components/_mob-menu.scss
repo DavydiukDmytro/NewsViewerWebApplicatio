@@ -1,0 +1,12 @@
+.button-menu {
+background-color: transparent;
+border: none;
+@media screen and (min-width:$tablet) {
+display: none;
+}
+}
+
+.button-menu__icons.button-menu__hamburger,
+.button-menu__icons.button-menu__cros {
+fill: $primary-text;
+}
