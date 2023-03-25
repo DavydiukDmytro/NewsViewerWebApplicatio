@@ -60,8 +60,9 @@ async function searchPopular() {
 // Функція для пошуку за словом
 async function searchArticle(searchValue) {
   try {
+    const encodedSearchValue = encodeURIComponent(searchValue);
     const { response } = await requestsNews.getRequests(
-      requestsNews.createSearchQueryUrl(searchValue)
+      requestsNews.createSearchQueryUrl(encodedSearchValue)
     );
     arraySearchArticleNews = response.docs;
     console.log(arraySearchArticleNews);
