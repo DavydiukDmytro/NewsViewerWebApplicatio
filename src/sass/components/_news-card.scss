@@ -1,4 +1,4 @@
-.news-card {
+.news-page {
   margin: 0 auto;
   padding: 40px 0 59px;
   text-align: center;
@@ -14,7 +14,7 @@
   }
 }
 
-.news-card__title {
+.news-page__title {
   display: block;
   max-width: 276px;
   font-family: 'Manrope';
@@ -34,11 +34,11 @@
   }
 }
 
-.news-card__title.dark {
+.news-page__title.dark {
   color: $primary-bg;
 }
 
-.news-card__image {
+.news-page__image {
   @media screen and (max-width: 767px) {
     max-width: 248px;
     margin: 0 auto;
