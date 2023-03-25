@@ -10,10 +10,11 @@ import { requestsWeatherPosition, fetchWeather } from './js/weather';
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
 
-
-
 const refs = {
   btnSearch: document.querySelector('.search-button'),
+  sectionNews: document.querySelector('.section-news'),
+  noNewsPage: document.querySelector('.news-page'),
+  noNewsPageTitle: document.querySelector('.news-page__title'),
 };
 
 export let weather = {};
@@ -50,7 +51,7 @@ async function searchPopular() {
       requestsNews.createTrendingNewsQueryUrl()
     );
     await newsPopular.then(value => (arrayPopuralNews = value.results));
-    //тимчасово видалить потом 
+    //тимчасово видалить потом
     console.log(arrayPopuralNews);
   } catch (error) {
     console.log(error.message);
@@ -79,4 +80,16 @@ function onClickSearchBtn(e) {
   searchArticle(encodeURIComponent('The New York Times'));
 }
 
+// показати сторінку поt found
 
+function showPageNotFound(message) {
+  refs.sectionNews.innerHTML = '';
+  refs.noNewsPage.style.display = 'block';
+  refs.noNewsPageTitle.textContent = message;
+}
+
+// сховати сторінку поt found
+function hidePageNotFound() {
+  refs.noNewsPage.style.display = 'none';
+  refs.noNewsPageTitle = '';
+}

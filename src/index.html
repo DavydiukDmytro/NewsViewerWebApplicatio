@@ -52,6 +52,24 @@
 
     <!--SECTION NEWS-->
     <section class="section-news"></section>
+    <section class="news-page">
+      <h2 class="news-page__title"></h2>
+      <picture>
+        <source
+          srcset="./img/desk.png 1x, ./img/desk@2x.png 2x"
+          media="(min-width:1280px)"
+        />
+        <source
+          srcset="./img/tab.png 1x, ./img/tab@2x.png 2x"
+          media="(min-width:768px)"
+        />
+        <source
+          srcset="./img/mob.png 1x, ./img/mob@2x.png 2x"
+          media="(max-width:767px)"
+        />
+        <img class="news-page__image" src="./img/desk.png" alt="Newspaper" />
+      </picture>
+    </section>
     <include src="./partials/pagination.html"></include>
     <footer class="footer"></footer>
   </body>
