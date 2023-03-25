@@ -1,5 +1,5 @@
 import { category } from "./category";
-import customSelect from 'custom-select';
+import customSelect from 'custom-select';// кастомний Select https://github.com/custom-select/custom-select
 
 export function setupNewsSection() {
 
