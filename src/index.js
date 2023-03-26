@@ -14,6 +14,11 @@ import { concatNewsAndWeather, createMarkUp } from './js/markup';
 import { clearNewsSection } from './js/clear-news-section';
 //import функції відображання помилки та її зникнення
 import { showPageNotFound, hidePageNotFound } from './js/not-found';
+//import функції яка повертає значення вибраної категорії
+import { selectedCategory } from './js/selected-category';
+
+selectedCategory();
+
 
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
@@ -92,3 +97,6 @@ refs.btnSearch.addEventListener('click', onClickSearchBtn);
 function onClickSearchBtn(e) {
   searchArticle(encodeURIComponent('The New York Times'));
 }
+
+//Виклик функції для перевірки
+selectedCategory();
