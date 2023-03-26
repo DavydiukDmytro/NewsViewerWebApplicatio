@@ -6,7 +6,7 @@ import { Requests } from './js/requests';
 import { pagination } from './js/pagination';
 //імпорт функціоналу для створення категорій
 import { setupNewsSection } from './js/section-categories-list';
-//імпорт запиту по локації на погоді 
+//імпорт запиту по локації на погоді
 import { requestsWeatherPosition, fetchWeather } from './js/weather';
 //імпорт функції для нормалізації об'єктів та функції яка генерує розмітку
 import { concatNewsAndWeather, createMarkUp } from './js/markup';
@@ -51,18 +51,17 @@ async function init() {
   await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
   await searchPopular();
 
-   // ===Створення спільного масиву новин та погоди=======
-    arrayCardNews = concatNewsAndWeather(
-      arrayPopuralNews,
-      arrayCardNewsFavorite,
-      arrayCardNewsRead,
-      weather
-    );
+  // ===Створення спільного масиву новин та погоди=======
+  arrayCardNews = concatNewsAndWeather(
+    arrayPopuralNews,
+    arrayCardNewsFavorite,
+    arrayCardNewsRead,
+    weather
+  );
   console.log('Concated arr popular:', arrayCardNews);
   //відправка масиву відредагованого
   pagination(arrayCardNews);
 }
-
 
 //Функція для пошуку популярних новин
 async function searchPopular() {
