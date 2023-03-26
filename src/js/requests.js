@@ -18,6 +18,9 @@ export class Requests {
   createSearchQueryUrl(search = '') {
     return `${this.url}/search/v2/articlesearch.json?api-key=${this.key}&q=${search}`;
   }
+  createUrlCategoryName(name) {
+    return `${this.url}/search/v2/articlesearch.json?query=${name}&api-key=${this.key}`;
+  }
   // створення URL для запиту погоди
   requestWeatherUrl(lat, lon) {
     return `${this.url}?lat=${lat}&lon=${lon}&lang=en&units=metric&appid=${this.key}`;

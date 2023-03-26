@@ -1,0 +1,76 @@
+.page-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+  background-color: #fff;
+
+  border-radius: 5px;
+  padding: 10px 15px;
+  gap: 8px;
+  font-family: 'Manrope';
+  font-style: 14px;
+}
+
+.page-container button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // color: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #4440f6;
+  border-radius: 2px;
+  width: 82px;
+  height: 31px;
+}
+.page-container button:disabled {
+  color: #aaadc7;
+}
+
+.next-page img {
+  rotate: 180deg;
+}
+
+#pagination {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#pagination li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33px;
+  height: 31px;
+  list-style: none;
+  cursor: pointer;
+  border: 1px solid #4440f6;
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 0 4px;
+}
+#pagination li.active {
+  background-color: $accent;
+}
+#pagination li.active a {
+  color: #fff;
+}
+#pagination li a {
+  text-decoration: none;
+  font-weight: 400;
+  // padding: 5px 10px;
+
+  display: inline-block;
+  line-height: 1;
+  color: $primary-text;
+  font-size: 20px;
+  pointer-events: none;
+}
+#pagination li:hover {
+  background-color: #4440f6;
+}
+#pagination li:hover a {
+  color: #fff;
+}

@@ -1,6 +1,7 @@
 <header class="header">
-  <div class="header__nav container">
+  <div class="header__nav container2">
     <a href="./index.html" class="header__logo"> News</a>
+<<<<<<< HEAD
 
     <!--     <button
       class="button-menu is-open"
@@ -8,17 +9,29 @@
       aria-controls="menu-container"
       data-menu-button
     >
-      <svg width="" height="" aria-label="Перемикач мобільного меню">
-        <use class="button-menu__hamburger" href=""></use>
-        <use class="button-menu__cros" href=""></use>
+      <svg
+        width="24px"
+        height="24px"
+        aria-label="Перемикач мобільного меню"
+        class="button-menu__icons"
+      >
+        <use
+          class="button-menu__hamburger"
+          href="/src/img/icons.svg#icon-menu"
+        ></use>
+        <use
+          class="button-menu__cros"
+          href="/src/img/icons.svg#icon-close-menu"
+        ></use>
       </svg>
-    </button> -->
-
+    </button>
     <div class="menu__container" id="menu-container" data-menu>
       <nav class="main-nav">
         <ul class="site-nav">
           <li class="site-nav__item">
-            <a href="./index.html" class="header__link">Home</a>
+            <a href="./index.html" class="header__link header__link--active"
+              >Home</a
+            >
           </li>
           <li class="site-nav__item">
             <a href="./favorite.html" class="header__link">Favorite</a>
@@ -29,9 +42,19 @@
         </ul>
       </nav>
 
-      <form action="">
-        <input class="search-input" type="text" id="search" name="search" />
-        <button type="button" class="search-button">Туук</button>
+      <form action="URL" class="search-form">
+        <input
+          class="search-input"
+          type="text"
+          id="search"
+          name="search"
+          placeholder="Search"
+        />
+        <button type="submit" class="search-button">
+          <svg width="20px" height="20px" class="icon-search">
+            <use href="/src/img/icons.svg#icon-search"></use>
+          </svg>
+        </button>
       </form>
     </div>
 
