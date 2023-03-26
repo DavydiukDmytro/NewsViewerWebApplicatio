@@ -882,6 +882,8 @@ section {
   opacity: 40%;
   text-align: center;
   border: none;
+  outline-color: transparent;
+  outline-style: solid;
 }
 
 .calendar__icon-arrow-down {
