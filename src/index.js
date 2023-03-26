@@ -20,6 +20,9 @@ import { showPageNotFound, hidePageNotFound } from './js/not-found';
 import throttle from 'lodash.throttle';
 // Додав функцію яка записую і повертає данні з localStorage
 import { save, load } from './js/storage';
+// функція додавання класу is-active в залежності від переданого значення від 1-3
+import { setActiveLink } from './js/is-active';
+
 
 selectedCategory();
 
@@ -60,6 +63,7 @@ function onClickInSectionNews(e) {
 
 //Робить запит на популярні новини та на погоду і верстає карточки
 async function init() {
+  setActiveLink(1);
   setupNewsSection();
   await fetchWeather();
   await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
