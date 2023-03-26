@@ -1,6 +1,6 @@
 //Погода
 import { Requests } from './requests';
-import { weather } from '..';
+import { weather } from '../index';
 
 const URl_WEATHER = 'https://api.openweathermap.org/data/2.5/weather';
 const API_KEY_WEATHER = 'ae8bbc703118097f2e96d268e981d292';
@@ -22,15 +22,14 @@ async function fetchWeather() {
   const date = new Date(weatherData.dt * 1000);
   weather.dayWeek = getDayOfWeek(date);
   weather.date = getDate(date);
-  weather.temp = weatherData.main.temp;
+  weather.temp = Math.round(weatherData.main.temp);
   weather.descriptrion = weatherData.weather[0].main;
   weather.city = weatherData.name;
   weather.icon = weatherData.weather[0].icon;
 
-    weather.flag = 'weather';
-    //тимчасово видалить потом 
-    console.log(weather);
-    
+  weather.flag = 'weather';
+  //тимчасово видалить потом
+  console.log(weather);
 }
 
 //отримання геолокації
@@ -39,7 +38,6 @@ async function requestsWeatherPosition(position) {
     lat = await position.coords.latitude;
     lon = await position.coords.longitude;
     await fetchWeather();
-    
   } catch (error) {
     console.error(error);
   }
