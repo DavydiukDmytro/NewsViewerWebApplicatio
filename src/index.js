@@ -25,6 +25,7 @@ const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
 
 export const refs = {
+  searchForm: document.querySelector('.search-form'),
   btnSearch: document.querySelector('.search-button'),
   sectionNews: document.querySelector('.section-news'),
   noNewsPage: document.querySelector('.news-page'),
@@ -92,11 +93,11 @@ async function searchArticle(searchValue) {
 }
 
 //Тимчасова функція для перевірки виводу новин по ключовому слову
-refs.btnSearch.addEventListener('click', onClickSearchBtn);
+refs.searchForm.addEventListener('submit', onClickSearchBtn);
 
 async function onClickSearchBtn(e) {
-  
-    await searchArticle('qdqdqdfq');
+    e.preventDefault();
+    await searchArticle('car');
     arrayCardNews = await concatNewsAndWeather(
       arraySearchArticleNews,
       arrayCardNewsFavorite,
