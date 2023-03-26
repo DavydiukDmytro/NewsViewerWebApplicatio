@@ -92,15 +92,17 @@ async function searchArticle(searchValue) {
 refs.btnSearch.addEventListener('click', onClickSearchBtn);
 
 async function onClickSearchBtn(e) {
-
-  await searchArticle('The New York Times');
-  arrayCardNews = await concatNewsAndWeather(
+  
+    await searchArticle('qdqdqdfq');
+    arrayCardNews = await concatNewsAndWeather(
       arraySearchArticleNews,
       arrayCardNewsFavorite,
       arrayCardNewsRead,
       weather
-  );
-  console.log('ss',arrayCardNews);
-  //відправка масиву відредагованого
-  pagination(arrayCardNews);
+    );
+    if (arrayCardNews.length === 0) {
+      const message = "We did not find news for this word";
+      showPageNotFound(message);
+    }
+  pagination(arrayCardNews); 
 }
