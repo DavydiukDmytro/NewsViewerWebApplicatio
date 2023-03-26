@@ -839,6 +839,7 @@ section {
   border-color: #111321;
   border-radius: 25px;
   padding: 5px 12px;
+  color: #4440f6;
   fill: rgb(68, 64, 246);
 }
 
@@ -864,19 +865,12 @@ section {
   cursor: pointer;
   outline-color: transparent;
   outline-style: solid;
-  background-color: rgb(68, 64, 246);
-  color: rgb(255, 255, 255);
   opacity: 1;
   border: none;
 }
 
 .calendar__icon {
   fill: currentColor;
-}
-
-.calendar__icon:hover,
-.calendar__icon:focus {
-  fill: rgb(255, 255, 255);
 }
 
 .calendar__input {
@@ -890,23 +884,43 @@ section {
   border: none;
 }
 
-.calendar__icon-arrow {
+.calendar__icon-arrow-down {
+  position: relative;
   fill: rgb(17, 19, 33);
   opacity: 40%;
 }
 
-.calendar__wrapper .calendar__icon-arrow:hover,
-.calendar__wrapper .calendar__icon-arrow:focus {
+.calendar__icon-arrow-down:hover,
+.calendar__icon-arrow-down:focus,
+.calendar__icon-arrow-down:active {
+  fill: currentColor;
+  opacity: 1;
+}
+
+.calendar__wrapper:hover .calendar__icon-arrow-down,
+.calendar__wrapper:focus .calendar__icon-arrow-down,
+.calendar__wrapper:active .calendar__icon-arrow-down {
+  opacity: 0;
   display: none;
 }
 
-.calendar__icon-arrow-top {
+.calendar__icon-arrow-up {
+  fill: currentColor;
   display: none;
 }
 
-.calendar__wrapper > .calendar__icon-arrow-top:hover,
-.calendar__wrapper > .calendar__icon-arrow-top:focus {
+.calendar__icon-arrow-up:hover,
+.calendar__icon-arrow-up:focus,
+.calendar__icon-arrow-up:active {
+  fill: rgb(255, 255, 255);
+  opacity: 1;
+}
+
+.calendar__wrapper:hover .calendar__icon-arrow-up,
+.calendar__wrapper:focus .calendar__icon-arrow-up,
+.calendar__wrapper:active .calendar__icon-arrow-up {
   display: block;
+  opacity: 1;
 }
 
 .flatpickr-calendar {
