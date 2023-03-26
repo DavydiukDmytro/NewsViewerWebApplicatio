@@ -96,8 +96,9 @@ async function searchArticle(searchValue) {
 refs.searchForm.addEventListener('submit', onClickSearchBtn);
 
 async function onClickSearchBtn(e) {
-    e.preventDefault();
-    await searchArticle('car');
+  e.preventDefault();
+    const searchValue = e.target.children.search.value
+    await searchArticle(searchValue);
     arrayCardNews = await concatNewsAndWeather(
       arraySearchArticleNews,
       arrayCardNewsFavorite,
