@@ -2,7 +2,7 @@
   list-style: none;
   width: 100%;
   background-color: $accent;
-  padding: 32px 36px 84px;
+  padding: 32px 0 84px;
   color: $white;
   border-radius: 4px;
   @media screen and (min-width: $tablet) {
@@ -29,6 +29,7 @@
 }
 .weather__wrapper {
   display: flex;
+  justify-content: center;
   margin-bottom: 40px;
   padding: 5px 0 14px;
   @media screen and (min-width: $tablet) {
