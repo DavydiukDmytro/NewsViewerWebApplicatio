@@ -828,6 +828,7 @@ section {
 }
 
 .calendar__wrapper {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -843,15 +844,30 @@ section {
 
 .calendar__wrapper:hover,
 .calendar__wrapper:focus,
-.calendar__input:hover,
-.calendar__input:focus {
+.calendar__wrapper:active {
   background-color: rgb(68, 64, 246);
   color: rgb(255, 255, 255);
   fill: rgb(255, 255, 255);
+  cursor: pointer;
+  outline-color: transparent;
+  outline-style: solid;
+  opacity: 1;
+  border: none;
 }
 
-.calendar__wrapper:focus .flatpickr-calendar {
-  display: block;
+.calendar__wrapper:hover input[type=text],
+.calendar__wrapper:focus input[type=text],
+.calendar__wrapper:active input[type=text] {
+  background-color: rgb(68, 64, 246);
+  color: rgb(255, 255, 255);
+  fill: rgb(255, 255, 255);
+  cursor: pointer;
+  outline-color: transparent;
+  outline-style: solid;
+  background-color: rgb(68, 64, 246);
+  color: rgb(255, 255, 255);
+  opacity: 1;
+  border: none;
 }
 
 .calendar__icon {
@@ -864,7 +880,6 @@ section {
 }
 
 .calendar__input {
-  position: relative;
   width: 82px;
   font-size: 14px;
   font-family: "Manrope";
@@ -981,6 +996,7 @@ section {
 
 .flatpickr-day:hover,
 .flatpickr-day:focus {
+  cursor: pointer;
   border: 1px solid #4440f6;
   background-color: #4440f6;
   border-radius: 50%;
