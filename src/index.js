@@ -15,7 +15,7 @@ import { clearNewsSection } from './js/clear-news-section';
 //import функції відображання помилки та її зникнення
 import { showPageNotFound, hidePageNotFound } from './js/not-found';
 //import функції яка повертає значення вибраної категорії
-import { selectedCategory } from './js/selected-category';
+// import { selectedCategory } from './js/selected-category';
 //Лодаш троттле
 import throttle from 'lodash.throttle';
 
@@ -40,6 +40,7 @@ let arrayPopuralNews = [];
 let arrayCardNews = [];
 let arrayCardNewsFavorite = [];
 let arrayCardNewsRead = [];
+let arrayCardNewsCategorie = [];
 
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
@@ -133,4 +134,52 @@ function setTheme () {
   element.classList.toggle("dark");
   themeLight = !themeLight;
   localStorage.setItem(LOCALSTORAGE_KEY, themeLight);
+}
+
+
+function selectedCategory() {
+  const selectName = document.querySelector(".news-section__select");
+  selectName.addEventListener("change", async function () {     
+    await searchCategorie(selectName.value);
+    arrayCardNews = concatNewsAndWeather(
+    arrayCardNewsCategorie,
+    arrayCardNewsFavorite,
+    arrayCardNewsRead,
+    weather
+  );
+  console.log('Concated arr popular:', arrayCardNews);
+  //відправка масиву відредагованого
+  pagination(arrayCardNews);
+  });
+// повертає значення категорії з селекта
+    const categoryName2 = document.querySelector('.section-categories__list');
+  categoryName2.addEventListener('click', async function (e) {
+    if (e.target.nodeName === "BUTTON") {
+      await searchCategorie(e.target.textContent);
+    arrayCardNews = concatNewsAndWeather(
+    arrayCardNewsCategorie,
+    arrayCardNewsFavorite,
+    arrayCardNewsRead,
+    weather
+  );
+  console.log('Concated arr popular:', arrayCardNews);
+  //відправка масиву відредагованого
+  pagination(arrayCardNews);
+     }
+  });
+//повертає значення категорії
+}
+
+
+async function searchCategorie(categorie) {
+  try {
+    const encodedCategorie = encodeURIComponent(categorie);
+    const { response } = await requestsNews.getRequests(
+      requestsNews.createUrlCategoryName(encodedCategorie)
+    );
+    arrayCardNewsCategorie = response.docs;
+    // console.log('Search news: ', arraySearchArticleNews);
+  } catch (error) {
+    console.error(error);
+  }
 }
