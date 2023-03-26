@@ -24,6 +24,7 @@
   @media screen and (min-width: $tablet) {
     font-size: 64px;
     line-height: 1.17;
+    padding-right: 8px;
   }
 }
 .weather__wrapper {
@@ -79,15 +80,21 @@
 .weather__location-icon {
   width: 18px;
   height: 18px;
-  padding-right: 4px;
+  margin-right: 4px;
   fill: $white;
 
   @media screen and (min-width: $tablet) {
+    margin-right: 8px;
     width: 27px;
     height: 27px;
   }
 }
-
+.weather__location-icon path {
+  transform: scale(0.6);
+  @media screen and (min-width: $tablet) {
+    transform: scale(0.85);
+  }
+}
 .weather-picture {
   display: block;
   margin: 0 auto;
