@@ -22,6 +22,8 @@ import throttle from 'lodash.throttle';
 import { save, load } from './js/storage';
 
 import { flatpick } from './js/calendar';
+// функція додавання класу is-active в залежності від переданого значення від 1-3
+import { setActiveLink } from './js/is-active';
 
 selectedCategory();
 
@@ -62,6 +64,7 @@ function onClickInSectionNews(e) {
 
 //Робить запит на популярні новини та на погоду і верстає карточки
 async function init() {
+  setActiveLink(1);
   setupNewsSection();
   await fetchWeather();
   await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
@@ -120,6 +123,7 @@ async function onClickSearchBtn(e) {
     arrayCardNewsRead,
     weather
   );
+  console.log('Concated arr searh:', arrayCardNews);
   if (arrayCardNews.length === 0) {
     const message = 'We did not find news for this word';
     showPageNotFound(message);
@@ -160,7 +164,7 @@ function selectedCategory() {
       arrayCardNewsRead,
       weather
     );
-    console.log('Concated arr popular:', arrayCardNews);
+    console.log('Concated arr category:', arrayCardNews);
     //відправка масиву відредагованого
     pagination(arrayCardNews);
   });
@@ -175,7 +179,7 @@ function selectedCategory() {
         arrayCardNewsRead,
         weather
       );
-      console.log('Concated arr popular:', arrayCardNews);
+      console.log('Concated arr category:', arrayCardNews);
       //відправка масиву відредагованого
       pagination(arrayCardNews);
     }
@@ -195,4 +199,10 @@ async function searchCategorie(categorie) {
   } catch (error) {
     console.error(error);
   }
+}
+
+// сховати сторінку поt found
+function hidePageNotFound() {
+  refs.noNewsPage.style.display = 'none';
+  refs.noNewsPageTitle = '';
 }
