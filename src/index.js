@@ -7,6 +7,7 @@ import { setupNewsSection } from './js/section-categories-list';
 import { requestsWeatherPosition, fetchWeather } from './js/weather';
 import { concatNewsAndWeather, createMarkUp } from './js/markup';
 
+import { clearNewsSection } from './js/clear-news-section';
 
 
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
@@ -54,6 +55,20 @@ async function searchPopular() {
       requestsNews.createTrendingNewsQueryUrl()
     );
     await newsPopular.then(value => (arrayPopuralNews = value.results));
+    console.log('Popular News: ', arrayPopuralNews);
+    // ===Створення спільного масиву новин та погоди=======
+    arrayCardNews = concatNewsAndWeather(
+      arrayPopuralNews,
+      arrayCardNewsFavorite,
+      arrayCardNewsRead,
+      weather
+    );
+    console.log('Concated arr popular:', arrayCardNews);
+    // ===Розмітка новин і погоди============================
+    const markup = createMarkUp(arrayCardNews);
+    console.log(markup);
+    //тимчасово видалить потом
+    // console.log(arrayPopuralNews);
     //тимчасово видалить потом
     console.log(arrayPopuralNews);
   } catch (error) {
