@@ -1,11 +1,10 @@
 import { category } from './js/category';
 import { Requests } from './js/requests';
 import { requestsWeatherPosition, fetchWeather } from './js/weather';
+import { save, load } from './js/storage'; // Додав функцію яка записую і повертає данні з localStorage
 
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
-
-
 
 const refs = {
   btnSearch: document.querySelector('.search-button'),
@@ -37,7 +36,7 @@ async function searchPopular() {
       requestsNews.createTrendingNewsQueryUrl()
     );
     await newsPopular.then(value => (arrayPopuralNews = value.results));
-    //тимчасово видалить потом 
+    //тимчасово видалить потом
     console.log(arrayPopuralNews);
   } catch (error) {
     console.log(error.message);
@@ -64,5 +63,3 @@ refs.btnSearch.addEventListener('click', onClickSearchBtn);
 function onClickSearchBtn(e) {
   searchArticle('The New York Times');
 }
-
-
