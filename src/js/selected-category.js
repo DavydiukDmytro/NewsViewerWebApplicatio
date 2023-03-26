@@ -4,7 +4,7 @@ export function selectedCategory() {
     selectName.addEventListener("change", function () {    
     return console.log(selectName.value);   
     });
-// повертає значення категорії з селекта
+// повертає значення категорії з селекта (!!! є подвійне повернення значення)
 
     const categoryName = document.querySelectorAll(".news-section__item button");
     categoryName.forEach( function (button) { 
@@ -13,5 +13,5 @@ export function selectedCategory() {
     return console.log(buttonText);  
   });
 });
-//повертає значення категорії
+//повертає значення категорії 
 }
