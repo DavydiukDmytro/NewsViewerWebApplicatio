@@ -130,7 +130,9 @@ const selectTheme = document.querySelector('#theme-clicker');
 const element = document.querySelector('body');
 selectTheme.addEventListener("change", setTheme);
 
-themeLight = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
+if (localStorage.getItem(LOCALSTORAGE_KEY) !== null) {
+  themeLight = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
+};
 
 if (!themeLight) {
   element.classList.add("dark");

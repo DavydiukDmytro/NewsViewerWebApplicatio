@@ -13,14 +13,13 @@
     color:#4B48DB;
 }
 
-// Ці два стилі по зміні кольору іконок для темної теми чомусь не працюють. Треба шукати причину...
 .dark .sun-sign{
-    fill: #F4F4F4;
+    --color4: #F4F4F4;
     opacity: 0.4;
 }
 
 .dark .moon-sign {
-    fill: #4B48DB;
+    --color3: #4B48DB;
 }
 
 
@@ -33,18 +32,16 @@
 @media screen and (min-width: $tablet) {
     gap: 12px;
 }
-
 }
 
 .sun-sign{
-    fill: #4B48DB;
+   fill: #4B48DB;
 }
 
 .sun{
     display: flex;
     align-items: center;
     justify-content: center;
-    // fill:#4B48DB;
 @media screen and (min-width: $tablet) {
     display: none;
 }
@@ -104,7 +101,6 @@
 .form-switch i {
     position: relative;
     display: inline-block;
-    //margin-right: .5rem;
     width: 46px;
     height: 26px;
     background-color: #e6e6e6;
