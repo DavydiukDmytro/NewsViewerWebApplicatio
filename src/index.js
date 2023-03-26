@@ -21,6 +21,7 @@ import throttle from 'lodash.throttle';
 
 selectedCategory();
 
+
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
 
