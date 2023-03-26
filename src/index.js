@@ -47,6 +47,16 @@ const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 
 init();
 
+refs.sectionNews.addEventListener("click", onClickInSectionNews);
+function onClickInSectionNews(e) {
+  if (e.target.nodeName === "BUTTON"){
+    console.log('btn');
+  }
+  if (e.target.nodeName === "A"){
+    console.log('A');
+  }
+};
+
 //Робить запит на популярні новини та на погоду і верстає карточки
 async function init() {
   setupNewsSection();
@@ -170,7 +180,7 @@ function selectedCategory() {
 //повертає значення категорії
 }
 
-
+// 
 async function searchCategorie(categorie) {
   try {
     const encodedCategorie = encodeURIComponent(categorie);
