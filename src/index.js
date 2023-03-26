@@ -14,6 +14,12 @@ import { concatNewsAndWeather, createMarkUp } from './js/markup';
 import { clearNewsSection } from './js/clear-news-section';
 //import функції відображання помилки та її зникнення
 import { showPageNotFound, hidePageNotFound } from './js/not-found';
+//import функції яка повертає значення вибраної категорії
+import { selectedCategory } from './js/selected-category';
+//Лодаш троттле
+import throttle from 'lodash.throttle';
+
+selectedCategory();
 
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
@@ -88,6 +94,18 @@ async function searchArticle(searchValue) {
 //Тимчасова функція для перевірки виводу новин по ключовому слову
 refs.btnSearch.addEventListener('click', onClickSearchBtn);
 
-function onClickSearchBtn(e) {
-  searchArticle(encodeURIComponent('The New York Times'));
+async function onClickSearchBtn(e) {
+  
+    await searchArticle('qdqdqdfq');
+    arrayCardNews = await concatNewsAndWeather(
+      arraySearchArticleNews,
+      arrayCardNewsFavorite,
+      arrayCardNewsRead,
+      weather
+    );
+    if (arrayCardNews.length === 0) {
+      const message = "We did not find news for this word";
+      showPageNotFound(message);
+    }
+  pagination(arrayCardNews); 
 }

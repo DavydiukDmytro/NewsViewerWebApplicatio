@@ -38,7 +38,7 @@ export function setupNewsSection() {
         const option = document.createElement('option');
         option.classList.add('news-section__selects');
         selectList.prepend(option);
-          option.innerHTML = `<option value="${array[i].display_name}">${array[i].display_name}</option>`;    
+          option.innerHTML = `<option value="${array[i].display_name}" >${array[i].display_name}</option>`;    
     }
 } //функція створює елементи та додає в option значення всіх display_name які залишились в масиву availableCategories
 
