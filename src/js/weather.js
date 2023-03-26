@@ -1,6 +1,6 @@
 //Погода
 import { Requests } from './requests';
-import { weather } from '..';
+import { weather } from '../index';
 
 const URl_WEATHER = 'https://api.openweathermap.org/data/2.5/weather';
 const API_KEY_WEATHER = 'ae8bbc703118097f2e96d268e981d292';

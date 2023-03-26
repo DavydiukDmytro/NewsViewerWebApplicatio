@@ -1,19 +1,25 @@
+//імпорт масиву категорій
 import { category } from './js/category';
+//імпорт класу запитів
 import { Requests } from './js/requests';
+//імпорт функціоналу пагінації
 import { pagination } from './js/pagination';
-
+//імпорт функціоналу для створення категорій
 import { setupNewsSection } from './js/section-categories-list';
-
+//імпорт запиту по локації на погоді 
 import { requestsWeatherPosition, fetchWeather } from './js/weather';
-
+//імпорт функції для нормалізації об'єктів та функції яка генерує розмітку
+import { concatNewsAndWeather, createMarkUp } from './js/markup';
+//import очищає секцію новин
 import { clearNewsSection } from './js/clear-news-section';
+//import функції відображання помилки та її зникнення
+import { showPageNotFound, hidePageNotFound } from './js/not-found';
 import { createUrlCategoryName } from './js/creation-url';
-
 
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
 
-const refs = {
+export const refs = {
   btnSearch: document.querySelector('.search-button'),
   sectionNews: document.querySelector('.section-news'),
   noNewsPage: document.querySelector('.news-page'),
@@ -40,22 +46,28 @@ async function init() {
   await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
   await searchPopular();
 
+   // ===Створення спільного масиву новин та погоди=======
+    arrayCardNews = concatNewsAndWeather(
+      arrayPopuralNews,
+      arrayCardNewsFavorite,
+      arrayCardNewsRead,
+      weather
+    );
+  console.log('Concated arr popular:', arrayCardNews);
   //відправка масиву відредагованого
-  pagination(arrayPopuralNews);
-
-  //arrayCardNews = function(arrayPopuralNews, погода)
+  pagination(arrayCardNews);
 }
 
 
 //Функція для пошуку популярних новин
 async function searchPopular() {
   try {
+    // await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
     const newsPopular = requestsNews.getRequests(
       requestsNews.createTrendingNewsQueryUrl()
     );
     await newsPopular.then(value => (arrayPopuralNews = value.results));
-    //тимчасово видалить потом
-    console.log(arrayPopuralNews);
+    // console.log('Popular News: ', arrayPopuralNews);
   } catch (error) {
     console.log(error.message);
   }
@@ -69,8 +81,7 @@ async function searchArticle(searchValue) {
       requestsNews.createSearchQueryUrl(encodedSearchValue)
     );
     arraySearchArticleNews = response.docs;
-    console.log(arraySearchArticleNews);
-    //arrayCardNews = function(arraySearchArticleNews, погода)
+    // console.log('Search news: ', arraySearchArticleNews);
   } catch (error) {
     console.error(error);
   }
@@ -96,7 +107,3 @@ function hidePageNotFound() {
   refs.noNewsPage.style.display = 'none';
   refs.noNewsPageTitle = '';
 }
-
-
-
-
