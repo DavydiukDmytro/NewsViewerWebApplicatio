@@ -196,3 +196,4 @@ async function searchCategorie(categorie) {
     console.error(error);
   }
 }
+

@@ -1,17 +1,17 @@
 const STORAGE_KEY = 'myKey';
 
-const save = (STORAGE_KEY, value) => {
+const save = (key, value) => {
   try {
     const dataSave = JSON.stringify(value);
-    localStorage.setItem(STORAGE_KEY, dataSave);
+    localStorage.setItem(key, dataSave);
   } catch (error) {
     console.error('Oops, something went wrong: ', error.message); // пізніше замінити на сповіщення від Notiflix
   }
 };
 
-const load = STORAGE_KEY => {
+const load = key => {
   try {
-    const dataSave = localStorage.getItem(STORAGE_KEY);
+    const dataSave = localStorage.getItem(key);
     if (dataSave === null) {
       return undefined;
     }
