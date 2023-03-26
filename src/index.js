@@ -15,7 +15,7 @@ import { clearNewsSection } from './js/clear-news-section';
 //import функції відображання помилки та її зникнення
 import { showPageNotFound, hidePageNotFound } from './js/not-found';
 //import функції яка повертає значення вибраної категорії
-import { selectedCategory } from './js/selected-category';
+// import { selectedCategory } from './js/selected-category';
 //Лодаш троттле
 import throttle from 'lodash.throttle';
 // Додав функцію яка записую і повертає данні з localStorage
@@ -64,6 +64,7 @@ function onClickInSectionNews(e) {
 
 //Робить запит на популярні новини та на погоду і верстає карточки
 async function init() {
+  setActiveLink(1);
   setupNewsSection();
   await fetchWeather();
   await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
