@@ -3,6 +3,11 @@
     display: flex;
     justify-content: space-between;
     padding: 28px 0 28px 0;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
 }
 
 .section-categories__classes {
@@ -27,6 +32,7 @@
     color: $accent;
     border: 1px solid $accent;
     border-radius: calc(31px/2);
+    white-space: nowrap;
 }
 .news-section__item button:active {
     background-color: $accent;
