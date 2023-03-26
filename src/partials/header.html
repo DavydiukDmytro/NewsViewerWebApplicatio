@@ -2,7 +2,7 @@
   <div class="header__nav container">
     <a href="./index.html" class="header__logo"> News</a>
 
-<!--     <button
+    <!--     <button
       class="button-menu is-open"
       type="button"
       aria-controls="menu-container"
@@ -34,15 +34,25 @@
         <button type="button" class="search-button">Туук</button>
       </form>
     </div>
-    <div class="header__checkbox">
-      <span class="light-check">Light</span>
-      <input
-        class="theme-input"
-        type="checkbox"
-        id="theme-clicker"
-        name="theme-clicker"
-      />
-      <span class="dark-check">Dark</span>
+
+    <!-- Перемикач теми свтла/темна -->
+    <div class="theme-switch">
+      <div class="state-light">Light</div>
+      <div class="sun">
+        <svg class="sun-sign" width="19px" height="19px">
+          <use href="./img/icons.svg#icon-sun"></use>
+        </svg>
+      </div>
+      <label class="form-switch">
+        <input type="checkbox" id="theme-clicker" />
+        <i></i>
+      </label>
+      <div class="state-dark">Dark</div>
+      <div class="moon">
+        <svg class="moon-sign" width="19px" height="19px">
+          <use href="./img/icons.svg#icon-moon"></use>
+        </svg>
+      </div>
     </div>
   </div>
 </header>
