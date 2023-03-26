@@ -10,25 +10,27 @@
   <body>
     <include src="./partials/header.html"></include>
     <!--SECTION categories-->
-    <section class="section-categories">
-      <div class="section-categories__classes">
-        <ul class="section-categories__list">
-          <li class="news-section__item">
-            <select id="mySelect" class="news-section__select">
-              <option value="others" class="news-section__selects">
-                Others
-              </option>
-            </select>
-          </li>
-        </ul>
-      </div>
-      <div class="section-categories__calendar">
-        <span class="">Search date news</span>
-        <input class="" type="date" id="calendar" name="calendar" />
+    <section>
+      <div class="container2 section-categories">
+        <div class="section-categories__classes">
+          <ul class="section-categories__list">
+            <li class="news-section__item">
+              <select id="mySelect" class="news-section__select">
+                <option value="others" class="news-section__selects">
+                  Others
+                </option>
+              </select>
+            </li>
+          </ul>
+        </div>
+        <div class="section-categories__calendar">
+          <span class="">Search date news</span>
+          <input class="" type="date" id="calendar" name="calendar" />
+        </div>
       </div>
     </section>
 
-    <li class="weather__card">
+    <!-- <li class="weather__card">
       <div class="weather__wrapper">
         <p class="weather__temperature">23°</p>
         <div class="weather__box">
@@ -48,27 +50,34 @@
       />
       <p class="weather__day">Mon</p>
       <p class="weather__date">20 Jan 2021</p>
-    </li>
+    </li> -->
 
     <!--SECTION NEWS-->
-    <section class="section-news"></section>
+
+    <section>
+      <div class="container2">
+        <ul class="section-news"></ul>
+      </div>
+    </section>
     <section class="news-page">
-      <h2 class="news-page__title"></h2>
-      <picture>
-        <source
-          srcset="./img/desk.png 1x, ./img/desk@2x.png 2x"
-          media="(min-width:1280px)"
-        />
-        <source
-          srcset="./img/tab.png 1x, ./img/tab@2x.png 2x"
-          media="(min-width:768px)"
-        />
-        <source
-          srcset="./img/mob.png 1x, ./img/mob@2x.png 2x"
-          media="(max-width:767px)"
-        />
-        <img class="news-page__image" src="./img/desk.png" alt="Newspaper" />
-      </picture>
+      <div class="container2">
+        <h2 class="news-page__title"></h2>
+        <picture>
+          <source
+            srcset="./img/desk.png 1x, ./img/desk@2x.png 2x"
+            media="(min-width:1280px)"
+          />
+          <source
+            srcset="./img/tab.png 1x, ./img/tab@2x.png 2x"
+            media="(min-width:768px)"
+          />
+          <source
+            srcset="./img/mob.png 1x, ./img/mob@2x.png 2x"
+            media="(max-width:767px)"
+          />
+          <img class="news-page__image" src="./img/desk.png" alt="Newspaper" />
+        </picture>
+      </div>
     </section>
     <include src="./partials/pagination.html"></include>
     <footer class="footer"></footer>

@@ -1,3 +1,5 @@
+import { concatNewsAndWeather, createMarkUp } from './markup';
+import { refs } from '../index';
 //змінні пагінатора
 const pg = document.getElementById('pagination');
 const btnNextPg = document.querySelector('button.next-page');
@@ -27,7 +29,8 @@ let array = [];
 function renderNewsList(news) {
   const markup = news.slice(start, end);
   //заміть консолі фунція яка рендерить картки з масиву!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-  console.log(markup);
+  const markp2 = createMarkUp(markup);
+  refs.sectionNews.innerHTML = markp2;
 }
 
 // функція перемикання сторінок та рендера

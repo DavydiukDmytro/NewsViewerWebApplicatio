@@ -2,7 +2,7 @@
   list-style: none;
   width: 100%;
   background-color: $accent;
-  padding: 32px 36px 84px;
+  padding: 32px 0 84px;
   color: $white;
   border-radius: 4px;
   @media screen and (min-width: $tablet) {
@@ -24,10 +24,12 @@
   @media screen and (min-width: $tablet) {
     font-size: 64px;
     line-height: 1.17;
+    padding-right: 8px;
   }
 }
 .weather__wrapper {
   display: flex;
+  justify-content: center;
   margin-bottom: 40px;
   padding: 5px 0 14px;
   @media screen and (min-width: $tablet) {
@@ -69,7 +71,6 @@
   font-size: 14px;
   line-height: 1.14;
   color: $white;
-  cursor: pointer;
   @media screen and (min-width: $tablet) {
     font-size: 20px;
     line-height: 1.15;
@@ -80,15 +81,21 @@
 .weather__location-icon {
   width: 18px;
   height: 18px;
-  padding-right: 4px;
+  margin-right: 4px;
   fill: $white;
 
   @media screen and (min-width: $tablet) {
+    margin-right: 8px;
     width: 27px;
     height: 27px;
   }
 }
-
+.weather__location-icon path {
+  transform: scale(0.6);
+  @media screen and (min-width: $tablet) {
+    transform: scale(0.85);
+  }
+}
 .weather-picture {
   display: block;
   margin: 0 auto;
