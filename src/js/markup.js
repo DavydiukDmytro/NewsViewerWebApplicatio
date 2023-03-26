@@ -123,7 +123,7 @@ function newsMarkUp({
       <span class="news-card__date">${published_date}</span>
       <a data-ida="${id}" class="news-card__read" href="${url}">Read more</a>
     </div>
-  </li>;`;
+  </li>`;
 }
 function weatherMarkUp({ temp, descriptrion, city, icon, dayWeek, date }) {
   return `<li class="weather__card">
