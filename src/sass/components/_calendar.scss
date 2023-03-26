@@ -1,0 +1,173 @@
+.calendar__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  height: 31px;
+  width: 168px;
+  border: 1px solid rgba(17, 19, 33, 1);
+  border-color: $primary-text;
+  border-radius: 25px;
+  padding: 5px 12px;
+}
+
+.calendar__wrapper:hover,
+.calendar__wrapper:focus,
+.calendar__input:hover,
+.calendar__input:focus {
+  background-color: rgba(68, 64, 246, 1);
+  color: rgba(255, 255, 255, 1);
+  fill: rgba(255, 255, 255, 1);
+}
+
+.calendar__icon {
+  fill: currentColor;
+}
+
+.calendar__icon:hover,
+.calendar__icon:focus {
+  fill: rgba(255, 255, 255, 1);
+}
+
+.calendar__input {
+  position: relative;
+  width: 82px;
+  font-size: 14px;
+  font-family: 'Manrope';
+  font-weight: 400;
+  color: rgba(17, 19, 33, 1);
+  opacity: 40%;
+  text-align: center;
+  border: none;
+}
+
+.calendar__icon-arrow {
+  fill: rgba(17, 19, 33, 1);
+  opacity: 40%;
+}
+
+.calendar__wrapper .calendar__icon-arrow:hover,
+.calendar__wrapper .calendar__icon-arrow:focus {
+  display: none;
+}
+
+.calendar__icon-arrow-top {
+  display: none;
+}
+
+.calendar__wrapper .calendar__icon-arrow-top:hover,
+.calendar__wrapper .calendar__icon-arrow-top:focus {
+  display: block;
+}
+
+// .calendar__wrapper[value*='2022-02-20'] {
+//   opacity: 40%;
+// }
+
+.flatpickr-calendar {
+  display: none;
+  position: absolute;
+
+  max-width: 250px;
+  max-height: 250px;
+  padding: 26px 16px 20px;
+  font-family: 'Manrope';
+  font-weight: 500;
+
+  border-radius: 20px;
+  background-color: rgba(248, 248, 248, 1);
+  box-shadow: 0px 10px 60px 0px rgba(0, 0, 0, 0.1);
+}
+
+.flatpickr-calendar svg {
+  width: 14px;
+  height: 22px;
+  fill: $accent;
+}
+
+.flatpickr-months {
+  display: flex;
+  margin-bottom: 13px;
+  line-height: 1.37;
+  letter-spacing: -0.41px;
+}
+
+.flatpickr-current-month {
+  display: flex;
+}
+
+.flatpickr-monthDropdown-months,
+.numInput {
+  background-color: rgba(248, 248, 248, 1);
+  border: none;
+  width: 110px;
+}
+
+.numInput {
+  width: 80px;
+}
+
+.flatpickr-weekdays {
+  font-size: 10px;
+  margin-bottom: 14px;
+  font-weight: 400;
+
+  color: rgba(60, 60, 67, 0.3);
+}
+
+.flatpickr-weekday {
+  width: 15px;
+}
+
+.flatpickr-weekdaycontainer {
+  display: flex;
+  gap: 18px;
+}
+.flatpickr-days {
+  max-width: 250px;
+}
+
+.dayContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  font-size: 14px;
+}
+
+.flatpickr-day {
+  padding: 1px;
+  flex-basis: calc(100% / 7);
+  margin-bottom: 12px;
+  height: 25px;
+  line-height: 1.78;
+  color: #000000;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.flatpickr-day:hover,
+.flatpickr-day:focus {
+  border: 1px solid $accent;
+  background-color: $accent;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 1);
+}
+
+.flatpickr-day:nth-child(7n + 8) {
+  color: #5f6775;
+}
+.flatpickr-day:nth-child(7n + 8):hover,
+.flatpickr-day:nth-child(7n + 8):focus {
+  color: rgba(255, 255, 255, 1);
+}
+// .flatpickr-day:nth-child(6n + 1) {
+//   color: rgb(153, 65, 51);
+// }
+
+.flatpickr-day:nth-last-child(n + 29) {
+  display: none;
+}
