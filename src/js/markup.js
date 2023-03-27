@@ -1,16 +1,29 @@
+// =========Створення масиву новик+погоди========
 export function concatNewsAndWeather(incomeArr, favoriteArr, readedArr, obj) {
   const concatArray = [];
   const checkedArray = checkArrays(incomeArr, favoriteArr, readedArr);
   // console.log('Cheked arr:', checkedArray);
   checkedArray.forEach(function (elem, index) {
+    if (window.innerWidth < 767) {
+      if (index === 0 && obj.flag === 'weather') {
+        concatArray.push(obj);
+      }
+    }
     concatArray.push(dataDestructuring(elem));
-    if (index === 1 && obj.flag === 'weather') {
-      concatArray.push(obj);
+    if (window.innerWidth >= 1280) {
+      if (index === 1 && obj.flag === 'weather') {
+        concatArray.push(obj);
+      }
+    } else if (window.innerWidth >= 768) {
+      if (index === 0 && obj.flag === 'weather') {
+        concatArray.push(obj);
+      }
     }
   });
   return concatArray;
 }
 
+// =========Створоення масиву з інлайном розмітки========
 export function createMarkUp(array) {
   return array
     .map(function (elem) {
@@ -23,6 +36,7 @@ export function createMarkUp(array) {
     .join('');
 }
 
+// ==========Перевірка масивів на вміст однакових обектів=========
 function checkArrays(incomeArr, favoriteArr, readedArr) {
   let checkedArray = [];
   for (let i = 0; i < incomeArr.length; i++) {
@@ -41,6 +55,8 @@ function checkArrays(incomeArr, favoriteArr, readedArr) {
   }
   return checkedArray;
 }
+
+// ==========Деструктуризаця масивів новин===========
 function dataDestructuring(elem) {
   if (elem.asset_id) {
     const {
@@ -90,6 +106,8 @@ function dataDestructuring(elem) {
     };
   }
 }
+
+// ========Розмітка картки новин==========
 function newsMarkUp({
   abstract,
   id,
@@ -97,16 +115,30 @@ function newsMarkUp({
   url,
   title,
   media,
-  flag,
   favorite,
   read,
 }) {
+  const IMG_URL = 'https://www.nytimes.com/';
+  const date = dateFormating(published_date);
+  let img = '';
+  if (media.length === 0) {
+    // =====РОЗІБРАТИСЬ З КАРТИНКОЮ============
+    img = './img/mobile_1x.jpg';
+  } else if (media.length === 1) {
+    const mediaObj = media[0];
+    const imageUrl = mediaObj['media-metadata'];
+    const [, , third] = imageUrl;
+    img = third.url;
+  } else {
+    const qqq = media.find(elem => elem.subtype === 'master495');
+    img = `${IMG_URL}${qqq.url}`;
+  }
   return `<li class="news-card">
     <div class="news-card__image">
      <div class="news-card__darkend"></div>
       <img src="#" alt="News" />
       <span class="news-card__category">Job searching</span>
-      <span class="news-card__status">Have read
+      <span class="news-card__status" data-read="${read}">Have read
       <svg class="news-card__icon-tick" width="18px" height="18px">
        <use xlink:href="./img/icons.svg#icon-tick"></use>
        </svg>
@@ -128,11 +160,12 @@ function newsMarkUp({
       ${abstract}
     </p>
     <div class="news-card__box">
-      <span class="news-card__date">${published_date}</span>
+      <span class="news-card__date">${date}</span>
       <a data-ida="${id}" class="news-card__read" href="${url}">Read more</a>
     </div>
   </li>`;
 }
+// ========Розмітка картки погоди==========
 function weatherMarkUp({ temp, descriptrion, city, icon, dayWeek, date }) {
   return `<li class="weather__card">
     <div class="weather__wrapper">
@@ -151,4 +184,16 @@ function weatherMarkUp({ temp, descriptrion, city, icon, dayWeek, date }) {
   <p class="weather__day">${dayWeek}</p>
   <p class="weather__date">${date}</p>
 </li>`;
+}
+
+// ========Форматування дати у дд/мм/рррр====
+function dateFormating(published_date) {
+  const date = new Date(`${published_date}`);
+  return `${addLeadingZero(date.getUTCDate())}/${addLeadingZero(
+    date.getUTCMonth() + 1
+  )}/${date.getUTCFullYear()}`;
+}
+// ========Додавання 0 якщо число з 1 символу=========
+function addLeadingZero(value) {
+  return String(value).padStart(2, '0');
 }

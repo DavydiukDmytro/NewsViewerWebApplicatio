@@ -19,7 +19,12 @@ import { showPageNotFound, hidePageNotFound } from './js/not-found';
 //Лодаш троттле
 import throttle from 'lodash.throttle';
 // Додав функцію яка записую і повертає данні з localStorage
-import { save, load } from './js/storage'; 
+import { save, load } from './js/storage';
+
+// import { flatpick } from './js/calendar';
+import { flatpickr } from './js/calendar';
+// функція додавання класу is-active в залежності від переданого значення від 1-3
+import { setActiveLink } from './js/is-active';
 
 selectedCategory();
 
@@ -48,18 +53,19 @@ const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 
 init();
 
-refs.sectionNews.addEventListener("click", onClickInSectionNews);
+refs.sectionNews.addEventListener('click', onClickInSectionNews);
 function onClickInSectionNews(e) {
-  if (e.target.nodeName === "BUTTON"){
+  if (e.target.nodeName === 'BUTTON') {
     console.log('btn');
   }
-  if (e.target.nodeName === "A"){
+  if (e.target.nodeName === 'A') {
     console.log('A');
   }
-};
+}
 
 //Робить запит на популярні новини та на погоду і верстає карточки
 async function init() {
+  setActiveLink(1);
   setupNewsSection();
   await fetchWeather();
   await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
@@ -110,80 +116,79 @@ refs.searchForm.addEventListener('submit', onClickSearchBtn);
 
 async function onClickSearchBtn(e) {
   e.preventDefault();
-    const searchValue = e.target.children.search.value
-    await searchArticle(searchValue);
-    arrayCardNews = await concatNewsAndWeather(
-      arraySearchArticleNews,
-      arrayCardNewsFavorite,
-      arrayCardNewsRead,
-      weather
-    );
-    if (arrayCardNews.length === 0) {
-      const message = "We did not find news for this word";
-      showPageNotFound(message);
-    }
-  pagination(arrayCardNews); 
+  const searchValue = e.target.children.search.value;
+  await searchArticle(searchValue);
+  arrayCardNews = await concatNewsAndWeather(
+    arraySearchArticleNews,
+    arrayCardNewsFavorite,
+    arrayCardNewsRead,
+    weather
+  );
+  console.log('Concated arr searh:', arrayCardNews);
+  if (arrayCardNews.length === 0) {
+    const message = 'We did not find news for this word';
+    showPageNotFound(message);
+  }
+  pagination(arrayCardNews);
 }
 //Перемикач теми - темна/світла
 const LOCALSTORAGE_KEY = 'theme';
 let themeLight = true;
 const selectTheme = document.querySelector('#theme-clicker');
 const element = document.querySelector('body');
-selectTheme.addEventListener("change", setTheme);
+selectTheme.addEventListener('change', setTheme);
 
 if (localStorage.getItem(LOCALSTORAGE_KEY) !== null) {
   themeLight = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
-};
+}
 
 if (!themeLight) {
-  element.classList.add("dark");
+  element.classList.add('dark');
   selectTheme.checked = true;
-}
-else {
+} else {
   selectTheme.checked = false;
 }
 
-function setTheme () {
-  element.classList.toggle("dark");
+function setTheme() {
+  element.classList.toggle('dark');
   themeLight = !themeLight;
   localStorage.setItem(LOCALSTORAGE_KEY, themeLight);
 }
 
-
 function selectedCategory() {
-  const selectName = document.querySelector(".news-section__select");
-  selectName.addEventListener("change", async function () {     
+  const selectName = document.querySelector('.news-section__select');
+  selectName.addEventListener('change', async function () {
     await searchCategorie(selectName.value);
     arrayCardNews = concatNewsAndWeather(
-    arrayCardNewsCategorie,
-    arrayCardNewsFavorite,
-    arrayCardNewsRead,
-    weather
-  );
-  console.log('Concated arr popular:', arrayCardNews);
-  //відправка масиву відредагованого
-  pagination(arrayCardNews);
+      arrayCardNewsCategorie,
+      arrayCardNewsFavorite,
+      arrayCardNewsRead,
+      weather
+    );
+    console.log('Concated arr category:', arrayCardNews);
+    //відправка масиву відредагованого
+    pagination(arrayCardNews);
   });
-// повертає значення категорії з селекта
-    const categoryName2 = document.querySelector('.section-categories__list');
+  // повертає значення категорії з селекта
+  const categoryName2 = document.querySelector('.section-categories__list');
   categoryName2.addEventListener('click', async function (e) {
-    if (e.target.nodeName === "BUTTON") {
+    if (e.target.nodeName === 'BUTTON') {
       await searchCategorie(e.target.textContent);
-    arrayCardNews = concatNewsAndWeather(
-    arrayCardNewsCategorie,
-    arrayCardNewsFavorite,
-    arrayCardNewsRead,
-    weather
-  );
-  console.log('Concated arr popular:', arrayCardNews);
-  //відправка масиву відредагованого
-  pagination(arrayCardNews);
-     }
+      arrayCardNews = concatNewsAndWeather(
+        arrayCardNewsCategorie,
+        arrayCardNewsFavorite,
+        arrayCardNewsRead,
+        weather
+      );
+      console.log('Concated arr category:', arrayCardNews);
+      //відправка масиву відредагованого
+      pagination(arrayCardNews);
+    }
   });
-//повертає значення категорії
+  //повертає значення категорії
 }
 
-// 
+//
 async function searchCategorie(categorie) {
   try {
     const encodedCategorie = encodeURIComponent(categorie);
@@ -197,3 +202,8 @@ async function searchCategorie(categorie) {
   }
 }
 
+// сховати сторінку поt found
+function hidePageNotFound() {
+  refs.noNewsPage.style.display = 'none';
+  refs.noNewsPageTitle = '';
+}
