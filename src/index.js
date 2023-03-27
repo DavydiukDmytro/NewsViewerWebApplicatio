@@ -47,6 +47,7 @@ let arrayCardNews = [];
 let arrayCardNewsFavorite = [];
 let arrayCardNewsRead = [];
 let arrayCardNewsCategorie = [];
+let arrayCardNewsCalendar = [];
 
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
@@ -129,6 +130,7 @@ async function onClickSearchBtn(e) {
     const message = 'We did not find news for this word';
     showPageNotFound(message);
   }
+  
   pagination(arrayCardNews);
 }
 //Перемикач теми - темна/світла
@@ -189,13 +191,31 @@ function selectedCategory() {
 }
 
 //
+// async function searchCategorie(categorie) {
+//   try {
+//     const encodedCategorie = encodeURIComponent(categorie);
+//     const { response } = await requestsNews.getRequests(
+//       requestsNews.createUrlCategoryName(encodedCategorie)
+//     );
+//     arrayCardNewsCategorie = response.docs;
+//     // console.log('Search news: ', arraySearchArticleNews);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+
+// запит версії 3
 async function searchCategorie(categorie) {
   try {
-    const encodedCategorie = encodeURIComponent(categorie);
-    const { response } = await requestsNews.getRequests(
+    const encodedCategorie = encodeURIComponent(categorie.toLowerCase());
+    const newsCategorie = requestsNews.getRequests(
       requestsNews.createUrlCategoryName(encodedCategorie)
     );
-    arrayCardNewsCategorie = response.docs;
+    await newsCategorie.then(value => {
+      console.log(value.results);
+      arrayCardNewsCategorie = value.results;
+    });
+    // arrayCardNewsCategorie = response.results;
     // console.log('Search news: ', arraySearchArticleNews);
   } catch (error) {
     console.error(error);
@@ -206,4 +226,24 @@ async function searchCategorie(categorie) {
 function hidePageNotFound() {
   refs.noNewsPage.style.display = 'none';
   refs.noNewsPageTitle = '';
+}
+
+// 
+export async function searchCalendar(date) {
+  try {
+    const { response } = await requestsNews.getRequests(
+      requestsNews.requestCalendarUrl(date));
+    arrayCardNewsCalendar = response.docs;
+    console.log(arrayCardNewsCalendar);
+    arrayCardNews = await concatNewsAndWeather(
+      arrayCardNewsCalendar,
+      arrayCardNewsFavorite,
+      arrayCardNewsRead,
+      weather
+    );
+    console.log(arrayCardNews);
+    pagination(arrayCardNews);
+  } catch (error) {
+    console.error(error);
+  }
 }
