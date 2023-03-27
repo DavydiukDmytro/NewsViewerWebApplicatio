@@ -24,8 +24,25 @@
           </ul>
         </div>
         <div class="section-categories__calendar">
-          <span class="">Search date news</span>
-          <input class="" type="date" id="calendar" name="calendar" />
+          <!-- <span class="">Search date news</span> -->
+          <div class="calendar__wrapper" id="calendar">
+            <svg class="calendar__icon" width="20" height="20">
+              <use href="./img/icons.svg#icon-calendar"></use>
+            </svg>
+            <input
+              type="text"
+              class="calendar__input"
+              value="2022-02-20"
+              name="calendar"
+              id="date-input"
+            />
+            <svg class="calendar__icon-arrow-down" width="20" height="20">
+              <use href="./img/icons.svg#icon-arrow-down"></use>
+            </svg>
+            <svg class="calendar__icon-arrow-up" width="20" height="20">
+              <use href="./img/icons.svg#icon-arrow-up"></use>
+            </svg>
+          </div>
         </div>
       </div>
     </section>
