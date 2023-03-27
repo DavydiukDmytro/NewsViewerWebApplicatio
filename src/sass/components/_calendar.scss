@@ -3,15 +3,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 13px;
   height: 31px;
-  width: 168px;
+  width: 151px;
+  font-size: 12px;
   border: 1px solid rgba(17, 19, 33, 1);
   border-color: $primary-text;
   border-radius: 25px;
   padding: 5px 12px;
   color: $accent;
   fill: rgba(68, 64, 246, 1);
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    height: 31px;
+    width: 168px;
+    gap: 16px;
+  }
 }
 .calendar__wrapper:hover,
 .calendar__wrapper:focus,
@@ -44,7 +52,7 @@
 }
 
 .calendar__input {
-  width: 82px;
+  width: 72px;
   font-size: 14px;
   font-family: 'Manrope';
   font-weight: 400;
@@ -54,6 +62,10 @@
   border: none;
   outline-color: transparent;
   outline-style: solid;
+
+  @media screen and (min-width: 768px) {
+    width: 82px;
+  }
 }
 
 .calendar__icon-arrow-down {
