@@ -187,15 +187,17 @@ function newsMarkUp({
             </svg>
       </button>
     </div>
+    <div class="news-card__wrapper">
     <h2 class="news-card__title">
       ${title}
     </h2>
     <p class="news-card__text">
       ${cuttedLeadParagraph}
-    </p>
-    <div class="news-card__box">
-      <span class="news-card__date">${date}</span>
-      <a data-ida="${id}" class="news-card__read" href="${url}">Read more</a>
+    </p>    
+      <div class="news-card__box">
+        <span class="news-card__date">${date}</span>
+        <a data-ida="${id}" class="news-card__read" href="${url}">Read more</a>
+      </div>
     </div>
   </li>`;
 }
