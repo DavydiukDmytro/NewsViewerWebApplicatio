@@ -139,13 +139,12 @@
 .header {
 border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 padding: 16px 0;
-
 }
 
 .header__nav {
 display: flex;
+position: relative;
 align-items: center;
-justify-content: center;
 padding-left: 16px;
 padding-right: 16px;
 }
@@ -176,6 +175,31 @@ margin-right: 102px;
 }
 
 .menu__container {
+@media screen and (max-width: $tablet) {
+padding-left: 16px;
+padding-bottom: 18px;
+position: absolute;
+top: 98px;
+width: 100%;
+display: block;
+z-index: 1;
+background-color: $white;
+opacity: 0;
+pointer-events: none;
+visibility: hidden;
+transform: scaleY(0);
+transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+&.is-open {
+pointer-events: auto;
+opacity: 1;
+visibility: visible;
+transform: scaleY(1);
+}
+}
+
 @media screen and (min-width: $tablet) {
 display: flex;
 align-items: center;
@@ -184,9 +208,13 @@ align-items: center;
 
 .site-nav {
 display: flex;
-gap: 44px;
-
+@media screen and (max-width: $tablet) {
+gap: 30px;
+flex-direction: column;
+margin-bottom: 248px;
+}
 @media screen and (min-width: $tablet) {
+gap: 44px;
 margin-right: 32px;
 }
 
@@ -214,7 +242,7 @@ padding-bottom: 5px;
 }
 
 .header__link--active::after {
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $tablet) {
 content: "";
 display: block;
 position: absolute;
@@ -228,16 +256,6 @@ background-color: $accent;
 
 .search-form {
 position: relative;
-display: flex;
-align-items: center;
-
-@media screen and (min-width: $tablet) {
-margin-right: 24px;
-}
-
-@media screen and (min-width: $desktop) {
-margin-right: 147px;
-}
 }
 
 .search-input {

@@ -1,6 +1,10 @@
 .button-menu {
 background-color: transparent;
 border: none;
+position: absolute;
+top: 6px;
+bottom: 6px;
+right: 0;
 @media screen and (min-width:$tablet) {
 display: none;
 }
