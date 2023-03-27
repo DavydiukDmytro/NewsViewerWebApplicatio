@@ -47,6 +47,7 @@ let arrayCardNews = [];
 let arrayCardNewsFavorite = [];
 let arrayCardNewsRead = [];
 let arrayCardNewsCategorie = [];
+let arrayCardNewsCalendar = [];
 
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
@@ -226,4 +227,23 @@ function hidePageNotFound() {
   refs.noNewsPage.style.display = 'none';
   refs.noNewsPageTitle = '';
 }
-//eeveev
+
+// 
+export async function searchCalendar(date) {
+  try {
+    const { response } = await requestsNews.getRequests(
+      requestsNews.requestCalendarUrl(date));
+    arrayCardNewsCalendar = response.docs;
+    console.log(arrayCardNewsCalendar);
+    arrayCardNews = await concatNewsAndWeather(
+      arrayCardNewsCalendar,
+      arrayCardNewsFavorite,
+      arrayCardNewsRead,
+      weather
+    );
+    console.log(arrayCardNews);
+    pagination(arrayCardNews);
+  } catch (error) {
+    console.error(error);
+  }
+}

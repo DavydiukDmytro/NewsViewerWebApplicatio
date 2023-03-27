@@ -10,18 +10,20 @@
 //   },
 // });
 import flatpickr from 'flatpickr';
+import { searchCalendar } from '../index';
 
 const dateInput = document.getElementById('date-input');
 
 flatpickr(dateInput, {
+  defaultDate: 'today',
   onChange: function(selectedDates, dateStr, instance) {
     const selectedDate = selectedDates[0];
-    const formattedDate = selectedDate.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
-    }).split('/').reverse().join(''); // видаляємо слеші з дати
-    console.log(formattedDate);
+    const year = selectedDate.getFullYear().toString();
+    const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = selectedDate.getDate().toString().padStart(2, '0');
+    const formattedDate = `${year}${month}${day}`;
+    searchCalendar(formattedDate);
+
   },
 });
 
