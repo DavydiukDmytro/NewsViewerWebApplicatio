@@ -136,7 +136,7 @@ function newsMarkUp({
   return `<li class="news-card">
     <div class="news-card__image">
      <div class="news-card__darkend"></div>
-      <img src="#" alt="News" />
+      <img src="${img}" alt="News" />
       <span class="news-card__category">Job searching</span>
       <span class="news-card__status" data-read="${read}">Have read
       <svg class="news-card__icon-tick" width="18px" height="18px">
