@@ -62,12 +62,23 @@ function onClickInSectionNews(e) {
   }
 
   if (e.target.id === 'data-ida') {
-    console.log('btn');
+    arrayCardNews.forEach(function (newsRead) {
+      if (arrayCardNews.includes(newsRead.id)) {
+        const lastOpenTime = new Date();
+        const year = lastOpenTime.getFullYear().toString();
+        const month = (lastOpenTime.getMonth() + 1).toString().padStart(2, '0');
+        const day = lastOpenTime.getDate().toString().padStart(2, '0');
+        const nowformattedDate = `${year}-${month}-${day}`;
+        arrayCardNewsRead.date = nowformattedDate;
+        localStorage.setItem('lastClick', nowDate.nowformattedDate());
+      }
+    });
   }
   if (e.target.id == !'data-ida') {
     // перебір масиву
     arrayCardNews.forEach(function (newsRead) {
       if (arrayCardNews.includes(newsRead.id)) {
+        // cardNewsRead.setAttribute('new-read-id');
         arrayCardNewsRead.push(newsRead);
       }
     });
