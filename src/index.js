@@ -15,13 +15,13 @@ import { clearNewsSection } from './js/clear-news-section';
 //import функції відображання помилки та її зникнення
 import { showPageNotFound, hidePageNotFound } from './js/not-found';
 //import функції яка повертає значення вибраної категорії
-// import { selectedCategory } from './js/selected-category';
+import { selectedCategory } from './js/selected-category';
 //Лодаш троттле
 import throttle from 'lodash.throttle';
 // Додав функцію яка записую і повертає данні з localStorage
 import { save, load } from './js/storage';
 
-// import { flatpick } from './js/calendar';
+import { flatpick } from './js/calendar';
 import { flatpickr } from './js/calendar';
 // функція додавання класу is-active в залежності від переданого значення від 1-3
 import { setActiveLink } from './js/is-active';
