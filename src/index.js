@@ -56,11 +56,42 @@ init();
 
 refs.sectionNews.addEventListener('click', onClickInSectionNews);
 function onClickInSectionNews(e) {
-  if (e.target.nodeName === 'BUTTON') {
+  var cardNewsRead = document.querySelector('.news-card__read');
+  for (var i = 0; i < cardNewsRead.length; i++) {
+    cardNewsRead[i].setAttribute('target', '_blank');
+  }
+
+  if (e.target.id === 'data-ida') {
     console.log('btn');
   }
-  if (e.target.nodeName === 'A') {
-    console.log('A');
+  if (e.target.id == !'data-ida') {
+    // arrayCardNews.sort(function ('data-ida') {
+    //   return a - b;
+    // });
+    // console.log(numbers);
+    // console.log(arrayCardNews.includes('id = data-ida'));
+    arrayCardNews.forEach(function (newsRead) {
+      if (arrayCardNews.includes(newsRead.id)) {
+        arrayCardNewsRead.push(newsRead);
+      }
+    });
+    console.log(arrayCardNewsRead);
+
+    function newData() {
+      var readDate = new Date();
+      var dateString = readDate.toDateString();
+      console.log(dateString);
+    }
+    return newData;
+
+    // function recordLinkClick() {
+    //   var readDate = new Date();
+    //   var dateString = readDate.toDateString(); // Format the date as a string
+
+    //   console.log('Link clicked on ' + dateString);
+    //   // Send the timestamp to a server using AJAX or save it to a cookie or localStorage
+    // }
+    // return recordLinkClick;
   }
 }
 
@@ -130,7 +161,7 @@ async function onClickSearchBtn(e) {
     const message = 'We did not find news for this word';
     showPageNotFound(message);
   }
-  
+
   pagination(arrayCardNews);
 }
 //Перемикач теми - темна/світла
@@ -228,11 +259,12 @@ function hidePageNotFound() {
   refs.noNewsPageTitle = '';
 }
 
-// 
+//
 export async function searchCalendar(date) {
   try {
     const { response } = await requestsNews.getRequests(
-      requestsNews.requestCalendarUrl(date));
+      requestsNews.requestCalendarUrl(date)
+    );
     arrayCardNewsCalendar = response.docs;
     console.log(arrayCardNewsCalendar);
     arrayCardNews = await concatNewsAndWeather(
