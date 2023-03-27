@@ -61,7 +61,7 @@ function onClickInSectionNews(e) {
     cardNewsRead[i].setAttribute('target', '_blank');
   }
 
-  if (e.target.id === 'data-ida') {
+  if (e.target.id === 'new-read-id') {
     arrayCardNews.forEach(function (newsRead) {
       if (arrayCardNews.includes(newsRead.id)) {
         const lastOpenTime = new Date();
@@ -78,8 +78,8 @@ function onClickInSectionNews(e) {
     // перебір масиву
     arrayCardNews.forEach(function (newsRead) {
       if (arrayCardNews.includes(newsRead.id)) {
-        // cardNewsRead.setAttribute('new-read-id');
-        arrayCardNewsRead.push(newsRead);
+        cardNewsRead.setAttribute('id', 'new-read-id');
+        arrayCardNewsRead.push(...newsRead);
       }
     });
     console.log('Read News: ', arrayCardNewsRead);
