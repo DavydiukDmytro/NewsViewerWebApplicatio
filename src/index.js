@@ -92,7 +92,7 @@ async function searchPopular() {
       requestsNews.createTrendingNewsQueryUrl()
     );
     await newsPopular.then(value => (arrayPopuralNews = value.results));
-    // console.log('Popular News: ', arrayPopuralNews);
+    console.log('Popular News: ', arrayPopuralNews);
   } catch (error) {
     console.log(error.message);
   }
