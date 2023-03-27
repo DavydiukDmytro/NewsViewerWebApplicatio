@@ -62,8 +62,10 @@ function onClickInSectionNews(e) {
   }
 
   if (e.target.id === 'new-read-id') {
+    // перебір масиву якщо true
     arrayCardNews.forEach(function (newsRead) {
       if (arrayCardNews.includes(newsRead.id)) {
+        // оновлення дати
         const lastOpenTime = new Date();
         const year = lastOpenTime.getFullYear().toString();
         const month = (lastOpenTime.getMonth() + 1).toString().padStart(2, '0');
@@ -75,7 +77,7 @@ function onClickInSectionNews(e) {
     });
   }
   if (e.target.id == !'data-ida') {
-    // перебір масиву
+    // перебір масиву якщо false
     arrayCardNews.forEach(function (newsRead) {
       if (arrayCardNews.includes(newsRead.id)) {
         cardNewsRead.setAttribute('id', 'new-read-id');
