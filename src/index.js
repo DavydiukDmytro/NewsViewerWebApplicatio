@@ -55,12 +55,14 @@ const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 init();
 
 refs.sectionNews.addEventListener('click', onClickInSectionNews);
-function onClickInSectionNews(e) {
-  var cardNewsRead = document.querySelector('.news-card__read');
-  for (var i = 0; i < cardNewsRead.length; i++) {
-    cardNewsRead[i].setAttribute('target', '_blank');
-  }
 
+var cardNewsRead = document.querySelector('.news-card__read');
+
+cardNewsRead.forEach(cardNewsRead => {
+  cardNewsRead.setAttribute('target', '_blank');
+});
+
+function onClickInSectionNews(e) {
   if (e.target.id === 'data-ida') {
     console.log('btn');
   }
@@ -75,7 +77,7 @@ function onClickInSectionNews(e) {
         arrayCardNewsRead.push(newsRead);
       }
     });
-    console.log(arrayCardNewsRead);
+    console.log('Read News: ', arrayCardNewsRead);
 
     function newData() {
       var readDate = new Date();
