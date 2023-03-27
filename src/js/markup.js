@@ -140,16 +140,16 @@ function newsMarkUp({
       <span class="news-card__category">Job searching</span>
       <span class="news-card__status" data-read="${read}">Have read
       <svg class="news-card__icon-tick" width="18px" height="18px">
-       <use xlink:href="./img/icons.svg#icon-tick"></use>
+       <use xlink:href="#icon-tick"></use>
        </svg>
       </span>
       <button data-id="${id}" data-favorite="${favorite}" class="news-card__favorite">
         Add to favorite
         <svg class="news-card__icon" width="16px" height="16px">
-      <use xlink:href="./img/icons.svg#icon-heart-empty"></use>
+      <use xlink:href="#icon-heart-empty"></use>
          </svg>
          <svg class="news-card__icon full" width="16px" height="16px">
-              <use xlink:href="./img/icons.svg#icon-heart-full"></use>
+              <use xlink:href="#icon-heart-full"></use>
             </svg>
       </button>
     </div>
