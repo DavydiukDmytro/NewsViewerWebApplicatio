@@ -1,7 +1,8 @@
 
 //Встановлює темну тему
-.dark {
-    background-color: #686868;
+body.dark{
+    color: $primary-bg;
+    background-color: $dark-bg;
 }
 
 .dark .state-light {
