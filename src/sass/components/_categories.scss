@@ -1,3 +1,4 @@
+
 .section-categories {
     height: 87px;
     display: flex;
@@ -8,10 +9,6 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
-}
-
-.section-categories__classes {
-    
 }
 
 .section-categories__list {
@@ -40,11 +37,13 @@
 }
 .news-section__select{
     padding: 0 24px 0 24px;
+    max-width: 148px;
     height: 100%;
     color: $accent;
     border: 1px solid $accent;
     border-radius: calc(31px/2);
 }
+
 .news-section__select:focus {
     background-color: $accent;
     color: $white;
@@ -54,3 +53,15 @@
     background-color: $white;
     color: $accent;
 }
+
+@media screen and (min-width: 768px) {
+    .news-section__select { 
+        max-width: 112px;   
+        }
+}
+
+
+
+
+
+
