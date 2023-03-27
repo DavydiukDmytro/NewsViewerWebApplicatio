@@ -1,53 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>News</title>
-    <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
-  </head>
-  <body>
-    <include src="./partials/header.html"></include>
-    <!--SECTION categories-->
-    <section>
-      <div class="container2 section-categories">
-        <div class="section-categories__classes">
-          <ul class="section-categories__list">
-            <li class="news-section__item">
-              <select id="mySelect" class="news-section__select">
-                <option value="others" class="news-section__selects">
-                  Others
-                </option>
-              </select>
-            </li>
-          </ul>
-        </div>
-        <div class="section-categories__calendar">
-          <!-- <span class="">Search date news</span> -->
-          <div class="calendar__wrapper" id="calendar">
-            <svg class="calendar__icon" width="20" height="20">
-              <use href="./img/icons.svg#icon-calendar"></use>
-            </svg>
-            <input
-              type="text"
-              class="calendar__input"
-              value="2022-02-20"
-              name="calendar"
-              id="date-input"
-            />
-            <svg class="calendar__icon-arrow-down" width="20" height="20">
-              <use href="./img/icons.svg#icon-arrow-down"></use>
-            </svg>
-            <svg class="calendar__icon-arrow-up" width="20" height="20">
-              <use href="./img/icons.svg#icon-arrow-up"></use>
-            </svg>
-          </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News</title>
+  <link rel="stylesheet" href="./sass/index.scss" />
+  <script type="module" src="./index.js"></script>
+</head>
+
+<body>
+  <include src="./partials/header.html"></include>
+  <!--SECTION categories-->
+  <section>
+    <div class="container2 section-categories">
+      <div class="section-categories__classes">
+        <ul class="section-categories__list">
+          <li class="news-section__item">
+            <select id="mySelect" class="news-section__select">
+              <option value="others" class="news-section__selects">
+                Others
+              </option>
+            </select>
+          </li>
+        </ul>
+      </div>
+      <div class="section-categories__calendar">
+        <!-- <span class="">Search date news</span> -->
+        <div class="calendar__wrapper" id="calendar">
+          <svg class="calendar__icon" width="20" height="20">
+            <use href="./img/icons.svg#icon-calendar"></use>
+          </svg>
+          <input type="text" class="calendar__input" value="2022-02-20" name="calendar" id="date-input" />
+          <svg class="calendar__icon-arrow-down" width="20" height="20">
+            <use href="./img/icons.svg#icon-arrow-down"></use>
+          </svg>
+          <svg class="calendar__icon-arrow-up" width="20" height="20">
+            <use href="./img/icons.svg#icon-arrow-up"></use>
+          </svg>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- <li class="weather__card">
+  <!-- <li class="weather__card">
       <div class="weather__wrapper">
         <p class="weather__temperature">23°</p>
         <div class="weather__box">
@@ -69,34 +65,26 @@
       <p class="weather__date">20 Jan 2021</p>
     </li> -->
 
-    <!--SECTION NEWS-->
+  <!--SECTION NEWS-->
 
-    <section>
-      <div class="container2">
-        <ul class="section-news"></ul>
-      </div>
-    </section>
-    <section class="news-page">
-      <div class="container2">
-        <h2 class="news-page__title"></h2>
-        <picture>
-          <source
-            srcset="./img/desk.png 1x, ./img/desk@2x.png 2x"
-            media="(min-width:1280px)"
-          />
-          <source
-            srcset="./img/tab.png 1x, ./img/tab@2x.png 2x"
-            media="(min-width:768px)"
-          />
-          <source
-            srcset="./img/mob.png 1x, ./img/mob@2x.png 2x"
-            media="(max-width:767px)"
-          />
-          <img class="news-page__image" src="./img/desk.png" alt="Newspaper" />
-        </picture>
-      </div>
-    </section>
-    <include src="./partials/pagination.html"></include>
-    <footer class="footer"></footer>
-  </body>
+  <section>
+    <div class="container2">
+      <ul class="section-news"></ul>
+    </div>
+  </section>
+  <section class="news-page">
+    <div class="container2">
+      <h2 class="news-page__title"></h2>
+      <picture>
+        <source srcset="./img/desk.png 1x, ./img/desk@2x.png 2x" media="(min-width:1280px)" />
+        <source srcset="./img/tab.png 1x, ./img/tab@2x.png 2x" media="(min-width:768px)" />
+        <source srcset="./img/mob.png 1x, ./img/mob@2x.png 2x" media="(max-width:767px)" />
+        <img class="news-page__image" src="./img/desk.png" alt="Newspaper" />
+      </picture>
+    </div>
+  </section>
+  <include src="./partials/pagination.html"></include>
+  <include src="./partials/footer.html"></include>
+</body>
+
 </html>
