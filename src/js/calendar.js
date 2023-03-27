@@ -16,7 +16,12 @@ const dateInput = document.getElementById('date-input');
 flatpickr(dateInput, {
   onChange: function(selectedDates, dateStr, instance) {
     const selectedDate = selectedDates[0];
-    console.log(selectedDate);
+    const formattedDate = selectedDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).split('/').reverse().join(''); // видаляємо слеші з дати
+    console.log(formattedDate);
   },
 });
 
