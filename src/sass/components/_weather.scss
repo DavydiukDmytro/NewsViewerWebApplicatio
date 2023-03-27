@@ -5,9 +5,13 @@
   padding: 32px 0 84px;
   color: $white;
   border-radius: 4px;
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 28px;
+  }
+
   @media screen and (min-width: $tablet) {
     padding: 40px 32px 130px;
-
     width: calc((100% - 30px * 1) / 2);
   }
   @media screen and (min-width: $desktop) {

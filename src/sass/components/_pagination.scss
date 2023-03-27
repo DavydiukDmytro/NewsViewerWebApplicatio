@@ -4,7 +4,6 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 2rem;
-  background-color: #fff;
 
   border-radius: 5px;
   padding: 10px 15px;
@@ -24,6 +23,7 @@
   border-radius: 2px;
   width: 82px;
   height: 31px;
+  background-color: #f4f4f4;
 }
 .page-container button:disabled {
   color: #aaadc7;
@@ -50,6 +50,7 @@
   border-radius: 2px;
   overflow: hidden;
   margin: 0 4px;
+  background-color: #f4f4f4;
 }
 #pagination li.active {
   background-color: $accent;
@@ -74,3 +75,7 @@
 #pagination li:hover a {
   color: #fff;
 }
+
+// .pg-item {
+//   background-color: #f4f4f4;
+// }
