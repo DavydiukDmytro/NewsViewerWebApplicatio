@@ -55,14 +55,12 @@ const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 init();
 
 refs.sectionNews.addEventListener('click', onClickInSectionNews);
-
-var cardNewsRead = document.querySelector('.news-card__read');
-
-cardNewsRead.forEach(cardNewsRead => {
-  cardNewsRead.setAttribute('target', '_blank');
-});
-
 function onClickInSectionNews(e) {
+  const cardNewsRead = document.querySelectorAll('.news-card__read');
+  for (let i = 0; i < cardNewsRead.length; i++) {
+    cardNewsRead[i].setAttribute('target', '_blank');
+  }
+
   if (e.target.id === 'data-ida') {
     console.log('btn');
   }
