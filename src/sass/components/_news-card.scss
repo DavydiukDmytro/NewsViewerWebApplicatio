@@ -8,11 +8,11 @@
   @media screen and (min-width: $tablet) {
     display: flex;
     flex-wrap: wrap;
-
     gap: 30px;
     padding-top: 48px;
     padding-bottom: 48px;
   }
+
   @media screen and (min-width: $desktop) {
     gap: 40px 32px;
     padding-top: 60px;
@@ -23,7 +23,7 @@
 .news-card {
   position: relative;
   width: 288px;
-  height: 630px;
+  height: 650px;
   list-style: none;
 
   border-radius: 4px;
@@ -49,8 +49,11 @@
   }
 }
 
-.news-card__darkend {
+.news-card__darkend[data-read='false'] {
   display: none;
+}
+
+.news-card__darkend[data-read='true'] {
   position: absolute;
   background-color: #f4f4f4;
   opacity: 0.4;
@@ -99,9 +102,13 @@
   background-color: rgb(68, 64, 246, 0.7);
 }
 
-.news-card__status {
+.news-card__status[data-read='false'] {
   display: none;
+}
+
+news-card__status[data-read='true'] {
   position: absolute;
+  display: flex;
   top: 14px;
   right: 14px;
   vertical-align: middle;
@@ -153,7 +160,7 @@
   }
 }
 
-.news-card__icon {
+.news-card__icon[data-favorite='false'] {
   fill: #4440f6;
   margin-left: 4px;
   transform: scale(1);
@@ -165,8 +172,16 @@
   }
 }
 
-.news-card__icon-full {
+.news-card__icon[data-favorite='true'] {
   display: none;
+}
+
+.news-card__icon-full[data-favorite='false'] {
+  display: none;
+}
+
+.news-card__icon-full[data-favorite='true'] {
+  display: block;
   fill: #4440f6;
   margin-left: 4px;
   transform: scale(1);
@@ -185,14 +200,13 @@
   font-size: 24px;
   line-height: 1.38;
   letter-spacing: -0.01em;
+  max-height: 99px;
+  overflow: hidden;
 
   @media screen and (min-width: $tablet) {
     font-size: 32px;
+    max-height: 135px;
   }
-}
-
-.news-card__title.dark {
-  color: $primary-bg;
 }
 
 .news-card__text {
@@ -201,17 +215,15 @@
   font-size: 14px;
   line-height: 1.38;
 
-
   height: 57px;
 
+  @media screen and (max-width: $tablet) {
+    margin-bottom: 20px;
+  }
   @media screen and (min-width: $tablet) {
     font-size: 16px;
     height: 66px;
   }
-}
-
-.news-card__text.dark {
-  color: $primary-bg;
 }
 
 .news-card__box {

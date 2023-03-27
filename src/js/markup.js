@@ -179,10 +179,10 @@ function newsMarkUp({
       </span>
       <button data-id="${id}" data-favorite="${favorite}" class="news-card__favorite">
         Add to favorite
-        <svg class="news-card__icon" width="16px" height="16px">
+        <svg class="news-card__icon" data-favorite="${favorite}" width="16px" height="16px">
       <use xlink:href="#icon-heart-empty"></use>
          </svg>
-         <svg class="news-card__icon-full" width="16px" height="16px">
+         <svg class="news-card__icon-full" data-favorite="${favorite}" width="16px" height="16px">
               <use xlink:href="#icon-heart-full"></use>
             </svg>
       </button>
