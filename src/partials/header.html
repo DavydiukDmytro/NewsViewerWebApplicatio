@@ -1,45 +1,65 @@
 <header class="header">
-  <div class="header__nav container2">
-    <a href="./index.html" class="header__logo"> News</a>
-    <button
-      class="button-menu is-open"
-      type="button"
-      aria-controls="menu-container"
-      data-menu-button
-    >
-      <svg
-        width="24px"
-        height="24px"
-        aria-label="Перемикач мобільного меню"
-        class="button-menu__icons"
+  <div class="container2">
+    <div class="header__nav">
+      <a href="./index.html" class="header__logo"> News</a>
+      <button
+        class="button-menu is-open"
+        type="button"
+        aria-controls="menu-container"
+        data-menu-button
       >
-        <use
-          class="button-menu__hamburger"
-          href="/src/img/icons.svg#icon-menu"
-        ></use>
-        <use
-          class="button-menu__cros"
-          href="/src/img/icons.svg#icon-close-menu"
-        ></use>
-      </svg>
-    </button>
-    <div class="menu__container" id="menu-container" data-menu>
-      <nav class="main-nav">
-        <ul class="site-nav">
-          <li class="site-nav__item">
-            <a href="./index.html" class="header__link header__link--active"
-              >Home</a
-            >
-          </li>
-          <li class="site-nav__item">
-            <a href="./favorite.html" class="header__link">Favorite</a>
-          </li>
-          <li class="site-nav__item">
-            <a href="./read.html" class="header__link link">Read</a>
-          </li>
-        </ul>
-      </nav>
-
+        <svg
+          width="24px"
+          height="24px"
+          aria-label="Перемикач мобільного меню"
+          class="button-menu__icons"
+        >
+          <use
+            class="button-menu__hamburger"
+            href="/src/img/icons.svg#icon-menu"
+          ></use>
+          <use
+            class="button-menu__cros"
+            href="/src/img/icons.svg#icon-close-menu"
+          ></use>
+        </svg>
+      </button>
+      <div class="menu__container" id="menu-container" data-menu>
+        <nav class="main-nav">
+          <ul class="site-nav">
+            <li class="site-nav__item">
+              <a href="./index.html" class="header__link header__link--active"
+                >Home</a
+              >
+            </li>
+            <li class="site-nav__item">
+              <a href="./favorite.html" class="header__link">Favorite</a>
+            </li>
+            <li class="site-nav__item">
+              <a href="./read.html" class="header__link link">Read</a>
+            </li>
+          </ul>
+        </nav>
+        <!-- Перемикач теми свтла/темна -->
+        <div class="theme-switch">
+          <div class="state-light">Light</div>
+          <div class="sun">
+            <svg class="sun-sign" width="19px" height="19px">
+              <use href="./img/icons.svg#icon-sun"></use>
+            </svg>
+          </div>
+          <label class="form-switch">
+            <input type="checkbox" id="theme-clicker" />
+            <i></i>
+          </label>
+          <div class="state-dark">Dark</div>
+          <div class="moon">
+            <svg class="moon-sign" width="19px" height="19px">
+              <use href="./img/icons.svg#icon-moon"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
       <form action="URL" class="search-form">
         <input
           class="search-input"
@@ -55,25 +75,6 @@
         </button>
       </form>
     </div>
-
-    <!-- Перемикач теми свтла/темна -->
-    <div class="theme-switch">
-      <div class="state-light">Light</div>
-      <div class="sun">
-        <svg class="sun-sign" width="19px" height="19px">
-          <use href="./img/icons.svg#icon-sun"></use>
-        </svg>
-      </div>
-      <label class="form-switch">
-        <input type="checkbox" id="theme-clicker" />
-        <i></i>
-      </label>
-      <div class="state-dark">Dark</div>
-      <div class="moon">
-        <svg class="moon-sign" width="19px" height="19px">
-          <use href="./img/icons.svg#icon-moon"></use>
-        </svg>
-      </div>
-    </div>
   </div>
+  <script src="/src/js/mob-menu.js"></script>
 </header>
