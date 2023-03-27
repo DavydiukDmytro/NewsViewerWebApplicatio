@@ -56,6 +56,7 @@ init();
 
 refs.sectionNews.addEventListener('click', onClickInSectionNews);
 function onClickInSectionNews(e) {
+  // відкриття посилання в новій вкладці
   const cardNewsRead = document.querySelectorAll('.news-card__read');
   for (let i = 0; i < cardNewsRead.length; i++) {
     cardNewsRead[i].setAttribute('target', '_blank');
@@ -65,11 +66,7 @@ function onClickInSectionNews(e) {
     console.log('btn');
   }
   if (e.target.id == !'data-ida') {
-    // arrayCardNews.sort(function ('data-ida') {
-    //   return a - b;
-    // });
-    // console.log(numbers);
-    // console.log(arrayCardNews.includes('id = data-ida'));
+    // перебір масиву
     arrayCardNews.forEach(function (newsRead) {
       if (arrayCardNews.includes(newsRead.id)) {
         arrayCardNewsRead.push(newsRead);
@@ -77,21 +74,13 @@ function onClickInSectionNews(e) {
     });
     console.log('Read News: ', arrayCardNewsRead);
 
-    function newData() {
-      var readDate = new Date();
-      var dateString = readDate.toDateString();
-      console.log(dateString);
-    }
-    return newData;
-
-    // function recordLinkClick() {
-    //   var readDate = new Date();
-    //   var dateString = readDate.toDateString(); // Format the date as a string
-
-    //   console.log('Link clicked on ' + dateString);
-    //   // Send the timestamp to a server using AJAX or save it to a cookie or localStorage
-    // }
-    // return recordLinkClick;
+    // додавання дати
+    const openingDate = new Date();
+    const year = openingDate.getFullYear().toString();
+    const month = (openingDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = openingDate.getDate().toString().padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    arrayCardNewsRead.date = formattedDate;
   }
 }
 
