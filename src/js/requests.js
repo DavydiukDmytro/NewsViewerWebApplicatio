@@ -20,6 +20,7 @@ export class Requests {
   }
   createUrlCategoryName(name) {
     return `${this.url}/search/v2/articlesearch.json?query=${name}&api-key=${this.key}`;
+    // return `${this.url}/news/v3/content/all/${name}.json?api-key=${this.key}`;
   }
   // створення URL для запиту погоди
   requestWeatherUrl(lat, lon) {
