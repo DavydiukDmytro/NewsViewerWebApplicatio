@@ -129,6 +129,7 @@ async function onClickSearchBtn(e) {
     const message = 'We did not find news for this word';
     showPageNotFound(message);
   }
+  
   pagination(arrayCardNews);
 }
 //Перемикач теми - темна/світла
@@ -189,36 +190,36 @@ function selectedCategory() {
 }
 
 //
-async function searchCategorie(categorie) {
-  try {
-    const encodedCategorie = encodeURIComponent(categorie);
-    const { response } = await requestsNews.getRequests(
-      requestsNews.createUrlCategoryName(encodedCategorie)
-    );
-    arrayCardNewsCategorie = response.docs;
-    // console.log('Search news: ', arraySearchArticleNews);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// запит версії 3
 // async function searchCategorie(categorie) {
 //   try {
-//     const encodedCategorie = encodeURIComponent(categorie.toLowerCase());
-//     const newsCategorie = requestsNews.getRequests(
+//     const encodedCategorie = encodeURIComponent(categorie);
+//     const { response } = await requestsNews.getRequests(
 //       requestsNews.createUrlCategoryName(encodedCategorie)
 //     );
-//     await newsCategorie.then(value => {
-//       console.log(value.results);
-//       arrayCardNewsCategorie = value.results;
-//     });
-//     // arrayCardNewsCategorie = response.results;
+//     arrayCardNewsCategorie = response.docs;
 //     // console.log('Search news: ', arraySearchArticleNews);
 //   } catch (error) {
 //     console.error(error);
 //   }
 // }
+
+// запит версії 3
+async function searchCategorie(categorie) {
+  try {
+    const encodedCategorie = encodeURIComponent(categorie.toLowerCase());
+    const newsCategorie = requestsNews.getRequests(
+      requestsNews.createUrlCategoryName(encodedCategorie)
+    );
+    await newsCategorie.then(value => {
+      console.log(value.results);
+      arrayCardNewsCategorie = value.results;
+    });
+    // arrayCardNewsCategorie = response.results;
+    // console.log('Search news: ', arraySearchArticleNews);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 // сховати сторінку поt found
 function hidePageNotFound() {
