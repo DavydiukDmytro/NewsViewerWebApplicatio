@@ -166,8 +166,11 @@
   line-height: 1.38;
   color: $primary-text;
 
+  height: 57px;
+
   @media screen and (max-width: $tablet) {
     font-size: 16px;
+    height: 66px;
   }
 }
 

@@ -60,7 +60,7 @@ function checkArrays(incomeArr, favoriteArr, readedArr) {
 function dataDestructuring(elem) {
   if (elem.asset_id) {
     const {
-      abstract,
+      abstract: lead_paragraph,
       title,
       asset_id: id,
       url,
@@ -71,7 +71,7 @@ function dataDestructuring(elem) {
       read = false,
     } = elem;
     return {
-      abstract,
+      lead_paragraph,
       id,
       published_date,
       title,
@@ -83,7 +83,7 @@ function dataDestructuring(elem) {
     };
   } else if (elem._id) {
     const {
-      abstract,
+      lead_paragraph,
       _id: id,
       web_url: url,
       pub_date: published_date,
@@ -94,7 +94,30 @@ function dataDestructuring(elem) {
       read = false,
     } = elem;
     return {
-      abstract,
+      lead_paragraph,
+      id,
+      published_date,
+      url,
+      title,
+      media,
+      flag,
+      favorite,
+      read,
+    };
+  } else if (elem.slug_name) {
+    const {
+      lead_paragraph,
+      uri: id,
+      url,
+      published_date,
+      title,
+      multimedia: media,
+      flag = 'news',
+      favorite = false,
+      read = false,
+    } = elem;
+    return {
+      lead_paragraph,
       id,
       published_date,
       url,
@@ -109,7 +132,7 @@ function dataDestructuring(elem) {
 
 // ========Розмітка картки новин==========
 function newsMarkUp({
-  abstract,
+  lead_paragraph,
   id,
   published_date,
   url,
@@ -118,20 +141,31 @@ function newsMarkUp({
   favorite,
   read,
 }) {
+  const cuttedLeadParagraph = sliceLeadParagraph(lead_paragraph);
+
   const IMG_URL = 'https://www.nytimes.com/';
   const date = dateFormating(published_date);
+  const PLUG_IMAGE = 'https://i.postimg.cc/vZrscCZ0/tablet-1x.jpg';
   let img = '';
   if (media.length === 0) {
-    // =====РОЗІБРАТИСЬ З КАРТИНКОЮ============
-    img = './img/mobile_1x.jpg';
+    img = PLUG_IMAGE;
   } else if (media.length === 1) {
     const mediaObj = media[0];
     const imageUrl = mediaObj['media-metadata'];
     const [, , third] = imageUrl;
     img = third.url;
   } else {
-    const qqq = media.find(elem => elem.subtype === 'master495');
-    img = `${IMG_URL}${qqq.url}`;
+    const categoryRequestImg = media.find(elem => elem.subtype === 'master495');
+    if (categoryRequestImg) {
+      img = `${IMG_URL}${categoryRequestImg.url}`;
+    } else if (!categoryRequestImg) {
+      const searchRequestImg = media.find(elem => elem.height === 440);
+      if (searchRequestImg) {
+        img = `${searchRequestImg.url}`;
+      } else {
+        img = PLUG_IMAGE;
+      }
+    }
   }
   return `<li class="news-card">
     <div class="news-card__image">
@@ -157,7 +191,7 @@ function newsMarkUp({
       ${title}
     </h2>
     <p class="news-card__text">
-      ${abstract}
+      ${cuttedLeadParagraph}
     </p>
     <div class="news-card__box">
       <span class="news-card__date">${date}</span>
@@ -196,4 +230,12 @@ function dateFormating(published_date) {
 // ========Додавання 0 якщо число з 1 символу=========
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
+}
+// =======Функція створення тексту необхідної довжини ==========
+function sliceLeadParagraph(value) {
+  if (value.length > 130) {
+    return `${value.slice(0, 131)}...`;
+  } else {
+    return value;
+  }
 }
