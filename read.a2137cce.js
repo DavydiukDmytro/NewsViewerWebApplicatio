@@ -1,2 +1,0 @@
-!function(e){var a=document.querySelectorAll(".header__link");switch(a.forEach((function(e){e.classList.remove("header__link--active")})),e){case 1:a[0].classList.add("header__link--active");break;case 2:a[1].classList.add("header__link--active");break;case 3:a[2].classList.add("header__link--active");break;default:console.log('error. value in function "setActiveLink(`HERE`)" is incorrect')}}(3);
-//# sourceMappingURL=read.a2137cce.js.map
