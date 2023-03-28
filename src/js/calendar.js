@@ -12,8 +12,6 @@
 import flatpickr from 'flatpickr';
 import { searchCalendar } from '../index';
 
-// require('flatpickr/dist/themes/dark.css');
-
 const dateInput = document.getElementById('date-input');
 
 flatpickr(dateInput, {
