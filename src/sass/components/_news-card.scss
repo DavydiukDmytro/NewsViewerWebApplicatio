@@ -127,6 +127,31 @@
     right: 21px;
   }
 }
+[data-read='false'] .news-card__status--have,
+[data-read='true'] .news-card__status--have {
+  display: none;
+}
+
+[data-read='read'] .news-card__status--have {
+  position: absolute;
+  display: flex;
+  top: 14px;
+  right: 14px;
+  vertical-align: middle;
+  font-family: 'Manrope';
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.38;
+
+  color: #00dd73;
+  fill: currentColor;
+
+  @media screen and (min-width: $tablet) {
+    top: 20px;
+    right: 21px;
+  }
+}
 
 .news-card__icon-tick {
   margin-left: 4px;

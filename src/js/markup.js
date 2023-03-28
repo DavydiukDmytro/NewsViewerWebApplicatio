@@ -198,6 +198,7 @@ export function newsMarkUp({
        <use xlink:href="#icon-tick"></use>
        </svg>
       </span>
+      <span class="news-card__status--have" data-read="${read}">Have read</span>
       <button data-id="${id}" data-favorite="${favorite}" class="news-card__favorite">
         <span>${textButton}</span>
         <svg class="news-card__icon" data-favorite="${favorite}" width="16px" height="16px">
