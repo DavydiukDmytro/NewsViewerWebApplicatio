@@ -103,7 +103,8 @@
   background-color: rgb(68, 64, 246, 0.7);
 }
 
-[data-read='false'] .news-card__status{
+[data-read='false'] .news-card__status, 
+[data-read='read'] .news-card__status{
   display: none;
 }
 

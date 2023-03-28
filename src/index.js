@@ -98,6 +98,16 @@ function onClickInSectionNews(e) {
     } else {
       const cardNewRead = arrayCardNews.find(card => String(card.id) === linkId);
       cardNewRead.read = true;
+
+      let array2 = arrayCardNewsFavorite;
+      arrayCardNewsFavorite = array2.map(element => {
+        if (String(element.id) === linkId) {
+          element.read = "true";
+        }
+        return element
+      });
+      save('favorite', arrayCardNewsFavorite);
+
       cardNewRead.readed_date = formattedDate;
       e.target.dataset.read = 'true';
       arrayCardNewsRead.push(cardNewRead);
