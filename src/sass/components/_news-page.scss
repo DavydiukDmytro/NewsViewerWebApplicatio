@@ -1,17 +1,20 @@
 .news-page {
   display: none;
   margin: 0 auto;
-  padding: 40px 0 59px;
+  padding-bottom: 59px;
   text-align: center;
+  margin-top: -40px;
 
   @media screen and (min-width: $tablet) {
     max-width: 560px;
-    padding: 88px 0 101px;
+    padding-bottom: 101px;
+    margin-top: -8px;
   }
 
   @media screen and (min-width: $desktop) {
-    padding: 121px 0 226px;
+    padding: 1px 0 226px;
     min-width: 601px;
+    margin-top: 0;
   }
 }
 

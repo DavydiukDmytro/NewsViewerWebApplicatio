@@ -1,6 +1,7 @@
 .section {
   margin: 0 auto;
 }
+
 .section-news {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -45,8 +46,7 @@
   }
   &:hover,
   &:focus {
-    box-shadow: 2px 2px 3px rgba(236, 229, 229, 0.12),
-      2px 5px 4px rgba(0, 0, 0, 0.06), 1px 5px 6px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 15px rgb(0 0 0 / 0.2);
   }
 }
 
