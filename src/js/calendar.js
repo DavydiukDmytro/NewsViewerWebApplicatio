@@ -12,11 +12,14 @@
 import flatpickr from 'flatpickr';
 import { searchCalendar } from '../index';
 
+// require('flatpickr/dist/themes/dark.css');
+
 const dateInput = document.getElementById('date-input');
 
 flatpickr(dateInput, {
   defaultDate: 'today',
   dateFormat: 'd/m/y',
+  disableMobile: 'true',
   onChange: function (selectedDates, dateStr, instance) {
     const selectedDate = selectedDates[0];
     const year = selectedDate.getFullYear().toString();
