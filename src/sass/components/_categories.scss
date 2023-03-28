@@ -44,6 +44,13 @@
     border-radius: calc(31px/2);
 }
 
+@media screen and (min-width: 768px) {
+    .news-section__select { 
+        max-width: 112px;   
+        }
+}
+
+
 .news-section__select:focus {
     background-color: $accent;
     color: $white;
@@ -54,11 +61,6 @@
     color: $accent;
 }
 
-@media screen and (min-width: 768px) {
-    .news-section__select { 
-        max-width: 112px;   
-        }
-}
 
 
 
