@@ -41,7 +41,15 @@ function checkArrays(incomeArr, favoriteArr, readedArr) {
   let checkedArray = [];
   for (let i = 0; i < incomeArr.length; i++) {
     let newObj = { ...incomeArr[i] };
-    let favObj = favoriteArr.find(obj => obj.id === incomeArr[i].id);
+    let id;
+    if (newObj.id) {
+      id = newObj.id;
+    } else if (newObj._id) {
+      id = newObj._id;
+    } else if (newObj.uri) {
+      id = newObj.uri;
+    }
+    let favObj = favoriteArr.find(obj => obj.id === id);
 
     if (favObj) {
       newObj.favorite = true;
