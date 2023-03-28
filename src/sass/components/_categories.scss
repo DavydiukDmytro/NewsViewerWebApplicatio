@@ -1,67 +1,63 @@
-
 .section-categories {
-    height: 87px;
-    display: flex;
-    justify-content: space-between;
-    padding: 28px 0 28px 0;
-    font-family: 'Manrope';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;
+  // height: 87px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 24px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  @media screen and (min-width: $desktop) {
+    padding-top: 28px;
+  }
 }
 
 .section-categories__list {
-    display: flex;
-    height: 100%;  
+  display: flex;
+  height: 100%;
 }
 
 .news-section__item {
-    height: 100%;
-    margin-right: 15px;
+  height: 100%;
+  margin-right: 15px;
 }
 
-.news-section__item button{
-    padding: 0 24px 0 24px;
-    height: 100%;
-    box-sizing: border-box;
-    background-color: $white;
-    color: $accent;
-    border: 1px solid $accent;
-    border-radius: calc(31px/2);
-    white-space: nowrap;
+.news-section__item button {
+  padding: 0 24px 0 24px;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: $white;
+  color: $accent;
+  border: 1px solid $accent;
+  border-radius: calc(31px / 2);
+  white-space: nowrap;
 }
 .news-section__item button:active {
-    background-color: $accent;
-    color: $white;
+  background-color: $accent;
+  color: $white;
 }
-.news-section__select{
-    padding: 0 24px 0 24px;
-    max-width: 148px;
-    height: 100%;
-    color: $accent;
-    border: 1px solid $accent;
-    border-radius: calc(31px/2);
+.news-section__select {
+  padding: 0 24px 0 24px;
+  max-width: 148px;
+  height: 100%;
+  color: $accent;
+  border: 1px solid $accent;
+  border-radius: calc(31px / 2);
 }
 
 .news-section__select:focus {
-    background-color: $accent;
-    color: $white;
+  background-color: $accent;
+  color: $white;
 }
 
 .news-section__selects {
-    background-color: $white;
-    color: $accent;
+  background-color: $white;
+  color: $accent;
 }
 
 @media screen and (min-width: 768px) {
-    .news-section__select { 
-        max-width: 112px;   
-        }
+  .news-section__select {
+    max-width: 112px;
+  }
 }
-
-
-
-
-
-

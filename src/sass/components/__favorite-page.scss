@@ -24,3 +24,11 @@
     gap: 40px 32px;
   }
 }
+
+.favorite-section__list li {
+  @media screen and (max-width: 767px) {
+    &:not(:last-child) {
+      margin-bottom: 28px;
+    }
+  }
+}
