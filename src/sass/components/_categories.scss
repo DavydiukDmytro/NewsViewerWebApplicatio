@@ -36,6 +36,15 @@
   border: 1px solid $accent;
   border-radius: calc(31px / 2);
   white-space: nowrap;
+  cursor: pointer;
+  transition: clolor 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    color: #ffffff;
+    background-color: #4440f6;
+  }
 }
 .news-section__item button:active {
   background-color: $accent;
@@ -50,6 +59,15 @@
   color: $accent;
   border: 1px solid $accent;
   border-radius: calc(31px / 2);
+  cursor: pointer;
+  transition: clolor 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    color: #ffffff;
+    background-color: #4440f6;
+  }
 
   @media screen and (min-width: $tablet) {
     padding: 0 24px 0 24px;
