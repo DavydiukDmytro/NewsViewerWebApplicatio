@@ -24,7 +24,6 @@ const valuePage = {
 
 let array = [];
 
-
 //функція рендера, тестовий приклад
 function renderNewsList(news) {
   const markup = news.slice(start, end);
@@ -48,6 +47,15 @@ pg.addEventListener('click', async e => {
     console.log(error.message);
   }
 });
+
+//функція скролу догори при пагінації
+function onPaginationScroll() {
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+}
 
 // ФУНКЦІЯ ПАГІНАЦІЇ
 export function pagination(arr) {
@@ -127,6 +135,8 @@ export function pagination(arr) {
   }
   //виклик рендеру
   renderNewsList(array);
+  //виклик скролу догори при пагінації
+  onPaginationScroll();
 }
 
 // функція рендера кнопки пагінації
