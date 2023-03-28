@@ -179,15 +179,17 @@ margin-right: 102px;
 padding-left: 16px;
 padding-bottom: 18px;
 position: absolute;
-top: 98px;
+top: 49px;
+left: 0;
 width: 100%;
 display: block;
 z-index: 1;
-background-color: $white;
+background-color: $primary-bg;
 opacity: 0;
 pointer-events: none;
 visibility: hidden;
 transform: scaleY(0);
+transform-origin: top;
 transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
 opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
 visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -197,6 +199,7 @@ pointer-events: auto;
 opacity: 1;
 visibility: visible;
 transform: scaleY(1);
+height: 100vh;
 }
 }
 
@@ -212,6 +215,7 @@ display: flex;
 gap: 30px;
 flex-direction: column;
 margin-bottom: 248px;
+margin-top: 49px;
 }
 @media screen and (min-width: $tablet) {
 gap: 44px;
