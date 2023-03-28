@@ -70,6 +70,14 @@ function onClickInSectionNews(e) {
       button.dataset.favorite = 'false';
       button.children[0].textContent = 'Add to favorite';
       save('favorite', arrayCardNewsFavorite);
+      let array1 = arrayCardNewsRead;
+      arrayCardNewsRead = array1.map(element => {
+        if (String(element.id) === buttonId) {
+          element.favorite = "false";
+        }
+        return element
+      });
+      save('read', arrayCardNewsRead);
     } else {
       const cardNewFavorite = arrayCardNews.find(card => String(card.id) === buttonId);
       cardNewFavorite.favorite = true;
