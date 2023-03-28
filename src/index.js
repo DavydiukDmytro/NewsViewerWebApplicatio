@@ -21,7 +21,6 @@ import throttle from 'lodash.throttle';
 // Додав функцію яка записую і повертає данні з localStorage
 import { save, load } from './js/storage';
 
-// import { flatpick } from './js/calendar';
 import { flatpickr } from './js/calendar';
 // функція додавання класу is-active в залежності від переданого значення від 1-3
 import { setActiveLink } from './js/is-active';
@@ -47,19 +46,64 @@ let arrayCardNews = [];
 let arrayCardNewsFavorite = [];
 let arrayCardNewsRead = [];
 let arrayCardNewsCategorie = [];
+let arrayCardNewsCalendar = [];
 
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
+
+arrayCardNewsFavorite = load('favorite');
+arrayCardNewsRead = load('read');
 
 init();
 
 refs.sectionNews.addEventListener('click', onClickInSectionNews);
 function onClickInSectionNews(e) {
-  if (e.target.nodeName === 'BUTTON') {
-    console.log('btn');
+  const button = e.target.closest('button');
+  const li = e.target.closest('li');
+  if (button) {
+    const buttonId = button.dataset.id;
+    const buttonDataAttribute = button.dataset.favorite;
+    if (buttonDataAttribute === 'true') {
+      const indexCard = arrayCardNewsFavorite.findIndex(card => String(card.id) === buttonId);
+      arrayCardNewsFavorite.splice(indexCard, 1);
+      button.children[1].dataset.favorite = 'false';
+      button.children[2].dataset.favorite = 'false';
+      button.dataset.favorite = 'false';
+      button.children[0].textContent = 'Add to favorite';
+      save('favorite', arrayCardNewsFavorite);
+    } else {
+      const cardNewFavorite = arrayCardNews.find(card => String(card.id) === buttonId);
+      cardNewFavorite.favorite = true;
+      arrayCardNewsFavorite.push(cardNewFavorite);
+      button.children[1].dataset.favorite = 'true';
+      button.children[2].dataset.favorite = 'true';
+      button.dataset.favorite = 'true';
+      button.children[0].textContent = 'Remove from favoriet';
+      save('favorite', arrayCardNewsFavorite);
+    }
   }
   if (e.target.nodeName === 'A') {
-    console.log('A');
+    const linkId = e.target.dataset.ida;
+    const linkDataAttribute = e.target.dataset.read;
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
+    if (linkDataAttribute === 'true') {
+      const indexCard = arrayCardNewsRead.findIndex(card => String(card.id) === linkId);
+      arrayCardNewsRead[indexCard].readed_date = formattedDate;
+      save('read', arrayCardNewsRead);
+    } else {
+      const cardNewRead = arrayCardNews.find(card => String(card.id) === linkId);
+      cardNewRead.read = true;
+      cardNewRead.readed_date = formattedDate;
+      e.target.dataset.read = 'true';
+      arrayCardNewsRead.push(cardNewRead);
+      li.dataset.read = 'true';
+      save('read', arrayCardNewsRead);
+    }
   }
 }
 
@@ -91,7 +135,7 @@ async function searchPopular() {
       requestsNews.createTrendingNewsQueryUrl()
     );
     await newsPopular.then(value => (arrayPopuralNews = value.results));
-    // console.log('Popular News: ', arrayPopuralNews);
+    console.log('Popular News: ', arrayPopuralNews);
   } catch (error) {
     console.log(error.message);
   }
@@ -129,7 +173,7 @@ async function onClickSearchBtn(e) {
     const message = 'We did not find news for this word';
     showPageNotFound(message);
   }
-  
+
   pagination(arrayCardNews);
 }
 //Перемикач теми - темна/світла
@@ -226,6 +270,7 @@ function hidePageNotFound() {
   refs.noNewsPage.style.display = 'none';
   refs.noNewsPageTitle = '';
 }
+
 //eeveev
 
 
@@ -277,3 +322,24 @@ bodyEl.classList.add('.is-modal');
 bodyEl.classList.remove('.is-modal');
 }
 });
+
+//
+export async function searchCalendar(date) {
+  try {
+    const { response } = await requestsNews.getRequests(
+      requestsNews.requestCalendarUrl(date)
+    );
+    arrayCardNewsCalendar = response.docs;
+    console.log(arrayCardNewsCalendar);
+    arrayCardNews = await concatNewsAndWeather(
+      arrayCardNewsCalendar,
+      arrayCardNewsFavorite,
+      arrayCardNewsRead,
+      weather
+    );
+    console.log(arrayCardNews);
+    pagination(arrayCardNews);
+  } catch (error) {
+    console.error(error);
+  }
+}

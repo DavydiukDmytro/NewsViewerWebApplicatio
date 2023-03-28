@@ -26,4 +26,7 @@ export class Requests {
   requestWeatherUrl(lat, lon) {
     return `${this.url}?lat=${lat}&lon=${lon}&lang=en&units=metric&appid=${this.key}`;
   }
+  requestCalendarUrl(date) {
+    return `${this.url}/search/v2/articlesearch.json?query=all&api-key=${this.key}&begin_date=${date}&end_date=${date}`;
+  }
 }

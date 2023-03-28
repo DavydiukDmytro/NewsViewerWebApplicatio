@@ -3,14 +3,21 @@
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 2rem;
-  background-color: #fff;
+  // margin-top: 2rem;
 
   border-radius: 5px;
-  padding: 10px 15px;
+  // padding: 10px 15px;
   gap: 8px;
   font-family: 'Manrope';
-  font-style: 14px;
+  // font-style: 14px;
+  padding-bottom: 60px;
+
+  @media screen and (min-width: $tablet) {
+    padding-bottom: 100px;
+  }
+  @media screen and (min-width: $desktop) {
+    padding-bottom: 150px;
+  }
 }
 
 .page-container button {
@@ -22,9 +29,18 @@
   background-color: transparent;
   border: 1px solid #4440f6;
   border-radius: 2px;
-  width: 82px;
-  height: 31px;
+  width: 72px;
+  height: 28px;
+  background-color: #f4f4f4;
+  font-size: 14px;
+
+  @media screen and (min-width: $tablet) {
+    width: 82px;
+    height: 31px;
+    font-size: 16px;
+  }
 }
+
 .page-container button:disabled {
   color: #aaadc7;
 }
@@ -42,14 +58,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 33px;
-  height: 31px;
+  width: 28px;
+  height: 28px;
   list-style: none;
   cursor: pointer;
   border: 1px solid #4440f6;
   border-radius: 2px;
   overflow: hidden;
   margin: 0 4px;
+  background-color: #f4f4f4;
+  font-size: 14px;
+  line-height: 1.38px;
+
+  @media screen and (min-width: $tablet) {
+    width: 33px;
+    height: 31px;
+    font-size: 16px;
+  }
 }
 #pagination li.active {
   background-color: $accent;
@@ -71,6 +96,7 @@
 #pagination li:hover {
   background-color: #4440f6;
 }
+
 #pagination li:hover a {
   color: #fff;
 }
