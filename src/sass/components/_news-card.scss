@@ -50,11 +50,11 @@
   }
 }
 
-.news-card__darkend[data-read='false'] {
+[data-read='false'] .news-card__darkend{
   display: none;
 }
 
-.news-card__darkend[data-read='true'] {
+[data-read='true'] .news-card__darkend{
   position: absolute;
   background-color: #f4f4f4;
   opacity: 0.4;
@@ -103,11 +103,11 @@
   background-color: rgb(68, 64, 246, 0.7);
 }
 
-.news-card__status[data-read='false'] {
+[data-read='false'] .news-card__status{
   display: none;
 }
 
-.news-card__status[data-read='true'] {
+[data-read='true'] .news-card__status{
   position: absolute;
   display: flex;
   top: 14px;

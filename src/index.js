@@ -52,12 +52,14 @@ let arrayCardNewsCalendar = [];
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 
 arrayCardNewsFavorite = load('favorite');
+arrayCardNewsRead = load('read');
 
 init();
 
 refs.sectionNews.addEventListener('click', onClickInSectionNews);
 function onClickInSectionNews(e) {
   const button = e.target.closest('button');
+  const li = e.target.closest('li');
   if (button) {
     const buttonId = button.dataset.id;
     const buttonDataAttribute = button.dataset.favorite;
@@ -81,7 +83,21 @@ function onClickInSectionNews(e) {
     }
   }
   if (e.target.nodeName === 'A') {
-    console.log('A');
+    const linkId = e.target.dataset.ida;
+    const linkDataAttribute = e.target.dataset.read;
+    if (linkDataAttribute === 'true') {
+      const indexCard = arrayCardNewsRead.findIndex(card => String(card.id) === linkId);
+      arrayCardNewsRead[indexCard].readed_date = new Date().getTime();
+      save('read', arrayCardNewsRead);
+    } else {
+      const cardNewRead = arrayCardNews.find(card => String(card.id) === linkId);
+      cardNewRead.read = true;
+      cardNewRead.readed_date = new Date().getTime();
+      e.target.dataset.read = 'true';
+      arrayCardNewsRead.push(cardNewRead);
+      li.dataset.read = 'true';
+      save('read', arrayCardNewsRead);
+    }
   }
 }
 

@@ -188,12 +188,12 @@ function newsMarkUp({
   } else {
     textButton = 'Add to favorite'
   }
-  return `<li class="news-card">
+  return `<li data-read="${read}" class="news-card">
     <div class="news-card__image">
      <div class="news-card__darkend" data-read="${read}"></div>
       <img src="${img}" alt="News" />
       <span class="news-card__category">${category}</span>
-      <span class="news-card__status" data-read="${read}">Have read
+      <span class="news-card__status" data-read="${read}">Already read
       <svg class="news-card__icon-tick" width="18px" height="18px">
        <use xlink:href="#icon-tick"></use>
        </svg>
@@ -217,7 +217,7 @@ function newsMarkUp({
     </p>    
       <div class="news-card__box">
         <span class="news-card__date">${date}</span>
-        <a data-ida="${id}" class="news-card__read" href="${url}">Read more</a>
+        <a data-ida="${id}" target="_blank" data-read="${read}" class="news-card__read" href="${url}">Read more</a>
       </div>
     </div>
   </li>`;
