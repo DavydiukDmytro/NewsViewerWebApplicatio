@@ -1,27 +1,49 @@
 import { newsMarkUp, dateFormating } from './markup';
 import Accordion from 'accordion-js';
 import 'accordion-js/dist/accordion.min.css';
+// функція додавання класу is-active в залежності від переданого значення від 1-3
+import { setActiveLink } from './is-active';
+// Додав функцію яка записую і повертає данні з localStorage
+import { save, load } from './storage';
 
+setActiveLink(3);
 const accordionEl = document.querySelector('.wrapper'); // <=Change selector
+let arrayNews = [];
 
-accordionEl.innerHTML = createAccordionHeadlines(ARRAY); // <=Change argument
+
+arrayNews = load('read');
+let arrayCardNewsReadStorage = arrayNews.map(element => {
+  element.read = 'read';
+  return element
+});
+
+accordionEl.innerHTML = createAccordionHeadlines(arrayCardNewsReadStorage); // <=Change argument
 
 const containersEl = document.querySelectorAll('.accordion-container');
 const accordionsArr = Array.from(containersEl);
-
+  
 const Accordion = new Accordion(accordionsArr, {
-  duration: 600,
-  showMultiple: true,
-  onOpen: function (currentElement) {
-    console.log('ON OPEN');
-    console.log(currentElement);
-  },
+    duration: 600,
+    showMultiple: true,
 });
+    
+if (arrayCardNewsReadStorage.length < 1) {
+  console.log('erorr');
+}
+
+
+
+// function arrayFlag(array) {
+//     const arr = array.map(element => element.read = 'read');
+//     return arr;
+// }
 
 function createAccordionHeadlines(data) {
   return data
     .map(elem => elem.readed_date)
-    .filter((date, index, array) => array.indexOf(date) === index)
+    .filter((date, index, array) => {
+      return array.indexOf(date) === index;
+    })
     .map(elem => {
       return `<div class="accordion-container">
           <div class="ac">
@@ -42,8 +64,9 @@ function createAccordionHeadlines(data) {
 }
 
 function findNewsAndMarkUp(date) {
-  const filteredNews = parsedArray.filter(obj => obj.readed_date === date);
-  console.log(filteredNews);
+  const filteredNews = arrayCardNewsReadStorage.filter(obj => {
+    return obj.readed_date === date;
+  });
   return filteredNews
     .map(function (elem) {
       return newsMarkUp(elem); // <=== Made export from Markup file

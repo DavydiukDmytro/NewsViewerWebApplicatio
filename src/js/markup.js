@@ -145,7 +145,7 @@ function dataDestructuring(elem) {
 }
 
 // ========Розмітка картки новин==========
-function newsMarkUp({
+export function newsMarkUp({
   category,
   lead_paragraph,
   id,

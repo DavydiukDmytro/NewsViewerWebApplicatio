@@ -85,14 +85,20 @@ function onClickInSectionNews(e) {
   if (e.target.nodeName === 'A') {
     const linkId = e.target.dataset.ida;
     const linkDataAttribute = e.target.dataset.read;
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
     if (linkDataAttribute === 'true') {
       const indexCard = arrayCardNewsRead.findIndex(card => String(card.id) === linkId);
-      arrayCardNewsRead[indexCard].readed_date = new Date().getTime();
+      arrayCardNewsRead[indexCard].readed_date = formattedDate;
       save('read', arrayCardNewsRead);
     } else {
       const cardNewRead = arrayCardNews.find(card => String(card.id) === linkId);
       cardNewRead.read = true;
-      cardNewRead.readed_date = new Date().getTime();
+      cardNewRead.readed_date = formattedDate;
       e.target.dataset.read = 'true';
       arrayCardNewsRead.push(cardNewRead);
       li.dataset.read = 'true';
