@@ -219,3 +219,16 @@
 .flatpickr-day:nth-last-child(n + 29) {
   display: none;
 }
+
+body.dark .calendar__input {
+  color: #f4f4f4;
+  background: #464545;
+}
+
+body.dark .calendar__wrapper {
+  border-color: #f4f4f4;
+}
+
+body.dark .calendar__icon-arrow-down {
+  fill: #a2a2a2;
+}
