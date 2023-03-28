@@ -53,7 +53,6 @@ const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 
 arrayCardNewsFavorite = load('favorite');
 arrayCardNewsRead = load('read');
-
 init();
 themeCheck();
 refs.sectionNews.addEventListener('click', onClickInSectionNews);
@@ -80,6 +79,14 @@ function onClickInSectionNews(e) {
       button.dataset.favorite = 'true';
       button.children[0].textContent = 'Remove from favoriet';
       save('favorite', arrayCardNewsFavorite);
+      let array1 = arrayCardNewsRead;
+      arrayCardNewsRead = array1.map(element => {
+        if (String(element.id) === buttonId) {
+          element.favorite = "true";
+        }
+        return element
+      });
+      save('read', arrayCardNewsRead);
     }
   }
   if (e.target.nodeName === 'A') {
@@ -132,7 +139,6 @@ async function init() {
     arrayCardNewsRead,
     weather
   );
-  console.log('Concated arr popular:', arrayCardNews);
   //відправка масиву відредагованого
   pagination(arrayCardNews);
 }
@@ -145,7 +151,6 @@ async function searchPopular() {
       requestsNews.createTrendingNewsQueryUrl()
     );
     await newsPopular.then(value => (arrayPopuralNews = value.results));
-    console.log('Popular News: ', arrayPopuralNews);
   } catch (error) {
     console.log(error.message);
   }
@@ -159,7 +164,6 @@ async function searchArticle(searchValue) {
       requestsNews.createSearchQueryUrl(encodedSearchValue)
     );
     arraySearchArticleNews = response.docs;
-    // console.log('Search news: ', arraySearchArticleNews);
   } catch (error) {
     console.error(error);
   }
@@ -178,7 +182,6 @@ async function onClickSearchBtn(e) {
     arrayCardNewsRead,
     weather
   );
-  console.log('Concated arr searh:', arrayCardNews);
   if (arrayCardNews.length === 0) {
     const message = 'We did not find news for this word';
     showPageNotFound(message);
@@ -198,7 +201,6 @@ function selectedCategory() {
       arrayCardNewsRead,
       weather
     );
-    console.log('Concated arr category:', arrayCardNews);
     //відправка масиву відредагованого
     pagination(arrayCardNews);
   });
@@ -213,27 +215,12 @@ function selectedCategory() {
         arrayCardNewsRead,
         weather
       );
-      console.log('Concated arr category:', arrayCardNews);
       //відправка масиву відредагованого
       pagination(arrayCardNews);
     }
   });
   //повертає значення категорії
 }
-
-//
-// async function searchCategorie(categorie) {
-//   try {
-//     const encodedCategorie = encodeURIComponent(categorie);
-//     const { response } = await requestsNews.getRequests(
-//       requestsNews.createUrlCategoryName(encodedCategorie)
-//     );
-//     arrayCardNewsCategorie = response.docs;
-//     // console.log('Search news: ', arraySearchArticleNews);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
 
 // запит версії 3
 async function searchCategorie(categorie) {
@@ -243,11 +230,8 @@ async function searchCategorie(categorie) {
       requestsNews.createUrlCategoryName(encodedCategorie)
     );
     await newsCategorie.then(value => {
-      console.log(value.results);
       arrayCardNewsCategorie = value.results;
     });
-    // arrayCardNewsCategorie = response.results;
-    // console.log('Search news: ', arraySearchArticleNews);
   } catch (error) {
     console.error(error);
   }
@@ -318,14 +302,12 @@ export async function searchCalendar(date) {
       requestsNews.requestCalendarUrl(date)
     );
     arrayCardNewsCalendar = response.docs;
-    console.log(arrayCardNewsCalendar);
     arrayCardNews = await concatNewsAndWeather(
       arrayCardNewsCalendar,
       arrayCardNewsFavorite,
       arrayCardNewsRead,
       weather
     );
-    console.log(arrayCardNews);
     pagination(arrayCardNews);
   } catch (error) {
     console.error(error);
