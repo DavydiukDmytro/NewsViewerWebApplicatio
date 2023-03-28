@@ -193,12 +193,18 @@ opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
 visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 &.is-open {
+    position: fixed;
+    top: 66px;
+    overflow-y: scroll;
 pointer-events: auto;
 opacity: 1;
 z-index: 3;
 visibility: visible;
 transform: scaleY(1);
-height: 100vh;
+height: calc(100vh - 66px);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
 }
 }
 
@@ -208,13 +214,16 @@ align-items: center;
 }
 }
 
+.is-open .main-nav{
+    padding-top: 24px;
+    padding-left: 16px;
+}
+
 .site-nav {
 display: flex;
 @media screen and (max-width: $tablet) {
 gap: 30px;
 flex-direction: column;
-margin-bottom: 248px;
-margin-top: 49px;
 }
 @media screen and (min-width: $tablet) {
 gap: 44px;
