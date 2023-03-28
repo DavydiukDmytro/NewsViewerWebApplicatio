@@ -246,35 +246,6 @@ menuContainer.classList.toggle("is-open");
 });
 })();
 
-// (() => {
-//   const mobileMenu = document.querySelector('.menu__container');
-//   const openMenuBtn = document.querySelector('.button-menu');
-//   const closeMenuBtn = document.querySelector('.button-menu');
-
-//   const toggleMenu = () => {
-//     const isMenuOpen =
-//       openMenuBtn.getAttribute('aria-expanded') === 'true' || false;
-//     openMenuBtn.setAttribute('aria-expanded', !isMenuOpen);
-//     mobileMenu.classList.toggle('is-open');
-
-//     const scrollLockMethod = !isMenuOpen
-//       ? 'disableBodyScroll'
-//       : 'enableBodyScroll';
-//     bodyScrollLock[scrollLockMethod](document.body);
-//   };
-
-//   openMenuBtn.addEventListener('click', toggleMenu);
-//   closeMenuBtn.addEventListener('click', toggleMenu);
-
-//   // Close the mobile menu on wider screens if the device orientation changes
-//   window.matchMedia('(min-width: 768px)').addEventListener('change', e => {
-//     if (!e.matches) return;
-//     mobileMenu.classList.remove('is-open');
-//     openMenuBtn.setAttribute('aria-expanded', false);
-//     bodyScrollLock.enableBodyScroll(document.body);
-//   });
-// })();
-
 // Открытие формы поиска в мобильном меню 
 
 const searchButtonMobile = document.querySelector('.search-button__mobile');
@@ -291,5 +262,18 @@ document.addEventListener('click', (event) => {
 if (!searchForm.contains(event.target) && event.target !== searchButtonMobile) {
 searchButtonMobile.classList.remove('is-inactive');
 searchForm.classList.remove('is-active');
+}
+});
+
+//запрет скролла при открытии моб меню 
+
+const menuContainer = document.querySelector('.menu__container');
+const bodyEl = document.querySelector('body')
+
+menuContainer.addEventListener('click', (event) => {
+if (menuContainer.classList.contains('.is-open')) {
+bodyEl.classList.add('.is-modal');
+} else {
+bodyEl.classList.remove('.is-modal');
 }
 });
