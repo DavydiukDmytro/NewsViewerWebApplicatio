@@ -174,6 +174,12 @@ function newsMarkUp({
       img = PLUG_IMAGE;
     }
   }
+  let textButton = '';
+  if (favorite === true) {
+    textButton = 'Remove from favoriet'
+  } else {
+    textButton = 'Add to favorite'
+  }
   return `<li class="news-card">
     <div class="news-card__image">
      <div class="news-card__darkend" data-read="${read}"></div>
@@ -185,7 +191,7 @@ function newsMarkUp({
        </svg>
       </span>
       <button data-id="${id}" data-favorite="${favorite}" class="news-card__favorite">
-        Add to favorite
+        <span>${textButton}</span>
         <svg class="news-card__icon" data-favorite="${favorite}" width="16px" height="16px">
       <use xlink:href="#icon-heart-empty"></use>
          </svg>

@@ -51,29 +51,33 @@ let arrayCardNewsCalendar = [];
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 
+arrayCardNewsFavorite = load('favorite');
+
 init();
 
 refs.sectionNews.addEventListener('click', onClickInSectionNews);
 function onClickInSectionNews(e) {
-  if (e.target.nodeName === 'BUTTON') {
-    const buttonId = this.id;
-    const buttonDataAttribute = this.getAttribute('data-favorite');
-    if (!buttonDataAttribute) {
-      arrayCardNews.some(item => {
-        if (item.id === buttonId) {
-          arrayCardNewsFavorite = [{ ...item }];
-          return true;
-        }
-      });
-    } else if (buttonDataAttribute) {
-      arrayCardNewsFavorite.some((item, index) => {
-        if (item.id === buttonId) {
-          arrayCardNewsFavorite.splice(index, 1);
-          return true;
-        }
-      });
+  const button = e.target.closest('button');
+  if (button) {
+    const buttonId = button.dataset.id;
+    const buttonDataAttribute = button.dataset.favorite;
+    if (buttonDataAttribute === 'true') {
+      const indexCard = arrayCardNewsFavorite.findIndex(card => String(card.id) === buttonId);
+      arrayCardNewsFavorite.splice(indexCard, 1);
+      button.children[1].dataset.favorite = 'false';
+      button.children[2].dataset.favorite = 'false';
+      button.dataset.favorite = 'false';
+      button.children[0].textContent = 'Add to favorite';
+      save('favorite', arrayCardNewsFavorite);
+    } else {
+      const cardNewFavorite = arrayCardNews.find(card => String(card.id) === buttonId);
+      arrayCardNewsFavorite.push(cardNewFavorite);
+      button.children[1].dataset.favorite = 'true';
+      button.children[2].dataset.favorite = 'true';
+      button.dataset.favorite = 'true';
+      button.children[0].textContent = 'Remove from favoriet';
+      save('favorite', arrayCardNewsFavorite);
     }
-    // console.log('btn');
   }
   if (e.target.nodeName === 'A') {
     console.log('A');
