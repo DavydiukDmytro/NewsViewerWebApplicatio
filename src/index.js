@@ -24,7 +24,7 @@ import { save, load } from './js/storage';
 import { flatpickr } from './js/calendar';
 // функція додавання класу is-active в залежності від переданого значення від 1-3
 import { setActiveLink } from './js/is-active';
-
+import { themeCheck } from './js/themecheck';
 selectedCategory();
 
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
@@ -55,7 +55,7 @@ arrayCardNewsFavorite = load('favorite');
 arrayCardNewsRead = load('read');
 
 init();
-
+themeCheck();
 refs.sectionNews.addEventListener('click', onClickInSectionNews);
 function onClickInSectionNews(e) {
   const button = e.target.closest('button');
@@ -176,29 +176,7 @@ async function onClickSearchBtn(e) {
 
   pagination(arrayCardNews);
 }
-//Перемикач теми - темна/світла
-const LOCALSTORAGE_KEY = 'theme';
-let themeLight = true;
-const selectTheme = document.querySelector('#theme-clicker');
-const element = document.querySelector('body');
-selectTheme.addEventListener('change', setTheme);
 
-if (localStorage.getItem(LOCALSTORAGE_KEY) !== null) {
-  themeLight = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
-}
-
-if (!themeLight) {
-  element.classList.add('dark');
-  selectTheme.checked = true;
-} else {
-  selectTheme.checked = false;
-}
-
-function setTheme() {
-  element.classList.toggle('dark');
-  themeLight = !themeLight;
-  localStorage.setItem(LOCALSTORAGE_KEY, themeLight);
-}
 
 function selectedCategory() {
   const selectName = document.querySelector('.news-section__select');
