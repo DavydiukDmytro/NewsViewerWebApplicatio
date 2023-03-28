@@ -154,12 +154,12 @@ document
   });
 
 function handleButton(element) {
-  if (element.classList.contains('prev-page')) {
+  if (element.closest('.prev-page')) {
     valuePage.curPage--;
     handleButtonLeft();
     btnNextPg.disabled = false;
     pagination(array);
-  } else if (element.classList.contains('next-page')) {
+  } else if (element.closest('.next-page')) {
     valuePage.curPage++;
     handleButtonRight();
     btnPrevPg.disabled = false;
