@@ -71,6 +71,7 @@ function onClickInSectionNews(e) {
       save('favorite', arrayCardNewsFavorite);
     } else {
       const cardNewFavorite = arrayCardNews.find(card => String(card.id) === buttonId);
+      cardNewFavorite.favorite = true;
       arrayCardNewsFavorite.push(cardNewFavorite);
       button.children[1].dataset.favorite = 'true';
       button.children[2].dataset.favorite = 'true';
