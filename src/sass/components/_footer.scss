@@ -35,12 +35,12 @@
 }
 
 footer {
-    background-color: rgba(75, 72, 219, 1);
+    background-color: transparent;
     padding: 45px 0 20px;
     font-size: 15px;
     line-height: 24px;
-    color: #fff;
-
+    color: $black;
+    
     &_ul {
         @media screen and (min-width:1280px) {
             text-align: right;
@@ -49,7 +49,7 @@ footer {
 }
 
 footer hr {
-    border-top-color: #fff;
+    border-top-color: $secondary-text;
     opacity: 0.5
 }
 
@@ -62,7 +62,7 @@ footer hr.small {
     &__logo {
         font-family: 'Manrope';
         font-weight: 700;
-        color: #fff;
+        color: $primary-text;
         line-height: 1.357;
         font-size: 24px;
         display: flex;
@@ -82,7 +82,8 @@ footer hr.small {
     }
 
     &__text {
-        color: #fff;
+        color: $secondary-text;
+        // color: $accent;
         text-align: center;
         
 
@@ -93,6 +94,7 @@ footer hr.small {
         }
 
         @media screen and (min-width: $desktop) {
+            max-width: unset;
             margin-left: 0;
             text-align: start;
         }
@@ -100,12 +102,12 @@ footer hr.small {
 }
 
 footer .social-icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    padding-left: 0;
-    list-style: none;;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-top: 20px;
+     padding-left: 0;
+     list-style: none;;
 }
 
 footer .social-icons a {
@@ -132,12 +134,18 @@ footer .social-icons a {
 }
 
 
-.row {
+.footer__additional__container {
     display: flex;
     flex-direction: column-reverse;
 
+    
+
     @media screen and (min-width: $desktop) {
-        display: flex;
-        flex-direction: row;
+        flex-direction: unset;
+        justify-content: space-between;
     }
+}
+
+.footer__share__container {
+    align-items: baseline;
 }
