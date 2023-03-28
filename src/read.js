@@ -22,7 +22,7 @@ accordionEl.innerHTML = createAccordionHeadlines(arrayCardNewsReadStorage); // <
 const containersEl = document.querySelectorAll('.accordion-container');
 const accordionsArr = Array.from(containersEl);
   
-const Accordion = new Accordion(accordionsArr, {
+const accordion = new Accordion(accordionsArr, {
     duration: 600,
     showMultiple: true,
 });
