@@ -5,7 +5,8 @@ import 'accordion-js/dist/accordion.min.css';
 import { setActiveLink } from './js/is-active';
 // Додав функцію яка записую і повертає данні з localStorage
 import { save, load } from './js/storage';
-
+import { themeCheck } from './js/themecheck';
+themeCheck();
 setActiveLink(3);
 const accordionEl = document.querySelector('.wrapper'); // <=Change selector
 let arrayNews = [];

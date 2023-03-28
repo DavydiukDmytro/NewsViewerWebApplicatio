@@ -3,6 +3,9 @@ import { setActiveLink } from './js/is-active';
 // Додав функцію яка записую і повертає данні з localStorage
 import { save, load } from './js/storage';
 import { createMarkUp } from './js/markup';
+import { themeCheck } from './js/themecheck';
+
+themeCheck();
 
 const refsFavoriet = {
     sectionNews: document.querySelector('.section-news'),
