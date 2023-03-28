@@ -183,8 +183,7 @@ export function newsMarkUp({
     }
   }
   let textButton = '';
-  
-  if (favorite === "true") {
+  if (String(favorite) === "true") {
     textButton = 'Remove from favorite'
   } else {
     textButton = 'Add to favorite'
