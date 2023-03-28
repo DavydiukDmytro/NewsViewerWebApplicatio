@@ -271,6 +271,58 @@ function hidePageNotFound() {
   refs.noNewsPageTitle = '';
 }
 
+//eeveev
+
+
+//Открытие мобильного меню 
+
+(() => {
+const btnMenu = document.querySelector("[data-menu-button]");
+const menuContainer = document.querySelector("[data-menu]");
+
+btnMenu.addEventListener("click", () => {
+const expanded =
+btnMenu.getAttribute("aria-expanded") === "true" || false;
+
+btnMenu.classList.toggle("is-open");
+btnMenu.setAttribute("aria-expanded", !expanded);
+
+menuContainer.classList.toggle("is-open");
+});
+})();
+
+// Открытие формы поиска в мобильном меню 
+
+const searchButtonMobile = document.querySelector('.search-button__mobile');
+const searchForm = document.querySelector('.search-form');
+const body = document.querySelector('body');
+
+searchButtonMobile.addEventListener('click', function(event) {
+event.stopPropagation();
+searchButtonMobile.classList.add('is-inactive');
+searchForm.classList.add('is-active');
+});
+
+document.addEventListener('click', (event) => {
+if (!searchForm.contains(event.target) && event.target !== searchButtonMobile) {
+searchButtonMobile.classList.remove('is-inactive');
+searchForm.classList.remove('is-active');
+}
+});
+
+//запрет скролла при открытии моб меню 
+
+const menuContainer = document.querySelector('.menu__container');
+const bodyEl = document.querySelector('body')
+
+menuContainer.addEventListener('click', (event) => {
+if (menuContainer.classList.contains('.is-open')) {
+bodyEl.classList.add('.is-modal');
+} else {
+bodyEl.classList.remove('.is-modal');
+}
+});
+
 //
 export async function searchCalendar(date) {
   try {

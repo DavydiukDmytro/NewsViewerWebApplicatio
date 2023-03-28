@@ -44,3 +44,29 @@ display: none;
 .button-menu.is-open .button-menu__hamburger {
 display: block;
 }
+
+.search-button__mobile {
+position: absolute;
+top: 8px;
+bottom: 6px;
+right: 10%;
+background-color: transparent;
+border: none;
+cursor: pointer;
+transform: scaleX(1);
+transform-origin: left;
+transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+
+&.is-inactive {
+visibility: hidden;
+transform: scaleX(0);
+}
+
+@media screen and (min-width: $tablet) {
+display: none;
+}
+}
+

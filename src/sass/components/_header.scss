@@ -145,8 +145,6 @@ padding: 16px 0;
 display: flex;
 position: relative;
 align-items: center;
-padding-left: 16px;
-padding-right: 16px;
 }
 
 .header__logo {
@@ -158,6 +156,7 @@ line-height: 1.357;
 width: 63px;
 height: 33px;
 font-size: 24px;
+margin-right: 14px;
 
 @media screen and (min-width: $tablet) {
 width: 84px;
@@ -176,18 +175,19 @@ margin-right: 102px;
 
 .menu__container {
 @media screen and (max-width: $tablet) {
-padding-left: 16px;
 padding-bottom: 18px;
 position: absolute;
-top: 98px;
+top: 48px;
+left: 0;
 width: 100%;
 display: block;
 z-index: 1;
-background-color: $white;
+background-color: $primary-bg;
 opacity: 0;
 pointer-events: none;
 visibility: hidden;
 transform: scaleY(0);
+transform-origin: top;
 transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
 opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
 visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -195,8 +195,10 @@ visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 &.is-open {
 pointer-events: auto;
 opacity: 1;
+z-index: 3;
 visibility: visible;
 transform: scaleY(1);
+height: 100vh;
 }
 }
 
@@ -212,6 +214,7 @@ display: flex;
 gap: 30px;
 flex-direction: column;
 margin-bottom: 248px;
+margin-top: 49px;
 }
 @media screen and (min-width: $tablet) {
 gap: 44px;
@@ -256,6 +259,21 @@ background-color: $accent;
 
 .search-form {
 position: relative;
+
+@media screen and (max-width: $tablet) {
+visibility: hidden;
+transform: scaleX(0);
+transform-origin: right;
+transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+&.is-active {
+visibility: visible;
+transform: scaleX(1);
+}
+}
+
 }
 
 .search-input {
@@ -265,6 +283,7 @@ border-radius: 20px;
 color: $primary-text;
 padding: 5px 0 5px 48px;
 width: 173px;
+
 
 @media screen and (min-width: $tablet) {
 width: 213px;
@@ -290,4 +309,31 @@ left: 12px;
 
 .icon-search {
 fill: $primary-text;
+}
+
+.header__link-icon {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 32px;
+height: 32px;
+background-color: $accent;
+border-radius: 50%;
+border: none;
+margin-right: 14px;
+
+@media screen and (min-width: $tablet) {
+display: none;
+}
+}
+
+.header__link-svg {
+fill: $primary-bg;
+}
+
+.site-nav__item {
+@media screen and (max-width: $tablet) {
+display: flex;
+align-items: center;
+}
 }
