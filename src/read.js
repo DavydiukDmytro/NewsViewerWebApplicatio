@@ -16,7 +16,7 @@ arrayCardNewsReadStorage = load('read');
 console.log(arrayCardNewsReadStorage);
 
 if (arrayCardNewsReadStorage.length > 0) {
-    arrayCardNewsRead = arrayFlag(arrayCardNewsReadStorage);
+    let arrayCardNewsRead = arrayFlag(arrayCardNewsReadStorage);
     
 } else {
     console.log('erorr');
