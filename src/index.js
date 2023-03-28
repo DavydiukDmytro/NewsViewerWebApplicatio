@@ -227,3 +227,69 @@ function hidePageNotFound() {
   refs.noNewsPageTitle = '';
 }
 //eeveev
+
+
+//Открытие мобильного меню 
+
+(() => {
+const btnMenu = document.querySelector("[data-menu-button]");
+const menuContainer = document.querySelector("[data-menu]");
+
+btnMenu.addEventListener("click", () => {
+const expanded =
+btnMenu.getAttribute("aria-expanded") === "true" || false;
+
+btnMenu.classList.toggle("is-open");
+btnMenu.setAttribute("aria-expanded", !expanded);
+
+menuContainer.classList.toggle("is-open");
+});
+})();
+
+// (() => {
+//   const mobileMenu = document.querySelector('.menu__container');
+//   const openMenuBtn = document.querySelector('.button-menu');
+//   const closeMenuBtn = document.querySelector('.button-menu');
+
+//   const toggleMenu = () => {
+//     const isMenuOpen =
+//       openMenuBtn.getAttribute('aria-expanded') === 'true' || false;
+//     openMenuBtn.setAttribute('aria-expanded', !isMenuOpen);
+//     mobileMenu.classList.toggle('is-open');
+
+//     const scrollLockMethod = !isMenuOpen
+//       ? 'disableBodyScroll'
+//       : 'enableBodyScroll';
+//     bodyScrollLock[scrollLockMethod](document.body);
+//   };
+
+//   openMenuBtn.addEventListener('click', toggleMenu);
+//   closeMenuBtn.addEventListener('click', toggleMenu);
+
+//   // Close the mobile menu on wider screens if the device orientation changes
+//   window.matchMedia('(min-width: 768px)').addEventListener('change', e => {
+//     if (!e.matches) return;
+//     mobileMenu.classList.remove('is-open');
+//     openMenuBtn.setAttribute('aria-expanded', false);
+//     bodyScrollLock.enableBodyScroll(document.body);
+//   });
+// })();
+
+// Открытие формы поиска в мобильном меню 
+
+const searchButtonMobile = document.querySelector('.search-button__mobile');
+const searchForm = document.querySelector('.search-form');
+const body = document.querySelector('body');
+
+searchButtonMobile.addEventListener('click', function(event) {
+event.stopPropagation();
+searchButtonMobile.classList.add('is-inactive');
+searchForm.classList.add('is-active');
+});
+
+document.addEventListener('click', (event) => {
+if (!searchForm.contains(event.target) && event.target !== searchButtonMobile) {
+searchButtonMobile.classList.remove('is-inactive');
+searchForm.classList.remove('is-active');
+}
+});
