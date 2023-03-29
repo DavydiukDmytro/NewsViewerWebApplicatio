@@ -183,15 +183,15 @@ export function newsMarkUp({
     }
   }
   let textButton = '';
-  if (String(favorite) === "true") {
-    textButton = 'Remove from favorite'
+  if (String(favorite) === 'true') {
+    textButton = 'Remove from favorite';
   } else {
-    textButton = 'Add to favorite'
+    textButton = 'Add to favorite';
   }
   return `<li data-read="${read}" class="news-card">
     <div class="news-card__image">
      <div class="news-card__darkend" data-read="${read}"></div>
-      <img src="${img}" alt="News" />
+      <img src="${img}" alt="News" loading="lazy" />
       <span class="news-card__category">${category}</span>
       <span class="news-card__status" data-read="${read}">Already read
       <svg class="news-card__icon-tick" width="18px" height="18px">
@@ -238,7 +238,7 @@ function weatherMarkUp({ temp, descriptrion, city, icon, dayWeek, date }) {
         </div>
     </div>
   </div>
-<img class="weather-picture" src="https://openweathermap.org/img/wn/${icon}@2x.png"></img>
+<img alt="Current weather"class="weather-picture" src="https://openweathermap.org/img/wn/${icon}@2x.png"></img>
   <p class="weather__day">${dayWeek}</p>
   <p class="weather__date">${date}</p>
 </li>`;

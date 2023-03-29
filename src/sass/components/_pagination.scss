@@ -1,4 +1,4 @@
-.page-container.none{
+.page-container.none {
   display: none;
 }
 .page-container {
@@ -17,9 +17,6 @@
 
   @media screen and (min-width: $tablet) {
     padding-bottom: 100px;
-  }
-  @media screen and (min-width: $desktop) {
-    padding-bottom: 150px;
   }
 }
 
