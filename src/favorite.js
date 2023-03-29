@@ -4,6 +4,8 @@ import { setActiveLink } from './js/is-active';
 import { save, load } from './js/storage';
 import { createMarkUp } from './js/markup';
 import { themeCheck } from './js/themecheck';
+//import функції відображання помилки та її зникнення
+import { showPageNotFound, hidePageNotFound } from './js/not-found';
 
 themeCheck();
 
@@ -16,7 +18,6 @@ let arrayCardNewsRead = [];
 
 arrayCardNewsFavorite = load('favorite');
 arrayCardNewsRead = load('read');
-console.log(arrayCardNewsFavorite);
 
 setActiveLink(2);
 
