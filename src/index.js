@@ -277,12 +277,6 @@ async function searchCategorie(categorie) {
   }
 }
 
-// сховати сторінку поt found
-function hidePageNotFound() {
-  refs.noNewsPage.style.display = 'none';
-  refs.noNewsPageTitle = '';
-}
-
 //Відкриття мобільного меню
 (() => {
 const btnMenu = document.querySelector("[data-menu-button]");
