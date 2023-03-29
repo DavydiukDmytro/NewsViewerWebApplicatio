@@ -1,5 +1,4 @@
 // import flatpickr from 'flatpickr';
-// const flatpickr = require('flatpickr');
 
 // const dateInput = document.getElementById('date-input');
 
