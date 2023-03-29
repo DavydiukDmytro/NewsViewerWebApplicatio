@@ -1,5 +1,7 @@
 export function setActiveLink(linkNumber) {
   const links = document.querySelectorAll('.header__link'); 
+  const formw = document.querySelector('.search-form'); 
+  const formw2 = document.querySelector('.search-button__mobile'); 
   
   links.forEach(link => {
     link.classList.remove('header__link--active'); // видаляємо у всіх header__link--active 
@@ -11,8 +13,12 @@ export function setActiveLink(linkNumber) {
       break;
     case 2:
       links[1].classList.add('header__link--active');
+      formw.remove();
+      formw2.remove();
       break;
     case 3:
+       formw.remove();
+      formw2.remove();
       links[2].classList.add('header__link--active');
       break;
     default:

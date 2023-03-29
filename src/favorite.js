@@ -84,3 +84,36 @@ function onClickInSectionNews(e) {
     }
   }
 }
+
+//Открытие мобильного меню 
+
+(() => {
+const btnMenu = document.querySelector("[data-menu-button]");
+  const menuContainer = document.querySelector("[data-menu]");
+  const body1 = document.querySelector('body');
+  
+
+btnMenu.addEventListener("click", () => {
+const expanded =
+btnMenu.getAttribute("aria-expanded") === "true" || false;
+
+btnMenu.classList.toggle("is-open");
+btnMenu.setAttribute("aria-expanded", !expanded);
+
+  menuContainer.classList.toggle("is-open");
+  body1.classList.toggle('scroll');
+});
+})();
+
+//запрет скролла при открытии моб меню 
+
+const menuContainer = document.querySelector('.menu__container');
+const bodyEl = document.querySelector('body')
+
+menuContainer.addEventListener('click', (event) => {
+if (menuContainer.classList.contains('.is-open')) {
+bodyEl.classList.add('.is-modal');
+} else {
+bodyEl.classList.remove('.is-modal');
+}
+});

@@ -258,7 +258,9 @@ function hidePageNotFound() {
 
 (() => {
 const btnMenu = document.querySelector("[data-menu-button]");
-const menuContainer = document.querySelector("[data-menu]");
+  const menuContainer = document.querySelector("[data-menu]");
+  const body1 = document.querySelector('body');
+  
 
 btnMenu.addEventListener("click", () => {
 const expanded =
@@ -267,7 +269,8 @@ btnMenu.getAttribute("aria-expanded") === "true" || false;
 btnMenu.classList.toggle("is-open");
 btnMenu.setAttribute("aria-expanded", !expanded);
 
-menuContainer.classList.toggle("is-open");
+  menuContainer.classList.toggle("is-open");
+  body1.classList.toggle('scroll');
 });
 })();
 
