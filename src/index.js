@@ -14,17 +14,18 @@ import { concatNewsAndWeather, createMarkUp } from './js/markup';
 import { clearNewsSection } from './js/clear-news-section';
 //import функції відображання помилки та її зникнення
 import { showPageNotFound, hidePageNotFound } from './js/not-found';
-//import функції яка повертає значення вибраної категорії
-// import { selectedCategory } from './js/selected-category';
 //Лодаш троттле
 import throttle from 'lodash.throttle';
 // Додав функцію яка записую і повертає данні з localStorage
 import { save, load } from './js/storage';
-
+//додавання калегдар
 import { flatpickr } from './js/calendar';
 // функція додавання класу is-active в залежності від переданого значення від 1-3
 import { setActiveLink } from './js/is-active';
+//функція зміни теми
 import { themeCheck } from './js/themecheck';
+
+//генерація категорій
 selectedCategory();
 
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
@@ -39,7 +40,6 @@ export const refs = {
 };
 
 export let weather = {};
-
 let arraySearchArticleNews = [];
 let arrayPopuralNews = [];
 let arrayCardNews = [];
@@ -51,11 +51,23 @@ let arrayCardNewsCalendar = [];
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
 
+//витягує з локалстордж масиви прочитаних та улюблених новин
 arrayCardNewsFavorite = load('favorite');
 arrayCardNewsRead = load('read');
+
+//Ключові запити
 init();
+
+//ініціація перемикача теми
 themeCheck();
+
+//клік по картці новин додати в fovorite, read
 refs.sectionNews.addEventListener('click', onClickInSectionNews);
+
+//Сабміт форми пошуку по ключовому слову
+refs.searchForm.addEventListener('submit', onClickSearchBtn);
+
+//клік по картці
 function onClickInSectionNews(e) {
   const button = e.target.closest('button');
   const li = e.target.closest('li');
@@ -177,9 +189,8 @@ async function searchArticle(searchValue) {
   }
 }
 
-//Тимчасова функція для перевірки виводу новин по ключовому слову
-refs.searchForm.addEventListener('submit', onClickSearchBtn);
 
+//функція сабміту пошуку по слову
 async function onClickSearchBtn(e) {
   e.preventDefault();
   const searchValue = e.target.children.search.value;
@@ -198,7 +209,7 @@ async function onClickSearchBtn(e) {
   pagination(arrayCardNews);
 }
 
-
+//функція натискання на кнопку категорії та виконання запиту на бекенд
 function selectedCategory() {
   const selectName = document.querySelector('.news-section__select');
   selectName.addEventListener('change', async function () {
@@ -230,7 +241,7 @@ function selectedCategory() {
   //повертає значення категорії
 }
 
-// запит версії 3
+// запит на бекенд по категорії
 async function searchCategorie(categorie) {
   try {
     const encodedCategorie = encodeURIComponent(categorie.toLowerCase());
@@ -251,11 +262,7 @@ function hidePageNotFound() {
   refs.noNewsPageTitle = '';
 }
 
-//eeveev
-
-
-//Открытие мобильного меню 
-
+//Відкриття мобільного меню
 (() => {
 const btnMenu = document.querySelector("[data-menu-button]");
   const menuContainer = document.querySelector("[data-menu]");
@@ -274,8 +281,7 @@ btnMenu.setAttribute("aria-expanded", !expanded);
 });
 })();
 
-// Открытие формы поиска в мобильном меню 
-
+// Відкриття форми пошуку в мобільній версії
 const searchButtonMobile = document.querySelector('.search-button__mobile');
 const searchForm = document.querySelector('.search-form');
 const body = document.querySelector('body');
@@ -293,8 +299,7 @@ searchForm.classList.remove('is-active');
 }
 });
 
-//запрет скролла при открытии моб меню 
-
+//No scroll
 const menuContainer = document.querySelector('.menu__container');
 const bodyEl = document.querySelector('body')
 
@@ -306,7 +311,7 @@ bodyEl.classList.remove('.is-modal');
 }
 });
 
-//
+//запит для пошуку по даті
 export async function searchCalendar(date) {
   try {
     const { response } = await requestsNews.getRequests(
