@@ -11,6 +11,7 @@
 // });
 import flatpickr from 'flatpickr';
 import { searchCalendar } from '../index';
+import {hidePageNotFound} from './not-found'
 
 const dateInput = document.getElementById('date-input');
 
@@ -24,6 +25,7 @@ flatpickr(dateInput, {
     const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
     const day = selectedDate.getDate().toString().padStart(2, '0');
     const formattedDate = `${year}${month}${day}`;
+    hidePageNotFound();
     searchCalendar(formattedDate);
   },
 });

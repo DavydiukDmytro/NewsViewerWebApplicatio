@@ -61,6 +61,7 @@ init();
 //ініціація перемикача теми
 themeCheck();
 
+
 //клік по картці новин додати в fovorite, read
 refs.sectionNews.addEventListener('click', onClickInSectionNews);
 
@@ -146,7 +147,8 @@ function onClickInSectionNews(e) {
 
 //Робить запит на популярні новини та на погоду і верстає карточки
 async function init() {
-  setActiveLink(1);
+  try {
+    setActiveLink(1);
   setupNewsSection();
   await fetchWeather();
   await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
@@ -161,6 +163,9 @@ async function init() {
   );
   //відправка масиву відредагованого
   pagination(arrayCardNews);
+  } catch {
+    showPageNotFound('fawfa');
+  }
 }
 
 //Функція для пошуку популярних новин
@@ -172,7 +177,7 @@ async function searchPopular() {
     );
     await newsPopular.then(value => (arrayPopuralNews = value.results));
   } catch (error) {
-    console.log(error.message);
+    showPageNotFound('Sorry, but we did not find any popular news!');
   }
 }
 
@@ -193,6 +198,7 @@ async function searchArticle(searchValue) {
 //функція сабміту пошуку по слову
 async function onClickSearchBtn(e) {
   e.preventDefault();
+  hidePageNotFound();
   const searchValue = e.target.children.search.value;
   await searchArticle(searchValue);
   arrayCardNews = await concatNewsAndWeather(
@@ -213,6 +219,7 @@ async function onClickSearchBtn(e) {
 function selectedCategory() {
   const selectName = document.querySelector('.news-section__select');
   selectName.addEventListener('change', async function () {
+    hidePageNotFound();
     await searchCategorie(selectName.value);
     arrayCardNews = concatNewsAndWeather(
       arrayCardNewsCategorie,
@@ -227,6 +234,7 @@ function selectedCategory() {
   const categoryName2 = document.querySelector('.section-categories__list');
   categoryName2.addEventListener('click', async function (e) {
     if (e.target.nodeName === 'BUTTON') {
+      hidePageNotFound();
       await searchCategorie(e.target.textContent);
       arrayCardNews = concatNewsAndWeather(
         arrayCardNewsCategorie,
