@@ -60,10 +60,10 @@
   visibility: visible;
 }
 .ac.is-active > .ac-header .ac-trigger::after {
-  content: url('/src/img/white-arrow-up.svg');
+  content: url('/src/img/arrow-up.svg');
 }
 .dark .ac.is-active > .ac-header .ac-trigger::after {
-  fill: $primary-bg;
+  content: url('/src/img/white-arrow-up.svg');
 }
 .ac .section-news {
   padding-top: 28px;
