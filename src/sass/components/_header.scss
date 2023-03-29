@@ -135,293 +135,301 @@
 // fill: $primary-text;
 // }
 
-
 .header {
-border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-padding: 16px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 16px 0;
+}
+.dark .header {
+  border-bottom: 1px solid rgba(244, 244, 244, 0.2);
 }
 
 .header__nav {
-display: flex;
-position: relative;
-align-items: center;
+  display: flex;
+  position: relative;
+  align-items: center;
 }
 
 .header__logo {
-display: block;
-font-family: 'Manrope';
-font-weight: 700;
-color: $primary-text;
-line-height: 1.357;
-width: 63px;
-height: 33px;
-font-size: 24px;
-margin-right: 14px;
+  display: block;
+  font-family: 'Manrope';
+  font-weight: 700;
+  color: $primary-text;
+  line-height: 1.357;
+  width: 63px;
+  height: 33px;
+  font-size: 24px;
+  margin-right: 14px;
 
-@media screen and (min-width: $tablet) {
-width: 84px;
-height: 44px;
-font-size: 32px;
-margin-right: 48px;
-}
+  @media screen and (min-width: $tablet) {
+    width: 84px;
+    height: 44px;
+    font-size: 32px;
+    margin-right: 48px;
+  }
 
-@media screen and (min-width: $desktop) {
-width: 111px;
-height: 57px;
-font-size: 42px;
-margin-right: 102px;
-}
+  @media screen and (min-width: $desktop) {
+    width: 111px;
+    height: 57px;
+    font-size: 42px;
+    margin-right: 102px;
+  }
 }
 
 body.scroll {
-    overflow: hidden;
+  overflow: hidden;
 }
-.cont2{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 320px;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
+.cont2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 320px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: $tablet) {
+    flex-direction: row;
+    width: 250px;
+  }
+  @media screen and (min-width: $desktop) {
+    flex-direction: row;
+    width: 330px;
+  }
 }
 
 .menu__container {
-@media screen and (max-width: $tablet) {
-padding-bottom: 18px;
-position: absolute;
-top: 48px;
-left: 0;
-width: 100%;
-display: block;
-z-index: 1;
-background-color: $primary-bg;
-opacity: 0;
-pointer-events: none;
-visibility: hidden;
-transform: scaleY(0);
-transform-origin: top;
-transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
-visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  @media screen and (max-width: $tablet) {
+    padding-bottom: 18px;
+    position: absolute;
+    top: 48px;
+    left: 0;
+    width: 100%;
+    display: block;
+    z-index: 1;
+    background-color: $primary-bg;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
+    &.is-open {
+      position: fixed;
+      top: 66px;
+      overflow-y: scroll;
+      pointer-events: auto;
+      opacity: 1;
+      z-index: 3;
+      visibility: visible;
+      transform: scaleY(1);
+      height: calc(100vh - 66px);
+    }
+  }
 
-&.is-open {
-position: fixed;
-top: 66px;
-overflow-y: scroll;
-pointer-events: auto;
-opacity: 1;
-z-index: 3;
-visibility: visible;
-transform: scaleY(1);
-height: calc(100vh - 66px);
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    align-items: center;
+    margin-right: 32px;
+  }
 
-}
-}
-
-@media screen and (min-width: $tablet) {
-display: flex;
-align-items: center;
-margin-right: 32px;
-}
-
-@media screen and (min-width: $desktop) {
-margin-right: 147px;
-}
+  @media screen and (min-width: $desktop) {
+    margin-right: 147px;
+  }
 }
 
-.is-open .main-nav{
-    padding-top: 24px;
-    padding-left: 16px;
+.is-open .main-nav {
+  padding-top: 24px;
+  padding-left: auto;
+  padding-right: auto;
 }
 
 .site-nav {
-display: flex;
-@media screen and (max-width: $tablet) {
-gap: 30px;
-flex-direction: column;
-}
-@media screen and (min-width: $tablet) {
-gap: 44px;
-margin-right: 32px;
-}
+  display: flex;
+  @media screen and (max-width: $tablet) {
+    gap: 30px;
+    flex-direction: column;
+  }
+  @media screen and (min-width: $tablet) {
+    gap: 44px;
+    margin-right: 290px;
+  }
 
-@media screen and (min-width: $desktop) {
-gap: 69px;
-margin-right: 147px;
-}
+  @media screen and (min-width: $desktop) {
+    gap: 69px;
+    margin-right: 147px;
+  }
 }
 
 .header__link {
-font-family: 'Manrope';
-font-weight: 700;
-font-size: 18px;
-line-height: 1.38;
-color: $primary-text;
+  font-family: 'Manrope';
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.38;
+  color: $primary-text;
 
-@media screen and (max-width: $desktop) {
-font-size: 16px;
-}
+  @media screen and (max-width: $desktop) {
+    font-size: 16px;
+  }
 }
 
 .header__link--active {
-@media screen and (min-width: $tablet) {
-position: relative;
-padding-bottom: 5px;
-}
+  @media screen and (min-width: $tablet) {
+    position: relative;
+    padding-bottom: 5px;
+  }
 }
 
 .header__link--active::after {
-@media screen and (min-width: $tablet) {
-content: "";
-display: block;
-position: absolute;
-left: 0;
-bottom: 0;
-width: 100%;
-height: 1px;
-background-color: $accent;
-}
+  @media screen and (min-width: $tablet) {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: $accent;
+  }
 }
 
 .header__link.header__link--active {
-color: $primary-bg;
+  color: $primary-text;
 }
 
 .search-form {
-position: relative;
+  position: relative;
 
-@media screen and (max-width: $tablet) {
-visibility: hidden;
-transform: scaleX(0);
-transform-origin: right;
-transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
-visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  @media screen and (max-width: $tablet) {
+    visibility: hidden;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-&.is-active {
-visibility: visible;
-transform: scaleX(1);
-}
-}
-
+    &.is-active {
+      visibility: visible;
+      transform: scaleX(1);
+    }
+  }
 }
 
 .search-input {
-height: 31px;
-border: 1px solid $primary-text;
-border-radius: 20px;
-color: $primary-text;
-padding: 5px 0 5px 48px;
-width: 173px;
-background-color: transparent;
+  height: 31px;
+  border: 1px solid $primary-text;
+  border-radius: 20px;
+  color: $primary-text;
+  padding: 5px 0 5px 48px;
+  width: 173px;
+  background-color: transparent;
 
-@media screen and (min-width: $tablet) {
-width: 213px;
-}
+  @media screen and (min-width: $tablet) {
+    width: 213px;
+  }
 
-@media screen and (min-width: $desktop) {
-width: 288px;
-}
+  @media screen and (min-width: $desktop) {
+    width: 288px;
+  }
 }
 
 .search-button {
-cursor: pointer;
-background-color: transparent;
-border: none;
-display: flex;
-align-items: center;
-justify-content: center;
-position: absolute;
-top: 50%;
-bottom: 50%;
-left: 12px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  left: 12px;
 }
 
 .icon-search {
-fill: $primary-text;
+  fill: $primary-text;
 }
 
 .header__link-icon {
-display: flex;
-justify-content: center;
-align-items: center;
-width: 32px;
-height: 32px;
-background-color: $accent;
-border-radius: 50%;
-border: none;
-margin-right: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background-color: $accent;
+  border-radius: 50%;
+  border: none;
+  margin-right: 14px;
 
-@media screen and (min-width: $tablet) {
-display: none;
-}
+  @media screen and (min-width: $tablet) {
+    display: none;
+  }
 }
 
 .header__link-svg {
-fill: $primary-bg;
+  fill: $primary-bg;
 }
 
 .site-nav__item {
-@media screen and (max-width: $tablet) {
-display: flex;
-align-items: center;
-position: relative;
-}
+  @media screen and (max-width: $tablet) {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
 }
 
 .current-link {
-@media screen and (max-width: $tablet) {
-background-color: $accent;
-padding-top: 6px;
-padding-bottom: 6px;
-}
+  @media screen and (max-width: $tablet) {
+    background-color: $accent;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
 }
 
 .current-link .active-icon {
-fill: $primary-bg;
-transform: rotate(90deg);
-position: absolute;
-right: 16px;
+  fill: $primary-bg;
+  transform: rotate(90deg);
+  position: absolute;
+  right: 16px;
 
-@media screen and (min-width:$tablet) {
-display: none;
-}
+  @media screen and (min-width: $tablet) {
+    display: none;
+  }
 }
 
 .site-nav__item.current-link .header__link-icon {
-border: 1px solid $primary-bg;
+  border: 1px solid $primary-bg;
 }
 
 //Стили для тёмной темы
 
 body.dark .header__logo {
-color: $primary-bg;
+  color: $primary-bg;
 }
 
 body.dark .icon-search {
-fill: $primary-bg;
+  fill: $primary-bg;
 }
 
 body.dark .button-menu__hamburger,
 body.dark .button-menu__cros {
-fill: $primary-bg;
+  fill: $primary-bg;
 }
 
 body.dark .menu__container {
-background-color: $dark-bg;
+  background-color: $dark-bg;
 }
 
 body.dark .header__link-icon {
-border: 1px solid $primary-bg;
+  border: 1px solid $primary-bg;
 }
 
 body.dark .header__link {
-color: $primary-bg;
+  color: $primary-bg;
 }
 
 body.dark .search-input {
-border: 1px solid $primary-bg;
+  border: 1px solid $primary-bg;
 }
-
