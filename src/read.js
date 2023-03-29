@@ -1,6 +1,6 @@
 import { newsMarkUp, dateFormating } from './js/markup';
 import Accordion from 'accordion-js';
-import 'accordion-js/dist/accordion.min.css';
+
 // функція додавання класу is-active в залежності від переданого значення від 1-3
 import { setActiveLink } from './js/is-active';
 // Додав функцію яка записую і повертає данні з localStorage
@@ -11,11 +11,10 @@ setActiveLink(3);
 const accordionEl = document.querySelector('.wrapper'); // <=Change selector
 let arrayNews = [];
 
-
 arrayNews = load('read');
 let arrayCardNewsReadStorage = arrayNews.map(element => {
   element.read = 'read';
-  return element
+  return element;
 });
 let arrayCardNewsFavorite = [];
 arrayCardNewsFavorite = load('favorite');
@@ -24,12 +23,12 @@ accordionEl.innerHTML = createAccordionHeadlines(arrayCardNewsReadStorage); // <
 
 const containersEl = document.querySelectorAll('.accordion-container');
 const accordionsArr = Array.from(containersEl);
-  
+
 const accordion = new Accordion(accordionsArr, {
-    duration: 600,
-    showMultiple: true,
+  duration: 600,
+  showMultiple: true,
 });
-    
+
 if (arrayCardNewsReadStorage.length < 1) {
   console.log('erorr');
 }
@@ -100,8 +99,6 @@ function onClickInSectionNews(e) {
     }
   }
 }
-
-
 
 // function arrayFlag(array) {
 //     const arr = array.map(element => element.read = 'read');
