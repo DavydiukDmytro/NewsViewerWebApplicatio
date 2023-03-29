@@ -1,0 +1,156 @@
+footer {
+    background-color: transparent;
+    padding: 45px 0 20px;
+    font-size: 15px;
+    line-height: 24px;
+    color: $black;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    
+    &_ul {
+        @media screen and (min-width:1280px) {
+            text-align: right;
+        }
+    }
+
+    footer .icon {
+        display: inline-block;
+        width: 1em;
+        height: 50px;
+        stroke-width: 0;
+        stroke: currentColor;
+        fill: currentColor;
+        
+    }
+
+
+    .icon-u24 {
+        width: 10.5498046875em;
+        
+    }
+
+    .icon-chmyt {
+        // width: 1.984375em;
+        width: 160px;
+        height: 50px;
+        
+    }
+
+    .icon-prytula {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+footer hr {
+    border-top-color: $secondary-text;
+    opacity: 0.5
+}
+
+footer hr.small {
+    margin: 20px 0
+}
+
+.footer__about {
+
+    &__logo {
+        font-family: 'Manrope';
+        font-weight: 700;
+        color: $primary-text;
+        line-height: 1.357;
+        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+        
+
+        @media screen and (min-width: $tablet) {
+            font-size: 32px;
+        }
+
+        @media screen and (min-width: $desktop) {
+            justify-content: flex-start;
+            font-size: 42px;
+        }
+    }
+
+    &__text {
+        color: $secondary-text;
+        // color: $accent;
+        text-align: center;
+        
+
+        @media screen and (min-width: $tablet) {
+            max-width: 450px;
+            margin-left: 150px;
+            margin-bottom: 15px;
+        }
+
+        @media screen and (min-width: $desktop) {
+            max-width: unset;
+            margin-left: 0;
+            text-align: start;
+        }
+    }
+}
+
+footer .founds__list {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-top: 20px;
+     padding-left: 0;
+     list-style: none;
+
+     @media screen and (min-width: $desktop) {
+        justify-content: start;
+
+        &__item {
+                margin-right: 20px;
+            }
+     }
+
+     
+}
+
+footer .founds__list a {
+    margin-left: 6px;
+    margin-right: 0;
+    border-radius: 100%;
+}
+
+.copyright-text {
+    margin-top: 15px;
+    text-align: center;
+
+    @media screen and (min-width: $desktop) {
+        text-align: start;
+    }
+}
+
+.founds__list li {
+    display: inline-block;
+    height: 50px;
+}
+
+.founds__list a {
+    margin-right: 8px;
+}
+
+
+.footer__additional__container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.footer__founds__container {
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.footer__copyright__container {
+    @media screen and (min-width: $desktop) {
+        margin-top: 20px;
+    }
+}

@@ -27,7 +27,6 @@
   line-height: 1.35;
 
   letter-spacing: -0.01em;
-  color: $primary-text;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 0 auto 40px;
 
@@ -36,10 +35,6 @@
     font-size: 40px;
     line-height: 1.38;
   }
-}
-
-.news-page__title.dark {
-  color: $primary-bg;
 }
 
 .news-page__image {
