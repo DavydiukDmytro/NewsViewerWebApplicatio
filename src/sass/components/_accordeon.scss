@@ -1,6 +1,9 @@
 .ac {
-  background-color: #f4f4f4;
+  background-color: $primary-bg;
   box-sizing: border-box;
+}
+.dark .ac {
+  background-color: $dark-bg;
 }
 .ac .ac-header {
   margin: 0;
@@ -14,7 +17,7 @@
 
   font: normal 14px 'Poppins', sans-serif;
   line-height: 1.71;
-  color: #111321;
+  color: $primary-text;
   text-align: left;
   width: 100%;
   padding-top: 0;
@@ -26,6 +29,9 @@
   position: relative;
   text-decoration: none;
 }
+.dark .ac .ac-trigger {
+  color: $primary-bg;
+}
 .ac .ac-trigger::after {
   content: url('/src/img/arrow-down.svg');
   position: absolute;
@@ -34,9 +40,12 @@
   width: 9px;
   height: 14px;
 
-  fill: #111321;
+  fill: $primary-text;
 
   text-align: center;
+}
+.dark .ac-trigger::after {
+  content: url('/src/img/white-arrow-down.svg');
 }
 
 .ac .ac-panel {
@@ -51,7 +60,10 @@
   visibility: visible;
 }
 .ac.is-active > .ac-header .ac-trigger::after {
-  content: url('/src/img/arrow-up.svg');
+  content: url('/src/img/white-arrow-up.svg');
+}
+.dark .ac.is-active > .ac-header .ac-trigger::after {
+  fill: $primary-bg;
 }
 .ac .section-news {
   padding-top: 28px;
