@@ -6,12 +6,16 @@ import { setActiveLink } from './js/is-active';
 // Додав функцію яка записую і повертає данні з localStorage
 import { save, load } from './js/storage';
 import { themeCheck } from './js/themecheck';
+import { showPageNotFound, hidePageNotFound } from './js/not-found';
 themeCheck();
 setActiveLink(3);
 const accordionEl = document.querySelector('.wrapper'); // <=Change selector
 let arrayNews = [];
 
 arrayNews = load('read');
+if (arrayNews.length < 1) {
+  showPageNotFound('Sorry, but there is nothing here yet!');
+}
 let arrayCardNewsReadStorage = arrayNews.map(element => {
   element.read = 'read';
   return element;

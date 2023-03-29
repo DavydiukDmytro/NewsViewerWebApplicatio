@@ -19,6 +19,10 @@ let arrayCardNewsRead = [];
 arrayCardNewsFavorite = load('favorite');
 arrayCardNewsRead = load('read');
 
+if (arrayCardNewsFavorite.length < 1) {
+  showPageNotFound('Sorry, but there is nothing here yet!');
+}
+
 setActiveLink(2);
 
 const markp2 = createMarkUp(arrayCardNewsFavorite);

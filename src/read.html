@@ -38,7 +38,28 @@
     <!--SECTION READ-->
     <section class="section-read">
       <div class="container2 wrapper"></div>
+      <section class="news-page">
+      <div class="container2">
+        <h2 class="news-page__title"></h2>
+        <picture>
+          <source
+            srcset="./img/desk.png 1x, ./img/desk@2x.png 2x"
+            media="(min-width:1280px)"
+          />
+          <source
+            srcset="./img/tab.png 1x, ./img/tab@2x.png 2x"
+            media="(min-width:768px)"
+          />
+          <source
+            srcset="./img/mob.png 1x, ./img/mob@2x.png 2x"
+            media="(max-width:767px)"
+          />
+          <img class="news-page__image" src="./img/desk.png" alt="Newspaper" />
+        </picture>
+      </div>
     </section>
+    </section>
+    
     <!--FOOTER-->
     <footer class="footer"></footer>
   </body>
