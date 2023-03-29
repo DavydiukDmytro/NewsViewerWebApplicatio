@@ -53,7 +53,10 @@ function onClickInSectionNews(e) {
       });
       save('read', arrayCardNewsRead);
     } 
-    e.target.closest('li').remove();
+      e.target.closest('li').remove();
+      if (arrayCardNewsFavorite.length < 1){
+        showPageNotFound('Sorry, but there is nothing here yet!');
+      }
   }
   if (e.target.nodeName === 'A') {
     const linkId = e.target.dataset.ida;
