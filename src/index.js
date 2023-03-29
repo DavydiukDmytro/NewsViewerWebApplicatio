@@ -18,7 +18,6 @@ import { showPageNotFound, hidePageNotFound } from './js/not-found';
 import throttle from 'lodash.throttle';
 // Додав функцію яка записую і повертає данні з localStorage
 import { save, load } from './js/storage';
-//додавання калегдар
 import { flatpickr } from './js/calendar';
 // функція додавання класу is-active в залежності від переданого значення від 1-3
 import { setActiveLink } from './js/is-active';
