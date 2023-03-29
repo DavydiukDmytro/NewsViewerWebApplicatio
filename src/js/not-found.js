@@ -9,5 +9,5 @@ export function showPageNotFound(message) {
 // сховати сторінку поt found
 export function hidePageNotFound() {
   refs.noNewsPage.style.display = 'none';
-  refs.noNewsPageTitle = '';
+  refs.noNewsPageTitle.textContent = '';
 }

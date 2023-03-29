@@ -32,6 +32,7 @@ const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
 
 export const refs = {
+  paginationBtn: document.querySelector('.page-container'),
   searchForm: document.querySelector('.search-form'),
   btnSearch: document.querySelector('.search-button'),
   sectionNews: document.querySelector('.section-news'),
@@ -50,6 +51,9 @@ let arrayCardNewsCalendar = [];
 
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
+
+refs.paginationBtn.classList.add('none');
+
 
 //витягує з локалстордж масиви прочитаних та улюблених новин
 arrayCardNewsFavorite = load('favorite');
@@ -164,7 +168,7 @@ async function init() {
   //відправка масиву відредагованого
   pagination(arrayCardNews);
   } catch {
-    showPageNotFound('fawfa');
+    showPageNotFound('Sorry, but we did not find any popular news!');
   }
 }
 
@@ -175,8 +179,10 @@ async function searchPopular() {
     const newsPopular = requestsNews.getRequests(
       requestsNews.createTrendingNewsQueryUrl()
     );
+    refs.paginationBtn.classList.remove('none');
     await newsPopular.then(value => (arrayPopuralNews = value.results));
   } catch (error) {
+    refs.paginationBtn.classList.add('none');
     showPageNotFound('Sorry, but we did not find any popular news!');
   }
 }
@@ -184,13 +190,17 @@ async function searchPopular() {
 // Функція для пошуку за словом
 async function searchArticle(searchValue) {
   try {
+    hidePageNotFound();
+    clearNewsSection();
     const encodedSearchValue = encodeURIComponent(searchValue);
     const { response } = await requestsNews.getRequests(
       requestsNews.createSearchQueryUrl(encodedSearchValue)
     );
+    refs.paginationBtn.classList.remove('none');
     arraySearchArticleNews = response.docs;
   } catch (error) {
-    console.error(error);
+    showPageNotFound('Sorry, but we did not find any news for this word!');
+    refs.paginationBtn.classList.add('none');
   }
 }
 
@@ -207,9 +217,10 @@ async function onClickSearchBtn(e) {
     arrayCardNewsRead,
     weather
   );
+  refs.paginationBtn.classList.remove('none');
   if (arrayCardNews.length === 0) {
-    const message = 'We did not find news for this word';
-    showPageNotFound(message);
+    showPageNotFound('Sorry, but we did not find any news for this word!');
+    refs.paginationBtn.classList.add('none');
   }
 
   pagination(arrayCardNews);
@@ -256,11 +267,13 @@ async function searchCategorie(categorie) {
     const newsCategorie = requestsNews.getRequests(
       requestsNews.createUrlCategoryName(encodedCategorie)
     );
+    refs.paginationBtn.classList.remove('none');
     await newsCategorie.then(value => {
       arrayCardNewsCategorie = value.results;
     });
   } catch (error) {
-    console.error(error);
+    refs.paginationBtn.classList.add('none');
+    showPageNotFound('Sorry, but we didn\'t find any news for this category');
   }
 }
 
@@ -322,10 +335,12 @@ bodyEl.classList.remove('.is-modal');
 //запит для пошуку по даті
 export async function searchCalendar(date) {
   try {
+    clearNewsSection();
     const { response } = await requestsNews.getRequests(
       requestsNews.requestCalendarUrl(date)
     );
     arrayCardNewsCalendar = response.docs;
+    refs.paginationBtn.classList.remove('none');
     arrayCardNews = await concatNewsAndWeather(
       arrayCardNewsCalendar,
       arrayCardNewsFavorite,
@@ -333,7 +348,12 @@ export async function searchCalendar(date) {
       weather
     );
     pagination(arrayCardNews);
+    if (arrayCardNews.length < 1) {
+      refs.paginationBtn.classList.add('none');
+      showPageNotFound('Sorry, but we found no news for this date');
+    }
   } catch (error) {
-    console.error(error);
+    refs.paginationBtn.classList.add('none');
+    showPageNotFound('Sorry, but we found no news for this date');
   }
 }
