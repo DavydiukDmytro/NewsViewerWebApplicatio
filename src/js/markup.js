@@ -41,7 +41,15 @@ function checkArrays(incomeArr, favoriteArr, readedArr) {
   let checkedArray = [];
   for (let i = 0; i < incomeArr.length; i++) {
     let newObj = { ...incomeArr[i] };
-    let favObj = favoriteArr.find(obj => obj.id === incomeArr[i].id);
+    let id;
+    if (newObj.id) {
+      id = newObj.id;
+    } else if (newObj._id) {
+      id = newObj._id;
+    } else if (newObj.uri) {
+      id = newObj.uri;
+    }
+    let favObj = favoriteArr.find(obj => obj.id === id);
 
     if (favObj) {
       newObj.favorite = true;
@@ -60,18 +68,20 @@ function checkArrays(incomeArr, favoriteArr, readedArr) {
 function dataDestructuring(elem) {
   if (elem.asset_id) {
     const {
-      abstract,
+      section: category,
+      abstract: lead_paragraph,
       title,
       asset_id: id,
       url,
       published_date,
-      media,
+      media = undefined,
       flag = 'news',
       favorite = false,
       read = false,
     } = elem;
     return {
-      abstract,
+      category,
+      lead_paragraph,
       id,
       published_date,
       title,
@@ -83,18 +93,45 @@ function dataDestructuring(elem) {
     };
   } else if (elem._id) {
     const {
-      abstract,
+      section_name: category,
+      lead_paragraph,
       _id: id,
       web_url: url,
       pub_date: published_date,
       headline: { main: title },
-      multimedia: media,
+      multimedia: media = undefined,
       flag = 'news',
       favorite = false,
       read = false,
     } = elem;
     return {
-      abstract,
+      category,
+      lead_paragraph,
+      id,
+      published_date,
+      url,
+      title,
+      media,
+      flag,
+      favorite,
+      read,
+    };
+  } else if (elem.slug_name) {
+    const {
+      section: category,
+      abstract: lead_paragraph,
+      uri: id,
+      url,
+      published_date,
+      title,
+      multimedia: media = undefined,
+      flag = 'news',
+      favorite = false,
+      read = false,
+    } = elem;
+    return {
+      category,
+      lead_paragraph,
       id,
       published_date,
       url,
@@ -108,8 +145,9 @@ function dataDestructuring(elem) {
 }
 
 // ========Розмітка картки новин==========
-function newsMarkUp({
-  abstract,
+export function newsMarkUp({
+  category,
+  lead_paragraph,
   id,
   published_date,
   url,
@@ -120,40 +158,68 @@ function newsMarkUp({
 }) {
   const IMG_URL = 'https://www.nytimes.com/';
   const date = dateFormating(published_date);
+  const PLUG_IMAGE = 'https://i.postimg.cc/vZrscCZ0/tablet-1x.jpg';
   let img = '';
-  if (media.length === 0) {
-    // =====РОЗІБРАТИСЬ З КАРТИНКОЮ============
-    img = './img/mobile_1x.jpg';
+  if (!media) {
+    img = PLUG_IMAGE;
   } else if (media.length === 1) {
     const mediaObj = media[0];
     const imageUrl = mediaObj['media-metadata'];
     const [, , third] = imageUrl;
     img = third.url;
+  } else if (media.length === 4) {
+    const searchRequestImg = media.find(elem => elem.width === 440);
+    if (searchRequestImg) {
+      img = `${searchRequestImg.url}`;
+    } else {
+      img = PLUG_IMAGE;
+    }
   } else {
-    const qqq = media.find(elem => elem.subtype === 'master495');
-    img = `${IMG_URL}${qqq.url}`;
+    const categoryRequestImg = media.find(elem => elem.subtype === 'master495');
+    if (categoryRequestImg) {
+      img = `${IMG_URL}${categoryRequestImg.url}`;
+    } else {
+      img = PLUG_IMAGE;
+    }
   }
-  return `<li class="news-card">
+  let textButton = '';
+  if (String(favorite) === "true") {
+    textButton = 'Remove from favorite'
+  } else {
+    textButton = 'Add to favorite'
+  }
+  return `<li data-read="${read}" class="news-card">
     <div class="news-card__image">
+     <div class="news-card__darkend" data-read="${read}"></div>
       <img src="${img}" alt="News" />
-      <span class="news-card__category">Job searching</span>
-      <span class="news-card__status" data-read="${read}">Have read</span>
+      <span class="news-card__category">${category}</span>
+      <span class="news-card__status" data-read="${read}">Already read
+      <svg class="news-card__icon-tick" width="18px" height="18px">
+       <use xlink:href="#icon-tick"></use>
+       </svg>
+      </span>
+      <span class="news-card__status--have" data-read="${read}">Have read</span>
       <button data-id="${id}" data-favorite="${favorite}" class="news-card__favorite">
-        Add to favorite
-        <svg class="news-card__icon" width="16px" height="16px">
-          <path d="M26 9.312c0-4.391-2.969-5.313-5.469-5.313-2.328 0-4.953 2.516-5.766 3.484-0.375 0.453-1.156 0.453-1.531 0-0.812-0.969-3.437-3.484-5.766-3.484-2.5 0-5.469 0.922-5.469 5.313 0 2.859 2.891 5.516 2.922 5.547l9.078 8.75 9.063-8.734c0.047-0.047 2.938-2.703 2.938-5.563zM28 9.312c0 3.75-3.437 6.891-3.578 7.031l-9.734 9.375c-0.187 0.187-0.438 0.281-0.688 0.281s-0.5-0.094-0.688-0.281l-9.75-9.406c-0.125-0.109-3.563-3.25-3.563-7 0-4.578 2.797-7.313 7.469-7.313 2.734 0 5.297 2.156 6.531 3.375 1.234-1.219 3.797-3.375 6.531-3.375 4.672 0 7.469 2.734 7.469 7.313z"></path>
-        </svg>
+        <span>${textButton}</span>
+        <svg class="news-card__icon" data-favorite="${favorite}" width="16px" height="16px">
+      <use xlink:href="#icon-heart-empty"></use>
+         </svg>
+         <svg class="news-card__icon-full" data-favorite="${favorite}" width="16px" height="16px">
+              <use xlink:href="#icon-heart-full"></use>
+            </svg>
       </button>
     </div>
+    <div class="news-card__wrapper">
     <h2 class="news-card__title">
       ${title}
     </h2>
     <p class="news-card__text">
-      ${abstract}
-    </p>
-    <div class="news-card__box">
-      <span class="news-card__date">${date}</span>
-      <a data-ida="${id}" class="news-card__read" href="${url}">Read more</a>
+      ${lead_paragraph}
+    </p>    
+      <div class="news-card__box">
+        <span class="news-card__date">${date}</span>
+        <a data-ida="${id}" target="_blank" data-read="${read}" class="news-card__read" href="${url}">Read more</a>
+      </div>
     </div>
   </li>`;
 }
@@ -179,13 +245,13 @@ function weatherMarkUp({ temp, descriptrion, city, icon, dayWeek, date }) {
 }
 
 // ========Форматування дати у дд/мм/рррр====
-function dateFormating(published_date) {
+export function dateFormating(published_date) {
   const date = new Date(`${published_date}`);
   return `${addLeadingZero(date.getUTCDate())}/${addLeadingZero(
     date.getUTCMonth() + 1
   )}/${date.getUTCFullYear()}`;
 }
 // ========Додавання 0 якщо число з 1 символу=========
-function addLeadingZero(value) {
+export function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }

@@ -1,6 +1,15 @@
 .button-menu {
 background-color: transparent;
 border: none;
+position: absolute;
+top: 6px;
+bottom: 6px;
+right: 0;
+cursor: pointer;
+
+&:hover, &:focus {
+fill: $accent;
+}
 @media screen and (min-width:$tablet) {
 display: none;
 }
@@ -10,3 +19,54 @@ display: none;
 .button-menu__icons.button-menu__cros {
 fill: $primary-text;
 }
+
+.button-menu__hamburger,
+.button-menu__cros {
+cursor: pointer;
+
+&:hover, &:focus {
+fill: $accent;
+}
+}
+
+.button-menu .button-menu__cros {
+display: block;
+}
+
+.button-menu.is-open .button-menu__cros {
+display: none;
+}
+
+.button-menu .button-menu__hamburger {
+display: none;
+}
+
+.button-menu.is-open .button-menu__hamburger {
+display: block;
+}
+
+.search-button__mobile {
+position: absolute;
+top: 8px;
+bottom: 6px;
+right: 10%;
+background-color: transparent;
+border: none;
+cursor: pointer;
+transform: scaleX(1);
+transform-origin: left;
+transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+
+&.is-inactive {
+visibility: hidden;
+transform: scaleX(0);
+}
+
+@media screen and (min-width: $tablet) {
+display: none;
+}
+}
+

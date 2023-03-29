@@ -1,7 +1,8 @@
 
 //Встановлює темну тему
-.dark {
-    background-color: #686868;
+body.dark{
+    color: $primary-bg;
+    background-color: $dark-bg;
 }
 
 .dark .state-light {
@@ -25,12 +26,16 @@
 
 
 // Стилі перемикача теми світла/темна
-
+.is-open .theme-switch{
+    padding-left: 16px;
+}
 .theme-switch {
     display: flex;
     gap: 11px;
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: $desktop) {
     gap: 12px;
+    position: absolute;
+    right: 0;
 }
 }
 
@@ -42,7 +47,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: $desktop) {
     display: none;
 }
 }
@@ -52,14 +57,14 @@
     align-items: center;
     justify-content: center;
     fill:#5F6775;
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: $desktop) {
     display: none;
 }
 }
 
 .state-light {
     display:none;
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: $desktop) {
     display: block;
     color: #4B48DB;
     font-family: 'Poppins';
@@ -73,7 +78,7 @@
 .state-dark {
     display: none;
 
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: $desktop) {
     display: block;
     color:#5F6775;
     font-family: 'Poppins';
@@ -90,7 +95,7 @@
 .form-switch {
     display: inline-block;
     
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: $desktop) {
     display: inline-block;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;

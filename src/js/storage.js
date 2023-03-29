@@ -1,6 +1,4 @@
-const STORAGE_KEY = 'myKey';
-
-const save = (key, value) => {
+export function save(key, value){
   try {
     const dataSave = JSON.stringify(value);
     localStorage.setItem(key, dataSave);
@@ -9,11 +7,11 @@ const save = (key, value) => {
   }
 };
 
-const load = key => {
+export const load = key => {
   try {
     const dataSave = localStorage.getItem(key);
     if (dataSave === null) {
-      return undefined;
+      return [];
     }
     return JSON.parse(dataSave);
   } catch (error) {
@@ -21,4 +19,4 @@ const load = key => {
   }
 };
 
-export default { save, load };
+

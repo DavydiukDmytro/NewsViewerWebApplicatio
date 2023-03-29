@@ -3,7 +3,7 @@ import customSelect from 'custom-select';// кастомний Select https://gi
 
 export function setupNewsSection() {
 
-  const NEWS_ITEMS_COUNT = { desktop: 7, tablet: 4, }; //створюємо об'єкт з кількістю item для desktop та tablet
+  const NEWS_ITEMS_COUNT = { desktop: 6, tablet: 3, }; //створюємо об'єкт з кількістю item для desktop та tablet
   const availableCategories = category.slice(); //створюємо копію масиву category
   let randomIndex = ``; //створюємо змінну в яку потім запишемо рандомний індекс
 

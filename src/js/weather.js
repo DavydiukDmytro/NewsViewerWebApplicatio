@@ -28,8 +28,6 @@ async function fetchWeather() {
   weather.icon = weatherData.weather[0].icon;
 
   weather.flag = 'weather';
-  //тимчасово видалить потом
-  console.log(weather);
 }
 
 //отримання геолокації
