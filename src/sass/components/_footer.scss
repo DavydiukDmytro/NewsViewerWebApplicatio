@@ -5,87 +5,64 @@ footer {
     line-height: 24px;
     color: $black;
     border-top: 1px solid #a8a8a8;
-    
+    hr {
+        border-top-color: $secondary-text;
+        opacity: 0.5
+    }
+    hr.small {
+        margin: 20px 0
+    }
     &_ul {
         @media screen and (min-width:1280px) {
             text-align: right;
         }
     }
-
-    footer .icon {
+    .icon {
         display: inline-block;
         width: 1em;
         height: 50px;
         stroke-width: 0;
-        stroke: currentColor;
-        fill: currentColor;
-        
-    }
-
-
-    .icon-u24 {
-        width: 10.5498046875em;
-        
-    }
-
-    .icon-chmyt {
-        // width: 1.984375em;
         width: 160px;
         height: 50px;
-        
     }
-
     .icon-prytula {
         width: 50px;
         height: 50px;
     }
 }
-
-footer hr {
-    border-top-color: $secondary-text;
-    opacity: 0.5
-}
-
-footer hr.small {
-    margin: 20px 0
-}
-
 .footer__about {
-
     &__logo {
         font-family: 'Manrope';
         font-weight: 700;
         color: $accent;
-        line-height: 1.357;
+        line-height: 1.36;
         font-size: 24px;
         display: flex;
         justify-content: center;
         align-items: center;
         margin-bottom: 10px;
-        
-
         @media screen and (min-width: $tablet) {
             font-size: 32px;
         }
-
         @media screen and (min-width: $desktop) {
             justify-content: flex-start;
             font-size: 42px;
         }
     }
-
     &__text {
+        font-family: 'Manrope';
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.561;
         color: $secondary-text;
-        // color: $accent;
         text-align: center;
-        
-
         @media screen and (min-width: $tablet) {
+            font-size: 16px;
+            line-height: 1.366;
             max-width: 450px;
             margin-left: 150px;
             margin-bottom: 15px;
         }
-
         @media screen and (min-width: $desktop) {
             max-width: unset;
             margin-left: 0;
@@ -93,72 +70,66 @@ footer hr.small {
         }
     }
 }
-
-footer .founds__list {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     margin-top: 20px;
-     padding-left: 0;
-     list-style: none;
-
-     @media screen and (min-width: $desktop) {
-        justify-content: start;
-
-        &__item {
-                margin-right: 20px;
-            }
-     }
-
-     
-}
-
-footer .founds__list a {
-    margin-left: 6px;
-    margin-right: 0;
-    border-radius: 100%;
-}
-
-.copyright-text {
-    margin-top: 15px;
-    text-align: center;
-
-    @media screen and (min-width: $desktop) {
-        text-align: start;
-    }
-}
-
-.founds__list li {
-    display: inline-block;
-    height: 50px;
-}
-
-.founds__list a {
-    margin-right: 8px;
-}
-
-
 .footer__additional__container {
     display: flex;
     flex-direction: column-reverse;
 }
-
 .footer__founds__container {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-}
+    .founds__list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        padding-left: 0;
+        list-style: none;
+        @media screen and (min-width: $desktop) {
+            justify-content: start;
 
+            &__item {
+                margin-right: 20px;
+            }
+        }
+        .founds__list a {
+            margin-right: 8px;
+            border-radius: 100%;
+        }
+    }
+}
+.founds__list li {
+    display: inline-block;
+    height: 50px;
+    transition: transform 0.2s;
+}
+.founds__list li:hover,
+.founds__list li:focus {
+    transform: scale(1.15);
+}
 .footer__copyright__container {
+    .copyright-text {
+        font-family: 'Manrope';
+        font-weight: 100;
+        line-height: 1.82;
+        font-size: 12px;
+        margin-top: 15px;
+        text-align: center;
+        @media screen and (min-width: $tablet) {
+            line-height: 1.56;
+            font-size: 14px;
+        }
+        @media screen and (min-width: $desktop) {
+            text-align: start;
+        }
+    }
     @media screen and (min-width: $desktop) {
         margin-top: 20px;
     }
 }
-
 body.dark .copyright-text {
     color: $white;
 }
-
 body.dark .icon-u24 {
-    fill: #fff;
+    fill: $white;
 }
