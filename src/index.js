@@ -30,6 +30,8 @@ selectedCategory();
 const API_URL_NEWS = 'https://api.nytimes.com/svc';
 const KEY_NEWS = '1XlCr4gRqRG4oQXZ0w6Bhmx7Lrq32aXd';
 
+const loader = document. querySelector ("#loading");
+
 export const refs = {
   paginationBtn: document.querySelector('.page-container'),
   searchForm: document.querySelector('.search-form'),
@@ -47,6 +49,15 @@ let arrayCardNewsFavorite = [];
 let arrayCardNewsRead = [];
 let arrayCardNewsCategorie = [];
 let arrayCardNewsCalendar = [];
+
+// показує анімаціїю завантаження данних
+function displayLoading() {
+  loader.classList.add("display");
+}
+// ховає анімаціїю завантаження данних
+function hideLoading () {
+  loader.classList.remove("display");
+}
 
 //створює обєкт для запитів
 const requestsNews = new Requests(API_URL_NEWS, KEY_NEWS);
@@ -173,6 +184,7 @@ async function init() {
 
 //Функція для пошуку популярних новин
 async function searchPopular() {
+  displayLoading();
   try {
     // await navigator.geolocation.getCurrentPosition(requestsWeatherPosition);
     const newsPopular = requestsNews.getRequests(
@@ -184,6 +196,7 @@ async function searchPopular() {
     refs.paginationBtn.classList.add('none');
     showPageNotFound('Sorry, but we did not find any popular news!');
   }
+  hideLoading();
 }
 
 // Функція для пошуку за словом
@@ -208,6 +221,7 @@ async function searchArticle(searchValue) {
 async function onClickSearchBtn(e) {
   e.preventDefault();
   hidePageNotFound();
+  displayLoading();
   const searchValue = e.target.children.search.value;
   await searchArticle(searchValue);
   arrayCardNews = await concatNewsAndWeather(
@@ -221,12 +235,13 @@ async function onClickSearchBtn(e) {
     showPageNotFound('Sorry, but we did not find any news for this word!');
     refs.paginationBtn.classList.add('none');
   }
-
+  hideLoading();
   pagination(arrayCardNews);
 }
 
 //функція натискання на кнопку категорії та виконання запиту на бекенд
 function selectedCategory() {
+  
   const selectName = document.querySelector('.news-section__select');
   selectName.addEventListener('change', async function () {
     hidePageNotFound();
@@ -238,12 +253,14 @@ function selectedCategory() {
       weather
     );
     //відправка масиву відредагованого
+    
     pagination(arrayCardNews);
   });
   // повертає значення категорії з селекта
   const categoryName2 = document.querySelector('.section-categories__list');
   categoryName2.addEventListener('click', async function (e) {
     if (e.target.nodeName === 'BUTTON') {
+      displayLoading();
       hidePageNotFound();
       await searchCategorie(e.target.textContent);
       arrayCardNews = concatNewsAndWeather(
@@ -253,6 +270,7 @@ function selectedCategory() {
         weather
       );
       //відправка масиву відредагованого
+      hideLoading();
       pagination(arrayCardNews);
     }
   });
@@ -327,6 +345,7 @@ bodyEl.classList.remove('.is-modal');
 
 //запит для пошуку по даті
 export async function searchCalendar(date) {
+  displayLoading();
   try {
     clearNewsSection();
     const { response } = await requestsNews.getRequests(
@@ -340,6 +359,7 @@ export async function searchCalendar(date) {
       arrayCardNewsRead,
       weather
     );
+    hideLoading();
     pagination(arrayCardNews);
     if (arrayCardNews.length < 1) {
       refs.paginationBtn.classList.add('none');
@@ -350,3 +370,4 @@ export async function searchCalendar(date) {
     showPageNotFound('Sorry, but we found no news for this date');
   }
 }
+
