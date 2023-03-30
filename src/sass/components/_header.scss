@@ -147,6 +147,9 @@
   display: flex;
   position: relative;
   align-items: center;
+  @media screen and (max-width: $tablet) {
+    padding-left: 16px;
+  }
 }
 
 .header__logo {
@@ -373,6 +376,10 @@ body.scroll {
 }
 
 .site-nav__item {
+  @media screen and (max-width: $tablet) {
+    padding-left: 16px;
+  }
+
   @media screen and (max-width: $tablet) {
     display: flex;
     align-items: center;
